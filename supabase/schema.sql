@@ -103,3 +103,51 @@ and not exists (
   where t.account_id = shadow_accounts.id
   and t.side = 'DEPOSIT'
 );
+
+
+-- Build 003: prosecution, qualification, and forward outcome records
+create table if not exists prosecution (
+  id uuid primary key default gen_random_uuid(),
+  candidate_id uuid not null references candidates(id),
+  created_at timestamptz not null default now(),
+  strongest_counter_thesis text not null,
+  contradictory_evidence jsonb not null default '[]'::jsonb,
+  hidden_risks jsonb not null default '[]'::jsonb,
+  alternative_explanation text,
+  prosecutor_recommendation text not null check (prosecutor_recommendation in ('PROCEED','CAUTION','REJECT')),
+  hunter_rebuttal text,
+  version text not null default 'V1.0'
+);
+
+create table if not exists qualification (
+  id uuid primary key default gen_random_uuid(),
+  candidate_id uuid not null references candidates(id),
+  created_at timestamptz not null default now(),
+  evidence_quality int not null check (evidence_quality between 0 and 20),
+  risk_reward int not null check (risk_reward between 0 and 20),
+  catalyst_timing int not null check (catalyst_timing between 0 and 20),
+  executability int not null check (executability between 0 and 20),
+  thesis_resilience int not null check (thesis_resilience between 0 and 20),
+  total_score int generated always as (evidence_quality+risk_reward+catalyst_timing+executability+thesis_resilience) stored,
+  classification text not null check (classification in ('REJECT','WATCH','QUALIFIED','HIGH_CONVICTION')),
+  qualification_version text not null default 'V1.0'
+);
+
+create table if not exists candidate_outcomes (
+  id uuid primary key default gen_random_uuid(),
+  candidate_id uuid not null references candidates(id),
+  measured_at timestamptz not null default now(),
+  horizon text not null,
+  reference_price_usd numeric(24,8) not null,
+  measured_price_usd numeric(24,8) not null,
+  return_pct numeric(18,8) not null
+);
+
+-- Server worker may write research records, but still has no transaction write grant.
+grant select, insert on public.market_observations to service_role;
+grant select, insert on public.candidates to service_role;
+grant select, insert on public.prosecution to service_role;
+grant select, insert on public.qualification to service_role;
+grant select, insert on public.candidate_outcomes to service_role;
+grant select on public.shadow_accounts to service_role;
+grant select on public.transactions to service_role;
