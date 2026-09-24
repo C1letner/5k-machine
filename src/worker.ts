@@ -1,23 +1,16 @@
 import { fetchBtcSpot } from "./market/coinbase.js";
-import { recordBtcObservation, maybeCreateCandidate } from "./hunters/cryptoHunter.js";
+import { recordBtcObservation, buildBtcMemory } from "./hunters/cryptoHunter.js";
 import { getShadowCashUsd } from "./ledger.js";
 
 async function runOnce() {
-  const spot = await fetchBtcSpot();
-  const observation = await recordBtcObservation(spot);
-  await maybeCreateCandidate();
-  const cash = await getShadowCashUsd();
-
+  const spot=await fetchBtcSpot();
+  const observation=await recordBtcObservation(spot);
+  const memory=await buildBtcMemory(spot);
+  const cash=await getShadowCashUsd();
   console.log(JSON.stringify({
-    ok: true,
-    btcPriceUsd: spot.priceUsd,
-    observationId: observation.id,
-    shadowCashUsd: cash,
-    authorizedToTrade: false
-  }, null, 2));
+    ok:true,build:"002",btcPriceUsd:spot.priceUsd,observationId:observation.id,
+    memoryId:memory.memoryId,features:memory.features,candidateReady:memory.candidateReady,
+    trigger:memory.trigger,supportingSignal:memory.supportingSignal,shadowCashUsd:cash,authorizedToTrade:false
+  },null,2));
 }
-
-runOnce().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+runOnce().catch(error=>{console.error(error);process.exitCode=1;});
