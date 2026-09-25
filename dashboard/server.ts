@@ -18,4 +18,13 @@ async function page(){
  <div class="panel"><h2>Latest Qualification</h2><table><tr><th>Candidate</th><th>Score</th><th>Classification</th></tr>${(q||[]).map(x=>`<tr><td>${esc(x.candidate_id)}</td><td>${esc(x.total_score)}</td><td>${esc(x.classification)}</td></tr>`).join("")}</table></div>
  </body></html>`;
 }
-http.createServer(async(_req,res)=>{try{res.writeHead(200,{"content-type":"text/html; charset=utf-8","cache-control":"no-store"});res.end(await page())}catch(e:any){res.writeHead(500,{"content-type":"text/plain"});res.end(String(e?.message||e))}}).listen(port,()=>console.log(`5K Command Center listening on ${port}`));
+http.createServer(async(_req,res)=>{
+  try{
+    const html=await page();
+    res.writeHead(200,{"content-type":"text/html; charset=utf-8","cache-control":"no-store"});
+    res.end(html);
+  }catch(e:any){
+    if(!res.headersSent) res.writeHead(500,{"content-type":"text/plain; charset=utf-8"});
+    if(!res.writableEnded) res.end(String(e?.message||e));
+  }
+}).listen(port,()=>console.log(`5K Command Center listening on ${port}`));
