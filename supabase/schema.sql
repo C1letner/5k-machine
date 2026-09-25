@@ -151,3 +151,69 @@ grant select, insert on public.qualification to service_role;
 grant select, insert on public.candidate_outcomes to service_role;
 grant select on public.shadow_accounts to service_role;
 grant select on public.transactions to service_role;
+
+
+-- Build 004: reliable hourly heartbeat inside Supabase
+-- Requires pg_cron + pg_net. Calls Coinbase public spot API directly from Postgres,
+-- stores the observation, and removes GitHub scheduler jitter from market-data capture.
+create extension if not exists pg_cron;
+create extension if not exists pg_net;
+
+create or replace function public.capture_btc_hourly()
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  request_id bigint;
+begin
+  select net.http_get(
+    url := 'https://api.coinbase.com/v2/prices/BTC-USD/spot',
+    headers := jsonb_build_object('User-Agent','5k-machine/0.1')
+  ) into request_id;
+end;
+$$;
+
+-- Poll completed pg_net responses and persist valid Coinbase BTC spot observations.
+create or replace function public.persist_btc_http_responses()
+returns void
+language plpgsql
+security definer
+set search_path = public, net
+as $$
+begin
+  insert into public.market_observations
+    (observed_at, agent, asset, market, observation_type, price_usd, payload, source)
+  select
+    now(),
+    'btc_sensor_v1',
+    'BTC',
+    'BTC-USD',
+    'SPOT_PRICE',
+    ((r.content::jsonb)->'data'->>'amount')::numeric,
+    jsonb_build_object('build','004','transport','supabase_pg_cron_pg_net'),
+    'https://api.coinbase.com/v2/prices/BTC-USD/spot'
+  from net._http_response r
+  where r.status_code = 200
+    and r.created > now() - interval '10 minutes'
+    and (r.content::jsonb)->'data'->>'base' = 'BTC'
+    and (r.content::jsonb)->'data'->>'currency' = 'USD'
+    and not exists (
+      select 1 from public.market_observations m
+      where m.agent='btc_sensor_v1'
+        and m.observed_at >= date_trunc('hour', now())
+    );
+end;
+$$;
+
+-- Idempotent cron setup.
+do $$
+declare j record;
+begin
+  for j in select jobid from cron.job where jobname in ('btc-hourly-request','btc-hourly-persist')
+  loop perform cron.unschedule(j.jobid); end loop;
+end $$;
+
+select cron.schedule('btc-hourly-request','2 * * * *',$$select public.capture_btc_hourly();$$);
+select cron.schedule('btc-hourly-persist','4 * * * *',$$select public.persist_btc_http_responses();$$);
