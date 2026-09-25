@@ -9,7 +9,7 @@ async function runOnce() {
   const cash=await getShadowCashUsd();
   console.log(JSON.stringify({
     ok:true,build:"002",btcPriceUsd:spot.priceUsd,observationId:observation.id,
-    memoryId:memory.memoryId,features:memory.features,candidateReady:memory.candidateReady,
+    memoryId:memory.memoryId,candidateId:memory.candidateId,features:memory.features,candidateReady:memory.candidateReady,
     trigger:memory.trigger,supportingSignal:memory.supportingSignal,shadowCashUsd:cash,authorizedToTrade:false
   },null,2));
 }
