@@ -1,0 +1,20 @@
+name: XRP-003 Research
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm install
+      - run: npm run research:xrp003
+      - uses: actions/upload-artifact@v4
+        with:
+          name: xrp003-result
+          path: research/results/xrp003.json
