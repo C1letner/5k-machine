@@ -27,9 +27,17 @@ export async function recordBtcObservation(spot: BtcSpot) {
 }
 export async function buildBtcMemory(spot: BtcSpot) {
   const since = new Date(Date.parse(spot.observedAt) - 8*24*60*60*1000).toISOString();
-  const { data, error } = await db.from("market_observations").select("observed_at, price_usd")
-    .eq("asset","BTC").eq("observation_type","SPOT_PRICE").gte("observed_at",since)
-    .order("observed_at",{ascending:true});
+  // Build 004: the authoritative clock is btc_sensor_v1. During bootstrap,
+  // fall back to legacy Hunter spot rows only if the sensor has too little history.
+  let { data, error } = await db.from("market_observations").select("observed_at, price_usd")
+    .eq("asset","BTC").eq("observation_type","SPOT_PRICE").eq("agent","btc_sensor_v1")
+    .gte("observed_at",since).order("observed_at",{ascending:true});
+  if (!error && (data?.length ?? 0) < 2) {
+    const fallback = await db.from("market_observations").select("observed_at, price_usd")
+      .eq("asset","BTC").eq("observation_type","SPOT_PRICE").gte("observed_at",since)
+      .order("observed_at",{ascending:true});
+    data = fallback.data; error = fallback.error;
+  }
   if (error) throw error;
   const rows=(data??[]) as PricePoint[], nowMs=Date.parse(spot.observedAt);
   const prices=rows.map(r=>Number(r.price_usd)).filter(Number.isFinite);
@@ -50,7 +58,7 @@ export async function buildBtcMemory(spot: BtcSpot) {
   const {data:memory,error:memoryError}=await db.from("market_observations").insert({
     observed_at:spot.observedAt,agent:"crypto_hunter_v2",asset:"BTC",market:"BTC-USD",
     observation_type:candidateReady?"CANDIDATE_SIGNAL":"MARKET_FEATURES",price_usd:spot.priceUsd,
-    payload:{build:"002",features,trigger,supportingSignal,candidateReady,
+    payload:{build:"004",authoritativeSensor:"btc_sensor_v1",features,trigger,supportingSignal,candidateReady,
       note:candidateReady?"Trigger + supporting price-structure signal detected. No capital action.":"Memory/features updated; no candidate."},
     source:"derived:market_observations"
   }).select("id").single();
