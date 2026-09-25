@@ -232,3 +232,38 @@ create table if not exists system_runs (
 );
 
 grant select, insert, update on public.system_runs to service_role;
+
+
+-- Build 006: read-only Command Center views
+create or replace view public.command_center_overview as
+select
+  (select starting_cash_usd from public.shadow_accounts where name='5K MACHINE - SHADOW' limit 1) as starting_cash_usd,
+  (select coalesce(sum(case when side='DEPOSIT' then net_value_usd else -net_value_usd end),0) from public.transactions t join public.shadow_accounts a on a.id=t.account_id where a.name='5K MACHINE - SHADOW') as shadow_ledger_value_usd,
+  (select price_usd from public.market_observations where asset='BTC' and observation_type='SPOT_PRICE' order by observed_at desc limit 1) as btc_usd,
+  (select price_usd from public.market_observations where asset='XRP' order by observed_at desc limit 1) as xrp_usd,
+  (select status from public.system_runs order by started_at desc limit 1) as last_system_status,
+  (select started_at from public.system_runs order by started_at desc limit 1) as last_system_run_at,
+  (select count(*) from public.candidates) as total_candidates,
+  (select count(*) from public.candidates where status in ('QUALIFIED','HIGH_CONVICTION')) as qualified_candidates,
+  false as authorized_to_trade;
+
+create or replace view public.command_center_activity as
+select observed_at as occurred_at, agent as actor, observation_type as event_type,
+       asset, price_usd, payload as details
+from public.market_observations
+union all
+select created_at, hunter, 'CANDIDATE_'||status, asset, discovery_price_usd,
+       jsonb_build_object('direction',direction,'trigger',trigger,'supporting_signal',supporting_signal)
+from public.candidates
+union all
+select created_at, 'prosecutor', 'PROSECUTION_'||prosecutor_recommendation, null, null,
+       jsonb_build_object('candidate_id',candidate_id,'counter_thesis',strongest_counter_thesis)
+from public.prosecution
+union all
+select created_at, 'qualification', 'QUALIFICATION_'||classification, null, null,
+       jsonb_build_object('candidate_id',candidate_id,'score',total_score)
+from public.qualification
+union all
+select started_at, 'system', 'SYSTEM_'||status, null, null,
+       jsonb_build_object('run_id',id,'build',build,'completed_at',completed_at,'error',error_message)
+from public.system_runs;
