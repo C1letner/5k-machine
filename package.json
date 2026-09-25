@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "worker": "tsx src/worker.ts",
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit",
+    "research:xrp001": "tsx research/xrp001.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
