@@ -217,3 +217,18 @@ end $$;
 
 select cron.schedule('btc-hourly-request','2 * * * *',$$select public.capture_btc_hourly();$$);
 select cron.schedule('btc-hourly-persist','4 * * * *',$$select public.persist_btc_http_responses();$$);
+
+
+-- Build 005: autonomous-loop observability
+create table if not exists system_runs (
+  id uuid primary key default gen_random_uuid(),
+  started_at timestamptz not null default now(),
+  completed_at timestamptz,
+  component text not null,
+  status text not null check (status in ('STARTED','SUCCESS','FAILURE')),
+  build text not null,
+  details jsonb not null default '{}'::jsonb,
+  error_message text
+);
+
+grant select, insert, update on public.system_runs to service_role;
