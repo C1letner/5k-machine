@@ -7,7 +7,8 @@
     "worker": "tsx src/worker.ts",
     "check": "tsc --noEmit",
     "research:xrp001": "tsx research/xrp001.ts",
-    "research:xrp002": "tsx research/xrp002.ts"
+    "research:xrp002": "tsx research/xrp002.ts",
+    "research:xrp003": "tsx research/xrp003.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
