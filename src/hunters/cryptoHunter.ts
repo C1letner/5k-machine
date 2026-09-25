@@ -55,5 +55,32 @@ export async function buildBtcMemory(spot: BtcSpot) {
     source:"derived:market_observations"
   }).select("id").single();
   if(memoryError) throw memoryError;
-  return {features,trigger,supportingSignal,candidateReady,memoryId:memory.id};
+  let candidateId: string | null = null;
+  if (candidateReady) {
+    const direction = supportingSignal === "ROLLING_HIGH" ? "LONG" : "SHORT";
+    const { data: candidate, error: candidateError } = await db.from("candidates").insert({
+      observation_id: memory.id,
+      asset: "BTC",
+      market: "BTC-USD",
+      direction,
+      discovery_price_usd: spot.priceUsd,
+      trigger: trigger ?? "UNKNOWN",
+      supporting_signal: supportingSignal,
+      mispricing_thesis: direction === "LONG"
+        ? "Large 24h move with a fresh observed rolling high may indicate momentum continuation."
+        : "Large 24h move with a fresh observed rolling low may indicate downside momentum continuation.",
+      catalyst: "Price/market-structure signal only; deep research not yet attached.",
+      horizon: "1d-7d",
+      invalidation: "Signal loses rolling extreme and subsequent evidence fails to support continuation.",
+      liquidity_notes: "BTC-USD is treated as liquid for the $5K shadow experiment; execution not authorized.",
+      estimated_costs_bps: 50,
+      hunter: "crypto_hunter_v2",
+      hunter_confidence: "LOW",
+      known_unknowns: ["volume confirmation","derivatives positioning","spot flow","news catalyst"],
+      status: "DISCOVERED"
+    }).select("id").single();
+    if (candidateError) throw candidateError;
+    candidateId = candidate.id;
+  }
+  return {features,trigger,supportingSignal,candidateReady,memoryId:memory.id,candidateId};
 }
