@@ -267,3 +267,42 @@ union all
 select started_at, 'system', 'SYSTEM_'||status, null, null,
        jsonb_build_object('run_id',id,'build',build,'completed_at',completed_at,'error',error_message)
 from public.system_runs;
+
+
+-- Build 008: reliable autonomous reasoning queue driven by the reliable sensor clock.
+create table if not exists public.research_queue (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz not null default now(),
+  observation_id uuid references public.market_observations(id),
+  status text not null default 'PENDING' check (status in ('PENDING','CLAIMED','SUCCESS','FAILURE')),
+  claimed_at timestamptz,
+  completed_at timestamptz,
+  attempts int not null default 0,
+  last_error text,
+  unique(observation_id)
+);
+grant select, insert, update on public.research_queue to service_role;
+
+create or replace function public.enqueue_latest_btc_sensor()
+returns void
+language plpgsql
+security definer
+set search_path=public
+as $$
+begin
+  insert into public.research_queue(observation_id)
+  select id from public.market_observations
+  where agent='btc_sensor_v1' and observation_type='SPOT_PRICE'
+  order by observed_at desc limit 1
+  on conflict(observation_id) do nothing;
+end;
+$$;
+
+do $$
+declare j record;
+begin
+  for j in select jobid from cron.job where jobname='research-queue-enqueue'
+  loop perform cron.unschedule(j.jobid); end loop;
+end $$;
+
+select cron.schedule('research-queue-enqueue','6 * * * *',$$select public.enqueue_latest_btc_sensor();$$);
