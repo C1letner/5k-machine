@@ -3,7 +3,8 @@ name: Crypto Hunter Heartbeat
 on:
   workflow_dispatch:
   schedule:
-    - cron: "17 * * * *"
+    - cron: "8 * * * *"
+    - cron: "28 * * * *"
 
 permissions:
   contents: read
