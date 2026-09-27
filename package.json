@@ -27,7 +27,8 @@
     "economics": "tsx src/company/economics.ts",
     "test:discovery": "tsx tests/discoveryLibrary.test.ts",
     "test:discovery-integration": "tsx tests/discoveryIntegration.test.ts",
-    "backfill": "tsx src/backfillHistory.ts"
+    "backfill": "tsx src/backfillHistory.ts",
+    "test:generalized": "tsx tests/generalizedTester.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
