@@ -7,15 +7,16 @@ import { db } from "./db.js";
 
 async function runOnce() {
   const {data:pending,error:queueError}=await db.from("research_queue").select("id,observation_id,attempts")
-    .eq("status","PENDING").order("created_at",{ascending:true}).limit(1);
+    .eq("status","PENDING").order("created_at",{ascending:true}).limit(10);
   if(queueError) throw queueError;
-  const queueItem=pending?.[0]??null;
-  if(queueItem){
+  const queueItems=pending??[];
+  for(const item of queueItems){
     const {error:claimError}=await db.from("research_queue").update({
-      status:"CLAIMED",claimed_at:new Date().toISOString(),attempts:Number(queueItem.attempts||0)+1
-    }).eq("id",queueItem.id);
+      status:"CLAIMED",claimed_at:new Date().toISOString(),attempts:Number(item.attempts||0)+1
+    }).eq("id",item.id);
     if(claimError) throw claimError;
   }
+  const queueItem=queueItems[0]??null;
   const {data:run,error:runError}=await db.from("system_runs").insert({
     component:"market_research_loop",status:"STARTED",build:"005",details:{authorizedToTrade:false}
   }).select("id").single();
@@ -37,21 +38,21 @@ async function runOnce() {
       completed_at:new Date().toISOString(),status:"SUCCESS",details:result
     }).eq("id",run.id);
     if(updateError) throw updateError;
-    if(queueItem){
+    if(queueItems.length){
       const {error:qDone}=await db.from("research_queue").update({
         status:"SUCCESS",completed_at:new Date().toISOString(),last_error:null
-      }).eq("id",queueItem.id);
+      }).in("id",queueItems.map(x=>x.id));
       if(qDone) throw qDone;
     }
-    console.log(JSON.stringify({...result,queueItemId:queueItem?.id??null},null,2));
+    console.log(JSON.stringify({...result,queueItemIds:queueItems.map(x=>x.id)},null,2));
   } catch(error:any) {
     await db.from("system_runs").update({
       completed_at:new Date().toISOString(),status:"FAILURE",error_message:String(error?.message??error),
       details:{authorizedToTrade:false}
     }).eq("id",run.id);
-    if(queueItem) await db.from("research_queue").update({
+    if(queueItems.length) await db.from("research_queue").update({
       status:"FAILURE",completed_at:new Date().toISOString(),last_error:String(error?.message??error)
-    }).eq("id",queueItem.id);
+    }).in("id",queueItems.map(x=>x.id));
     throw error;
   }
 }
