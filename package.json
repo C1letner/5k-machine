@@ -22,7 +22,8 @@
     "science:all": "tsx src/scienceRunner.ts",
     "test:governance": "tsx tests/governance.test.ts",
     "ceo": "tsx src/company/ceo.ts",
-    "executives": "tsx src/company/executiveWork.ts"
+    "executives": "tsx src/company/executiveWork.ts",
+    "audit": "tsx src/company/auditor.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
