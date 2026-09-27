@@ -306,3 +306,57 @@ begin
 end $$;
 
 select cron.schedule('research-queue-enqueue','6 * * * *',$$select public.enqueue_latest_btc_sensor();$$);
+
+
+-- Build 009: Development Director durable work queue
+create table if not exists public.development_tasks (
+  id text primary key,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  priority int not null default 100,
+  title text not null,
+  objective text not null,
+  acceptance_criteria jsonb not null default '[]'::jsonb,
+  allowed_actions jsonb not null default '[]'::jsonb,
+  forbidden_actions jsonb not null default '[]'::jsonb,
+  status text not null default 'BACKLOG' check (status in ('BACKLOG','CLAIMED','IMPLEMENTING','TESTING','COMMITTED','VERIFIED','BLOCKED')),
+  claimed_at timestamptz,
+  completed_at timestamptz,
+  commit_sha text,
+  test_evidence jsonb not null default '[]'::jsonb,
+  blocker text,
+  notes jsonb not null default '{}'::jsonb
+);
+
+create table if not exists public.development_runs (
+  id uuid primary key default gen_random_uuid(),
+  task_id text references public.development_tasks(id),
+  started_at timestamptz not null default now(),
+  completed_at timestamptz,
+  status text not null check (status in ('STARTED','SUCCESS','FAILURE','BLOCKED')),
+  evidence jsonb not null default '{}'::jsonb,
+  error_message text
+);
+
+grant select,insert,update on public.development_tasks to service_role;
+grant select,insert,update on public.development_runs to service_role;
+
+insert into public.development_tasks(id,priority,title,objective,acceptance_criteria,allowed_actions,forbidden_actions)
+values
+('DEV-009',10,'Command Center reliability','Make unattended operation auditable from the dashboard.',
+ '["Show sensor freshness","Show pending/failed research queue counts","Show last successful research loop","Flag stale data clearly"]'::jsonb,
+ '["GitHub code changes","read-only Supabase queries","tests","documentation"]'::jsonb,
+ '["real trading","capital firewall changes","spending","secret rotation","destructive database changes"]'::jsonb),
+('DEV-010',20,'World Intelligence architecture','Create a bounded World Intelligence/news ingestion and evidence model without autonomous political persuasion or unsupported conclusions.',
+ '["Document source/evidence contract","Implement typed intelligence record interfaces","Add deduplication and relevance scoring scaffold","No paid data dependency"]'::jsonb,
+ '["GitHub code changes","public web research","tests","documentation"]'::jsonb,
+ '["real trading","paid services","secret changes","destructive migrations"]'::jsonb),
+('DEV-011',30,'Regime Agent','Implement deterministic market-regime classification scaffold using observed market features.',
+ '["Regime output is timestamped","Rules are explicit/versioned","Unknown is allowed","No capital authority"]'::jsonb,
+ '["GitHub code changes","tests","documentation"]'::jsonb,
+ '["real trading","capital allocation","secret changes"]'::jsonb),
+('DEV-012',40,'Pipeline integration','Integrate validated World Intelligence and Regime outputs into candidate context without changing trading authority.',
+ '["Candidate context can reference intelligence/regime","Pipeline still runs with missing optional context","authorizedToTrade remains false","tests pass"]'::jsonb,
+ '["GitHub code changes","tests","documentation"]'::jsonb,
+ '["real trading","transaction writes","capital firewall changes"]'::jsonb)
+on conflict(id) do nothing;
