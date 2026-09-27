@@ -17,7 +17,8 @@
     "test:adversarial": "tsx tests/adversarialScientist.test.ts",
     "science": "tsx src/scientificPipeline.ts",
     "replicate": "tsx src/replicationLab.ts",
-    "forward": "tsx src/forwardLab.ts"
+    "forward": "tsx src/forwardLab.ts",
+    "universe:ingest": "tsx src/universeIngest.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
