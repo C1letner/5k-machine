@@ -15,7 +15,8 @@
     "universe": "tsx src/universeWorker.ts",
     "test:hypotheses": "tsx src/hypothesisTester.ts",
     "test:adversarial": "tsx tests/adversarialScientist.test.ts",
-    "science": "tsx src/scientificPipeline.ts"
+    "science": "tsx src/scientificPipeline.ts",
+    "replicate": "tsx src/replicationLab.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
