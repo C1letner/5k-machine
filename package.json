@@ -24,7 +24,8 @@
     "ceo": "tsx src/company/ceo.ts",
     "executives": "tsx src/company/executiveWork.ts",
     "audit": "tsx src/company/auditor.ts",
-    "economics": "tsx src/company/economics.ts"
+    "economics": "tsx src/company/economics.ts",
+    "test:discovery": "tsx tests/discoveryLibrary.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
