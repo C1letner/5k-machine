@@ -360,3 +360,47 @@ values
  '["GitHub code changes","tests","documentation"]'::jsonb,
  '["real trading","transaction writes","capital firewall changes"]'::jsonb)
 on conflict(id) do nothing;
+
+
+-- Build 010: Hypothesis Factory durable scientific record
+create table if not exists public.hypotheses (
+  id uuid primary key default gen_random_uuid(),
+  hypothesis_key text not null unique,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  generator text not null,
+  generator_version text not null,
+  market text not null,
+  asset_a text not null,
+  asset_b text,
+  observation_window text not null,
+  claim text not null,
+  mechanism text,
+  trigger_definition jsonb not null,
+  predicted_effect jsonb not null,
+  falsification_criteria jsonb not null,
+  required_data jsonb not null default '[]'::jsonb,
+  status text not null default 'PROPOSED' check(status in ('PROPOSED','TESTING','REJECTED','HISTORICAL_SURVIVOR','FORWARD_VALIDATION','FORWARD_SURVIVOR','RETIRED')),
+  discovery_evidence jsonb not null default '{}'::jsonb,
+  test_version text not null default 'V1.0',
+  frozen_at timestamptz,
+  notes jsonb not null default '{}'::jsonb
+);
+
+create table if not exists public.hypothesis_tests (
+  id uuid primary key default gen_random_uuid(),
+  hypothesis_id uuid not null references public.hypotheses(id),
+  created_at timestamptz not null default now(),
+  test_type text not null check(test_type in ('DISCOVERY','HOLDOUT','ADVERSARIAL','FORWARD')),
+  dataset_start timestamptz,
+  dataset_end timestamptz,
+  code_version text,
+  assumptions jsonb not null default '{}'::jsonb,
+  sample_size int,
+  result jsonb not null default '{}'::jsonb,
+  verdict text not null check(verdict in ('PASS','FAIL','INCONCLUSIVE')),
+  evidence_hash text
+);
+
+grant select,insert,update on public.hypotheses to service_role;
+grant select,insert on public.hypothesis_tests to service_role;
