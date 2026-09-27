@@ -12,7 +12,8 @@
     "dashboard": "tsx dashboard/server.ts",
     "test:hypothesis": "tsx tests/hypothesisFactory.test.ts",
     "test:matrix": "tsx tests/relationshipMatrix.test.ts",
-    "universe": "tsx src/universeWorker.ts"
+    "universe": "tsx src/universeWorker.ts",
+    "test:hypotheses": "tsx src/hypothesisTester.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
