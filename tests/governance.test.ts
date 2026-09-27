@@ -1,0 +1,2 @@
+import assert from "node:assert/strict";import {governance,AUTHORIZED_TO_TRADE,OWNER_RISK_POSTURE,requiresOwnerApproval} from "../src/company/governance.js";
+assert.equal(OWNER_RISK_POSTURE,"MEDIUM");assert.equal(AUTHORIZED_TO_TRADE,false);assert.equal(governance.CIO.realCapitalAuthorityUsd,0);assert.equal(governance.INDEPENDENT_AUDITOR.reportsTo,"OWNER");assert.equal(requiresOwnerApproval("ENABLE_REAL_TRADING"),true);assert.equal(requiresOwnerApproval("REPRIORITIZE_RESEARCH"),false);console.log("Governance tests passed");
