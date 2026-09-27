@@ -18,7 +18,8 @@
     "science": "tsx src/scientificPipeline.ts",
     "replicate": "tsx src/replicationLab.ts",
     "forward": "tsx src/forwardLab.ts",
-    "universe:ingest": "tsx src/universeIngest.ts"
+    "universe:ingest": "tsx src/universeIngest.ts",
+    "science:all": "tsx src/scienceRunner.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
