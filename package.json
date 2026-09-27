@@ -21,7 +21,8 @@
     "universe:ingest": "tsx src/universeIngest.ts",
     "science:all": "tsx src/scienceRunner.ts",
     "test:governance": "tsx tests/governance.test.ts",
-    "ceo": "tsx src/company/ceo.ts"
+    "ceo": "tsx src/company/ceo.ts",
+    "executives": "tsx src/company/executiveWork.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
