@@ -404,3 +404,18 @@ create table if not exists public.hypothesis_tests (
 
 grant select,insert,update on public.hypotheses to service_role;
 grant select,insert on public.hypothesis_tests to service_role;
+
+
+-- Build 012: multi-asset crypto universe observations
+create table if not exists public.crypto_universe_snapshots (
+ id uuid primary key default gen_random_uuid(),
+ observed_at timestamptz not null,
+ asset text not null,
+ market text not null,
+ price_usd numeric(24,8) not null check(price_usd>0),
+ source text not null,
+ sensor_version text not null default 'U1',
+ unique(observed_at,asset)
+);
+create index if not exists crypto_universe_asset_time_idx on public.crypto_universe_snapshots(asset,observed_at desc);
+grant select,insert on public.crypto_universe_snapshots to service_role;
