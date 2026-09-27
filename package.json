@@ -20,7 +20,8 @@
     "forward": "tsx src/forwardLab.ts",
     "universe:ingest": "tsx src/universeIngest.ts",
     "science:all": "tsx src/scienceRunner.ts",
-    "test:governance": "tsx tests/governance.test.ts"
+    "test:governance": "tsx tests/governance.test.ts",
+    "ceo": "tsx src/company/ceo.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
