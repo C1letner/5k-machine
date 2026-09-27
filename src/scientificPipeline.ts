@@ -1,25 +1,16 @@
 import { db } from "./db.js";
 import { adversarialReview } from "./discovery/adversarialScientist.js";
-
-type H={id:string;asset_a:string;asset_b:string;trigger_definition:any;status:string};
-const ret=(a:number,b:number)=>b/a-1;
+type H={id:string;asset_a:string;asset_b:string|null;trigger_definition:any;status:string};
+type Pt={t:number;p:number};
+const ret=(a:number,b:number)=>b/a-1,mean=(a:number[])=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null,sd=(a:number[])=>{const m=mean(a);return m==null?0:Math.sqrt(a.reduce((s,x)=>s+(x-m)**2,0)/a.length)};
 async function series(asset:string,start:string,end:string){const {data,error}=await db.from("crypto_universe_snapshots").select("observed_at,price_usd").eq("asset",asset).gte("observed_at",start).lte("observed_at",end).order("observed_at",{ascending:true});if(error)throw error;return(data??[]).map(x=>({t:Date.parse(x.observed_at),p:Number(x.price_usd)}))}
-async function returnsFor(h:H){
- const end=new Date().toISOString(),start=new Date(Date.now()-30*24*3600_000).toISOString(),a=await series(h.asset_a,start,end),b=await series(h.asset_b,start,end),bm=new Map(b.map(x=>[x.t,x.p])),r=a.filter(x=>bm.has(x.t)).map(x=>({t:x.t,a:x.p,b:bm.get(x.t)!}));
- const dir=h.trigger_definition?.direction==="DOWN"?-1:1,move=Number(h.trigger_definition?.leaderMoveAbsGte??.005),ratioMax=Number(h.trigger_definition?.responseRatioLte??.75),vals:number[]=[];
- for(let i=1;i+12<r.length;i++){const ar=ret(r[i-1].a,r[i].a),br=ret(r[i-1].b,r[i].b);if(Math.sign(ar)!==dir||Math.abs(ar)<move)continue;if(Math.abs(br)/Math.abs(ar)>ratioMax)continue;vals.push(ret(r[i].b,r[i+12].b)*dir)}
- return {vals,start,end};
-}
-async function main(){
- const {data,error}=await db.from("hypotheses").select("id,asset_a,asset_b,trigger_definition,status").eq("status","TESTING").limit(20);if(error)throw error;
- let passed=0,failed=0,inconclusive=0;
- for(const h of(data??[]) as H[]){if(!h.asset_b)continue;const {vals,start,end}=await returnsFor(h);
-  const review=adversarialReview({sampleSize:vals.length,returns:vals,costBps:50});
-  const verdict=review.verdict; if(verdict==="PASS")passed++;else if(verdict==="FAIL")failed++;else inconclusive++;
-  const {error:te}=await db.from("hypothesis_tests").insert({hypothesis_id:h.id,test_type:"ADVERSARIAL",dataset_start:start,dataset_end:end,code_version:"build-016-v1",assumptions:{horizonHours:12,roundTripCostBps:50,review:"sample,median,outlier-dependence,costs"},sample_size:vals.length,result:review,verdict});if(te)throw te;
-  const status=verdict==="PASS"?"HISTORICAL_SURVIVOR":verdict==="FAIL"?"REJECTED":"TESTING";
-  const {error:ue}=await db.from("hypotheses").update({status,updated_at:new Date().toISOString(),frozen_at:verdict==="PASS"?new Date().toISOString():null}).eq("id",h.id);if(ue)throw ue;
- }
- console.log(JSON.stringify({ok:true,build:"016",reviewed:(data??[]).length,passed,failed,inconclusive,authorizedToTrade:false},null,2));
-}
+function corr(a:number[],b:number[]){const n=Math.min(a.length,b.length);if(n<3)return 0;const x=a.slice(-n),y=b.slice(-n),mx=mean(x)??0,my=mean(y)??0,sx=sd(x),sy=sd(y);return sx&&sy?x.reduce((s,v,i)=>s+(v-mx)*(y[i]-my),0)/n/(sx*sy):0}
+function events(h:H,a:Pt[],b:Pt[]|null,horizon=4){const fam=h.trigger_definition?.family,vals:number[]=[];if(!b){const rs=a.slice(1).map((x,i)=>ret(a[i].p,x.p));for(let i=24;i+horizon<a.length;i++){const r1=ret(a[i-1].p,a[i].p),r4=ret(a[i-4].p,a[i].p),r12=ret(a[i-12].p,a[i].p),prior=rs.slice(i-24,i),m=mean(prior.map(Math.abs))??0,s=sd(prior.map(Math.abs)),z=s?(Math.abs(r1)-m)/s:0,v6=sd(rs.slice(i-6,i)),v24=sd(prior),vr=v24?v6/v24:1;let trig=false,dir=1;
+ if(fam==="SHORT_MOMENTUM"){trig=Math.abs(r4)>=.015;dir=r4>0?1:-1}else if(fam==="MOMENTUM_REVERSAL"){trig=Math.sign(r4)!==Math.sign(r12)&&Math.abs(r4)>=.01&&Math.abs(r12)>=.015;dir=r4>0?1:-1}else if(fam==="RETURN_OUTLIER"){trig=Math.abs(z)>=2;dir=r1>0?1:-1}else if(fam==="VOLATILITY_EXPANSION"){trig=vr>=1.6;dir=r4>=0?1:-1}else if(fam==="VOLATILITY_COMPRESSION"){trig=vr<=.55;dir=r4>=0?1:-1}if(trig)vals.push(ret(a[i].p,a[i+horizon].p)*dir)}}else{const bm=new Map(b.map(x=>[x.t,x.p])),r=a.filter(x=>bm.has(x.t)).map(x=>({t:x.t,a:x.p,b:bm.get(x.t)!}));for(let i=24;i+horizon<r.length;i++){const a1=ret(r[i-1].a,r[i].a),b1=ret(r[i-1].b,r[i].b),a4=ret(r[i-4].a,r[i].a),b4=ret(r[i-4].b,r[i].b);let trig=false,dir=1;if(fam==="LEAD_LAG_UNDERREACTION"){trig=Math.abs(a1)>=.005&&Math.abs(b1)<=Math.abs(a1)*.75;dir=a1>0?1:-1}else if(fam==="RELATIVE_STRENGTH_DIVERGENCE"){trig=Math.abs(a4-b4)>=.02;dir=a4-b4>0?1:-1}else if(fam==="CORRELATION_BREAKDOWN"){const ar=[],br=[];for(let j=i-24;j<i;j++){ar.push(ret(r[j-1].a,r[j].a));br.push(ret(r[j-1].b,r[j].b))}const c24=corr(ar,br),c6=corr(ar.slice(-6),br.slice(-6));trig=Math.abs(c24)>=.6&&Math.abs(c6-c24)>=.6;dir=a4-b4>0?1:-1}if(trig)vals.push(fam==="LEAD_LAG_UNDERREACTION"?ret(r[i].b,r[i+horizon].b)*dir:(ret(r[i].b,r[i+horizon].b)-ret(r[i].a,r[i+horizon].a))*dir*-1)}}return vals}
+async function main(){const {data,error}=await db.from("hypotheses").select("id,asset_a,asset_b,trigger_definition,status").eq("status","TESTING").limit(50);if(error)throw error;let passed=0,failed=0,inconclusive=0;
+ for(const h of(data??[]) as H[]){const end=new Date().toISOString(),start=new Date(Date.now()-180*24*3600_000).toISOString(),a=await series(h.asset_a,start,end),b=h.asset_b?await series(h.asset_b,start,end):null,vals=events(h,a,b,4);
+  const review=adversarialReview({sampleSize:vals.length,returns:vals,costBps:50});review.verdict==="PASS"?passed++:review.verdict==="FAIL"?failed++:inconclusive++;
+  const {error:te}=await db.from("hypothesis_tests").insert({hypothesis_id:h.id,test_type:"ADVERSARIAL",dataset_start:start,dataset_end:end,code_version:"build-030-v1",assumptions:{familyAware:true,horizonHours:4,roundTripCostBps:50,review:"sample,median,outlier-dependence,costs"},sample_size:vals.length,result:review,verdict:review.verdict});if(te)throw te;
+  const status=review.verdict==="PASS"?"HISTORICAL_SURVIVOR":review.verdict==="FAIL"?"REJECTED":"TESTING";const {error:ue}=await db.from("hypotheses").update({status,updated_at:new Date().toISOString(),frozen_at:review.verdict==="PASS"?new Date().toISOString():null}).eq("id",h.id);if(ue)throw ue}
+ console.log(JSON.stringify({ok:true,build:"030",repairedBuild:"016",reviewed:(data??[]).length,passed,failed,inconclusive,authorizedToTrade:false},null,2))}
 main().catch(e=>{console.error(e);process.exitCode=1});
