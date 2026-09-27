@@ -17,16 +17,17 @@ function describe(x:any){
  return String(x.event_type).replaceAll("_"," ");
 }
 async function page(){
- const [{data:o,error:oe},{data:a,error:ae},{data:q,error:qe},{data:btc,error:be},{data:xrp,error:xe},{data:runs,error:re},{data:outcomes,error:oute}]=await Promise.all([
+ const [{data:o,error:oe},{data:a,error:ae},{data:q,error:qe},{data:btc,error:be},{data:xrp,error:xe},{data:runs,error:re},{data:outcomes,error:oute},{data:lab,error:le}]=await Promise.all([
   db.from("command_center_overview").select("*").single(),
   db.from("command_center_activity").select("*").order("occurred_at",{ascending:false}).limit(60),
   db.from("qualification").select("candidate_id,total_score,classification,created_at").order("created_at",{ascending:false}).limit(10),
   db.from("market_observations").select("observed_at,price_usd").eq("asset","BTC").eq("agent","btc_sensor_v1").order("observed_at",{ascending:false}).limit(25),
   db.from("market_observations").select("observed_at,price_usd,observation_type,payload").eq("asset","XRP").eq("agent","xrp_sensor_v1").order("observed_at",{ascending:false}).limit(25),
   db.from("system_runs").select("started_at,status,build,error_message").order("started_at",{ascending:false}).limit(24),
-  db.from("candidate_outcomes").select("horizon,return_pct,measured_at").order("measured_at",{ascending:false}).limit(50)
+  db.from("candidate_outcomes").select("horizon,return_pct,measured_at").order("measured_at",{ascending:false}).limit(50),
+  db.from("laboratory_scoreboard").select("*").single()
  ]);
- const err=oe||ae||qe||be||xe||re||oute;if(err)throw err;
+ const err=oe||ae||qe||be||xe||re||oute||le;if(err)throw err;
  const b=(btc||[]).slice().reverse(), x=(xrp||[]).slice().reverse();
  const bFirst=b[0]?.price_usd,bLast=b.at(-1)?.price_usd,xFirst=x[0]?.price_usd,xLast=x.at(-1)?.price_usd;
  const btc24=bFirst&&bLast?(Number(bLast)/Number(bFirst)-1)*100:null,xrp24=xFirst&&xLast?(Number(xLast)/Number(xFirst)-1)*100:null;
@@ -44,6 +45,7 @@ async function page(){
  <div class="panel"><h2>MISSION STATUS</h2><div class="metric"><span>Research loops</span><b>${successes} successful / ${failures} failed</b></div><div class="metric"><span>XRP-004 forward signals</span><b>${signals}</b></div><div class="metric"><span>Scored outcomes</span><b>${(outcomes||[]).length}</b></div><div class="metric"><span>Capital authority</span><b class="lock">NONE</b></div></div></div>
  <div class="two"><div class="panel"><h2>AGENT TEAM</h2><div class="metric"><span>BTC Sensor</span><span class="pill">${b.length?"ONLINE":"WAITING"}</span></div><div class="metric"><span>Crypto Hunter</span><span class="pill">SCANNING</span></div><div class="metric"><span>XRP-004</span><span class="pill">${signals?"SIGNAL RECORDED":"MONITORING"}</span></div><div class="metric"><span>Prosecutor</span><span class="pill">${o.total_candidates?"ACTIVE":"STANDBY"}</span></div><div class="metric"><span>Qualification</span><span class="pill">${o.total_candidates?"ACTIVE":"STANDBY"}</span></div><div class="metric"><span>Scorekeeper</span><span class="pill">WATCHING</span></div></div>
  <div class="panel"><h2>OPPORTUNITY PIPELINE</h2><div class="metric"><span>Discovered candidates</span><b>${esc(o.total_candidates)}</b></div><div class="metric"><span>Qualified / high conviction</span><b>${esc(o.qualified_candidates)}</b></div><div class="metric"><span>XRP-004 experiment</span><b>FORWARD SHADOW</b></div><div class="metric"><span>Rule changes allowed?</span><b class="lock">FROZEN</b></div></div></div>
+ <div class="panel"><h2>DISCOVERY LABORATORY</h2><div class="grid"><div class="card"><div class="label">UNIVERSE OBSERVATIONS</div><div class="value">${esc(lab?.universe_observations??0)}</div></div><div class="card"><div class="label">HYPOTHESES</div><div class="value">${esc(lab?.hypotheses_total??0)}</div></div><div class="card"><div class="label">REJECTED</div><div class="value">${esc(lab?.rejected??0)}</div></div><div class="card"><div class="label">HISTORICAL SURVIVORS</div><div class="value">${esc(lab?.historical_survivors??0)}</div></div><div class="card"><div class="label">FORWARD TESTING</div><div class="value">${esc(lab?.forward_validation??0)}</div></div><div class="card"><div class="label">FORWARD SURVIVORS</div><div class="value">${esc(lab?.forward_survivors??0)}</div></div></div><div class="metric"><span>Scientific tests completed</span><b>${esc(lab?.tests_total??0)}</b></div><div class="metric"><span>Forward signals / outcomes</span><b>${esc(lab?.forward_signals??0)} / ${esc(lab?.forward_outcomes??0)}</b></div><div class="metric"><span>Average forward net return</span><b>${pct(lab?.avg_forward_net_return_pct)}</b></div></div>
  <div class="panel"><h2>INTELLIGENCE LOG</h2><table><tr><th>TIME</th><th>ACTOR</th><th>EVENT</th><th>INTERPRETATION</th></tr>${(a||[]).slice(0,30).map(z=>`<tr><td>${esc(new Date(z.occurred_at).toLocaleString())}</td><td>${esc(z.actor)}</td><td>${esc(z.event_type)} ${esc(z.asset||"")}</td><td>${esc(describe(z))}</td></tr>`).join("")}</table></div>
  <div class="panel"><h2>INVESTMENT COMMITTEE</h2>${(q||[]).length?`<table><tr><th>CANDIDATE</th><th>SCORE</th><th>CLASSIFICATION</th></tr>${(q||[]).map(z=>`<tr><td>${esc(z.candidate_id)}</td><td>${esc(z.total_score)}</td><td>${esc(z.classification)}</td></tr>`).join("")}</table>`:`<div class="muted">No candidate has reached the committee yet. The Machine is correctly waiting rather than manufacturing an opportunity.</div>`}</div>
  </body></html>`;
