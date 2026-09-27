@@ -26,7 +26,8 @@
     "audit": "tsx src/company/auditor.ts",
     "economics": "tsx src/company/economics.ts",
     "test:discovery": "tsx tests/discoveryLibrary.test.ts",
-    "test:discovery-integration": "tsx tests/discoveryIntegration.test.ts"
+    "test:discovery-integration": "tsx tests/discoveryIntegration.test.ts",
+    "backfill": "tsx src/backfillHistory.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
