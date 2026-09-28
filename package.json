@@ -34,7 +34,8 @@
     "promote:history": "tsx src/historicalPromoter.ts",
     "fdr": "tsx src/falseDiscoveryControl.ts",
     "test:fdr": "tsx tests/fdr.test.ts",
-    "retry:research": "tsx src/retryController.ts"
+    "retry:research": "tsx src/retryController.ts",
+    "backfill:volume": "tsx src/volumeBackfill.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
