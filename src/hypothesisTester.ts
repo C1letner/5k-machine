@@ -12,7 +12,7 @@ function singleEvents(h:H,a:Pt[],horizon:number){const fam=h.trigger_definition?
  if(trig)vals.push(ret(a[i].p,a[i+horizon].p)*dir)}
  return vals}
 function pairEvents(h:H,a:Pt[],b:Pt[],horizon:number){const bm=new Map(b.map(x=>[x.t,x.p])),r=a.filter(x=>bm.has(x.t)).map(x=>({t:x.t,a:x.p,b:bm.get(x.t)!})),fam=h.trigger_definition?.family,vals:number[]=[];
- for(let i=24;i+horizon<r.length;i++){const a1=ret(r[i-1].a,r[i].a),b1=ret(r[i-1].b,r[i].b),a4=ret(r[i-4].a,r[i].a),b4=ret(r[i-4].b,r[i].b);let trig=false,dir=1;
+ for(let i=25;i+horizon<r.length;i++){const a1=ret(r[i-1].a,r[i].a),b1=ret(r[i-1].b,r[i].b),a4=ret(r[i-4].a,r[i].a),b4=ret(r[i-4].b,r[i].b);let trig=false,dir=1;
   if(fam==="LEAD_LAG_UNDERREACTION"){trig=Math.abs(a1)>=.005&&Math.abs(b1)<=Math.abs(a1)*.75;dir=a1>0?1:-1}
   else if(fam==="RELATIVE_STRENGTH_DIVERGENCE"){trig=Math.abs(a4-b4)>=.02;dir=(a4-b4)>0?1:-1}
   else if(fam==="CORRELATION_BREAKDOWN"){const ar=[],br=[];for(let j=i-24;j<i;j++){ar.push(ret(r[j-1].a,r[j].a));br.push(ret(r[j-1].b,r[j].b))}const c24=corr(ar,br),c6=corr(ar.slice(-6),br.slice(-6));trig=Math.abs(c24)>=.6&&Math.abs(c6-c24)>=.6;dir=(a4-b4)>0?1:-1}
