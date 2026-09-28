@@ -29,7 +29,9 @@
     "test:discovery-integration": "tsx tests/discoveryIntegration.test.ts",
     "backfill": "tsx src/backfillHistory.ts",
     "test:generalized": "tsx tests/generalizedTester.test.ts",
-    "campaign": "tsx src/discoveryCampaign.ts"
+    "campaign": "tsx src/discoveryCampaign.ts",
+    "mine:history": "tsx src/historicalMiner.ts",
+    "promote:history": "tsx src/historicalPromoter.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
