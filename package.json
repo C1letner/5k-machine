@@ -38,7 +38,8 @@
     "backfill:volume": "tsx src/volumeBackfill.ts",
     "mine:price-volume": "tsx src/priceVolumeMiner.ts",
     "promote:price-volume": "tsx src/priceVolumePromoter.ts",
-    "sensor:derivatives": "tsx src/derivativesSensor.ts"
+    "sensor:derivatives": "tsx src/derivativesSensor.ts",
+    "backfill:derivatives": "tsx src/derivativesBackfill.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
