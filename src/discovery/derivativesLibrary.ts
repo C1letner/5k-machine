@@ -1,0 +1,9 @@
+export type DerivPoint={ts:string;mark:number;index:number;funding:number;oi:number};export type DerivHit={family:string;asset:string;direction?:string;score:number;features:Record<string,number>};
+const mean=(a:number[])=>a.length?a.reduce((x,y)=>x+y,0)/a.length:0,sd=(a:number[])=>{const m=mean(a);return a.length?Math.sqrt(mean(a.map(x=>(x-m)**2))):0},z=(x:number,a:number[])=>{const s=sd(a);return s?(x-mean(a))/s:0},ret=(a:number,b:number)=>a?b/a-1:0;
+export function scanDerivatives(s:Record<string,DerivPoint[]>):DerivHit[]{const out:DerivHit[]=[];for(const[asset,x]of Object.entries(s)){if(x.length<25)continue;const c=x.at(-1)!,p=x.at(-2)!,prior=x.slice(-25,-1),fz=z(c.funding,prior.map(v=>v.funding)),oiz=z(c.oi,prior.map(v=>v.oi)),oi1=ret(p.oi,c.oi),basis=c.index?(c.mark/c.index-1)*10000:0,bz=z(basis,prior.map(v=>v.index?(v.mark/v.index-1)*10000:0)),pr=ret(p.mark,c.mark);
+ if(Math.abs(fz)>=2)out.push({family:"FUNDING_EXTREME",asset,direction:fz>0?"LONG_CROWDED":"SHORT_CROWDED",score:Math.abs(fz),features:{funding:c.funding,fundingZ:fz,priceReturn:pr}});
+ if(Math.abs(oiz)>=2)out.push({family:"OPEN_INTEREST_SHOCK",asset,direction:oi1>0?"BUILD":"UNWIND",score:Math.abs(oiz),features:{oi:c.oi,oiZ:oiz,oiReturn:oi1,priceReturn:pr}});
+ if(Math.abs(bz)>=2)out.push({family:"BASIS_DISLOCATION",asset,direction:basis>0?"PREMIUM":"DISCOUNT",score:Math.abs(bz),features:{basisBps:basis,basisZ:bz}});
+ if(Math.abs(pr)<.003&&Math.abs(oi1)>=.03)out.push({family:"LEVERAGE_BUILDS_BEFORE_PRICE",asset,direction:oi1>0?"BUILD":"UNWIND",score:Math.abs(oi1)*100,features:{oiReturn:oi1,priceReturn:pr,funding:c.funding}});
+ if(Math.sign(pr)!==Math.sign(oi1)&&Math.abs(pr)>=.005&&Math.abs(oi1)>=.02)out.push({family:"PRICE_OI_DIVERGENCE",asset,direction:pr>0?"PRICE_UP_OI_DOWN":"PRICE_DOWN_OI_UP",score:(Math.abs(pr)+Math.abs(oi1))*100,features:{oiReturn:oi1,priceReturn:pr}});
+ }return out.sort((a,b)=>b.score-a.score)}
