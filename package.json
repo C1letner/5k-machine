@@ -33,7 +33,8 @@
     "mine:history": "tsx src/historicalMiner.ts",
     "promote:history": "tsx src/historicalPromoter.ts",
     "fdr": "tsx src/falseDiscoveryControl.ts",
-    "test:fdr": "tsx tests/fdr.test.ts"
+    "test:fdr": "tsx tests/fdr.test.ts",
+    "retry:research": "tsx src/retryController.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
