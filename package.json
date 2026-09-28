@@ -35,7 +35,9 @@
     "fdr": "tsx src/falseDiscoveryControl.ts",
     "test:fdr": "tsx tests/fdr.test.ts",
     "retry:research": "tsx src/retryController.ts",
-    "backfill:volume": "tsx src/volumeBackfill.ts"
+    "backfill:volume": "tsx src/volumeBackfill.ts",
+    "mine:price-volume": "tsx src/priceVolumeMiner.ts",
+    "promote:price-volume": "tsx src/priceVolumePromoter.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
