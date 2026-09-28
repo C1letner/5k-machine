@@ -40,7 +40,8 @@
     "promote:price-volume": "tsx src/priceVolumePromoter.ts",
     "sensor:derivatives": "tsx src/derivativesSensor.ts",
     "backfill:derivatives": "tsx src/derivativesBackfill.ts",
-    "probe:derivatives": "tsx src/probeDerivativesFunding.ts"
+    "probe:derivatives": "tsx src/probeDerivativesFunding.ts",
+    "backfill:derivatives:coinglass": "tsx src/coinglassDerivativesBackfill.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
