@@ -1,0 +1,44 @@
+name: Bulk Scientific Research Campaign
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: "22"}
+      - run: npm install
+      - name: Discovery testing batch 1
+        run: npm run test:hypotheses
+        env: {SUPABASE_URL: ${{ secrets.SUPABASE_URL }}, SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}}
+      - name: Discovery testing batch 2
+        run: npm run test:hypotheses
+        env: {SUPABASE_URL: ${{ secrets.SUPABASE_URL }}, SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}}
+      - name: Discovery testing batch 3
+        run: npm run test:hypotheses
+        env: {SUPABASE_URL: ${{ secrets.SUPABASE_URL }}, SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}}
+      - name: Discovery testing batch 4
+        run: npm run test:hypotheses
+        env: {SUPABASE_URL: ${{ secrets.SUPABASE_URL }}, SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}}
+      - name: Discovery testing batch 5
+        run: npm run test:hypotheses
+        env: {SUPABASE_URL: ${{ secrets.SUPABASE_URL }}, SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}}
+      - name: Discovery testing batch 6
+        run: npm run test:hypotheses
+        env: {SUPABASE_URL: ${{ secrets.SUPABASE_URL }}, SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}}
+      - name: False discovery control
+        run: npm run fdr
+        env: {SUPABASE_URL: ${{ secrets.SUPABASE_URL }}, SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}}
+      - name: Adversarial prosecution
+        run: npm run science
+        env: {SUPABASE_URL: ${{ secrets.SUPABASE_URL }}, SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}}
+      - name: Holdout replication
+        run: npm run replicate
+        env: {SUPABASE_URL: ${{ secrets.SUPABASE_URL }}, SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}}
+      - name: Forward lab registration
+        run: npm run forward
+        env: {SUPABASE_URL: ${{ secrets.SUPABASE_URL }}, SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}}
