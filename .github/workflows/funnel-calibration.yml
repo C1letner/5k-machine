@@ -1,0 +1,41 @@
+name: Funnel Calibration (read-only)
+# Build 041. Manual only: runs the data-integrity diagnostic and the funnel
+# calibration against HIST-028. Reads the database; writes nothing to it.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  calibrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm install
+      - name: Offline tests
+        run: |
+          npm run -s test:stats
+          npm run -s test:derivatives-missing
+          npm run -s test:calibration
+      - name: Data-integrity diagnostic
+        run: npm run -s diagnose:data > data-integrity.json
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      - name: Funnel calibration
+        run: npm run -s calibrate
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: calibration-report
+          path: |
+            data-integrity.json
+            calibration-report.json
+            calibration-report.md
+          if-no-files-found: warn

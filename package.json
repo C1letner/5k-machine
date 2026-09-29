@@ -41,7 +41,12 @@
     "sensor:derivatives": "tsx src/derivativesSensor.ts",
     "backfill:derivatives": "tsx src/derivativesBackfill.ts",
     "probe:derivatives": "tsx src/probeDerivativesFunding.ts",
-    "backfill:derivatives:coinglass": "tsx src/coinglassDerivativesBackfill.ts"
+    "backfill:derivatives:coinglass": "tsx src/coinglassDerivativesBackfill.ts",
+    "diagnose:data": "tsx src/diagnostics/dataIntegrity.ts",
+    "calibrate": "tsx src/calibration/runCalibration.ts",
+    "test:stats": "tsx tests/stats.test.ts",
+    "test:calibration": "tsx tests/calibration.test.ts",
+    "test:derivatives-missing": "tsx tests/derivativesMissing.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
