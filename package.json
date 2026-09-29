@@ -49,7 +49,9 @@
     "test:derivatives-missing": "tsx tests/derivativesMissing.test.ts",
     "test:bootstrap": "tsx tests/bootstrap.test.ts",
     "test:run-requests": "tsx tests/runRequests.test.ts",
-    "audit:temporal": "tsx src/temporalIntegrity.ts"
+    "audit:temporal": "tsx src/temporalIntegrity.ts",
+    "research:mechanisms": "tsx src/mechanismLab.ts",
+    "test:mechanisms": "tsx tests/mechanisms.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
