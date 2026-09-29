@@ -4,6 +4,7 @@ name: Run Requests
 # src/ops/runRequests.ts: price/volume backfills, data diagnostic, calibration. None trades,
 # changes trading authority, or touches credentials. Write access is used only to push to `reports`.
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths:
