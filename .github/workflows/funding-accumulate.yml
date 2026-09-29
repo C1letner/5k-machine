@@ -1,13 +1,18 @@
 name: Funding History Accumulation
-# Build 046 data. Kraken's settled-funding endpoint returns only a rolling ~1 year, so older rows would be
-# lost if not saved. This weekly job stores any new hourly rates (idempotent; existing rows never change).
+# Build 046 data (provenance publishing added in Build 047). Kraken's settled-funding endpoint returns only a
+# rolling ~1 year, so older rows would be lost if not saved. This weekly job stores any new hourly rates
+# (idempotent: existing rows are never overwritten; duplicates are ignored on the unique key), reports coverage
+# and gaps, and publishes the raw responses + SHA-256 manifest to the `reports` branch.
 # Public data, no credentials beyond the database secrets; writes market data only; no trading.
 on:
   schedule:
     - cron: "17 9 * * 1"
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
+concurrency:
+  group: run-requests
+  cancel-in-progress: false
 jobs:
   accumulate:
     runs-on: ubuntu-latest
@@ -18,12 +23,30 @@ jobs:
         with:
           node-version: "22"
       - run: npm install
-      - run: npm run -s ingest:funding
+      - name: Ingest new settled funding
+        run: npm run -s ingest:funding > funding-ingest.json
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
-      - name: Coverage so far (informational; fails until two years exist)
-        run: npm run -s check:funding || true
+      - name: Coverage and gaps (informational; the 730-day gate fails until two years exist)
+        run: npm run -s check:funding > funding-completeness.json || true
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      - name: Publish provenance to reports branch
+        if: always()
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          d="funding-accumulation/$(date -u +%Y-%m-%d)"
+          mkdir -p "/tmp/out/$d"
+          cp funding-ingest.json funding-completeness.json kraken-funding-raw.json.gz kraken-funding-manifest.json "/tmp/out/$d/" 2>/dev/null || true
+          url="https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git clone --quiet --depth 1 --branch reports "$url" /tmp/rep
+          cp -r /tmp/out/. /tmp/rep/
+          cd /tmp/rep
+          git config user.name "5k-machine reports"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit --quiet -m "funding accumulation ${GITHUB_SHA::7}" || { echo "No changes"; exit 0; }
+          git push --quiet origin reports
