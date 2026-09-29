@@ -18,6 +18,7 @@ jobs:
       - name: Offline tests
         run: |
           npm run -s test:stats
+          npm run -s test:bootstrap
           npm run -s test:derivatives-missing
           npm run -s test:calibration
       - name: Data-integrity diagnostic
