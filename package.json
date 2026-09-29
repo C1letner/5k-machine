@@ -55,7 +55,8 @@
     "research:funding-carry": "tsx src/fundingCarryFree.ts",
     "ingest:funding": "tsx src/funding/ingestKraken.ts",
     "check:funding": "tsx src/funding/completenessJob.ts",
-    "test:funding-data": "tsx tests/fundingData.test.ts"
+    "test:funding-data": "tsx tests/fundingData.test.ts",
+    "ingest:funding-analytics": "tsx src/funding/ingestKrakenAnalytics.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",

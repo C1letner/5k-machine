@@ -55,12 +55,13 @@ async function main() {
       if (error) throw error;
     }
     const after = await stored(instrument);
+    // The funding_rate column stores 12 decimal places, so compare at that precision.
     let mismatches = 0, missingAfter = 0;
     const examples: any[] = [];
     for (const r of rows) {
       const v = after.get(r.iso);
       if (v == null) { missingAfter++; continue; }
-      if (Math.abs(v - r.relative) > 1e-15) { mismatches++; if (examples.length < 5) examples.push({ t: r.iso, stored: v, fetched: r.relative }); }
+      if (Math.abs(v - r.relative) > 1e-12) { mismatches++; if (examples.length < 5) examples.push({ t: r.iso, stored: v, fetched: r.relative }); }
     }
     const c = completeness(rows);
     results.push({ asset, instrument, fetchedRows: rows.length, newRowsWritten: fresh.length, storedRowsAfter: after.size, missingAfterWrite: missingAfter, valueMismatchesVsStored: mismatches, mismatchExamples: examples, fetchedFirst: c.first, fetchedLast: c.last, fetchedCoverageDays: c.coverageDays });
