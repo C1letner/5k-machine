@@ -1,0 +1,8 @@
+{
+  "note": "Build 043 first run. Prices were already backfilled to 3 years (Historical Data Backfill, 2026-09-29 03:47 UTC). Backfill 3 years of volume, check data integrity, then calibrate the funnel on the full history.",
+  "jobs": [
+    { "job": "backfill-volume", "days": 1095 },
+    { "job": "diagnose" },
+    { "job": "calibrate" }
+  ]
+}
