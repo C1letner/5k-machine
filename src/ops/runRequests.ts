@@ -3,7 +3,7 @@
 // The run-requests workflow then publishes reports-out/ to the `reports` branch.
 //
 // Only the jobs below can run. None of them places trades, changes trading authority,
-// or touches credentials; the backfills write market data only.
+// or touches credentials; the backfills and funding ingest write market data only.
 //
 // Request format:
 //   { "note": "why this run", "jobs": [ { "job": "backfill-prices", "days": 1095 }, { "job": "calibrate" } ] }
@@ -21,6 +21,8 @@ export const JOBS: Record<string, JobSpec> = {
   "calibrate": { script: "calibrate", outputs: ["calibration-report.md", "calibration-report.json"] },
   "temporal-audit": { script: "audit:temporal", stdoutTo: "temporal-integrity.json" },
   "mechanisms": { script: "research:mechanisms", stdoutTo: "mechanism-research.json" },
+  "funding-ingest": { script: "ingest:funding", stdoutTo: "funding-ingest.json", outputs: ["kraken-funding-raw.json.gz", "kraken-funding-manifest.json"] },
+  "funding-completeness": { script: "check:funding", stdoutTo: "funding-completeness.json" },
   "funding-carry": { script: "research:funding-carry", stdoutTo: "funding-carry.json" },
 };
 

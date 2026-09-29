@@ -1,9 +1,27 @@
-// Build 046: free public Bybit historical funding probe/backtest.
-// No credentials, no trading. Tests gross funding carry first; spot/perp hedge basis is a later realism layer.
-const BASE="https://dapi.binance.com",SYMS=["BTCUSD_PERP","ETHUSD_PERP","SOLUSD_PERP"],DAY=86400_000;
-type F={t:number;r:number};
-async function page(symbol:string,startTime:number,endTime:number){const u=new URL(BASE+"/dapi/v1/fundingRate");u.searchParams.set("symbol",symbol);u.searchParams.set("startTime",String(startTime));u.searchParams.set("endTime",String(endTime));u.searchParams.set("limit","1000");const res=await fetch(u);if(!res.ok)throw new Error(symbol+" HTTP "+res.status+": "+await res.text());const j:any=await res.json();if(!Array.isArray(j))throw new Error(symbol+" "+JSON.stringify(j));return j.map((x:any)=>({t:Number(x.fundingTime),r:Number(x.fundingRate)})) as F[]}
-async function history(symbol:string,days=1095){const cutoff=Date.now()-days*DAY,now=Date.now(),m=new Map<number,F>();let start=cutoff;while(start<now){const end=Math.min(now,start+199*DAY),a=await page(symbol,start,end);for(const x of a)m.set(x.t,x);start=end+1;await new Promise(r=>setTimeout(r,80))}return[...m.values()].filter(x=>x.t>=cutoff).sort((a,b)=>a.t-b.t)}
-function stats(a:F[]){const sum=a.reduce((s,x)=>s+x.r,0),pos=a.filter(x=>x.r>0).length,neg=a.filter(x=>x.r<0).length,first=a[0]?.t,last=a.at(-1)?.t,years=first&&last?(last-first)/(365.25*DAY):0,annualized=years?sum/years:null;let eq=0,peak=0,maxDD=0;for(const x of a){eq+=x.r;peak=Math.max(peak,eq);maxDD=Math.min(maxDD,eq-peak)}return{observations:a.length,first:first?new Date(first).toISOString():null,last:last?new Date(last).toISOString():null,totalFundingReturn:sum,annualizedSimple:annualized,positivePct:a.length?pos/a.length:null,negativePct:a.length?neg/a.length:null,maxFundingDrawdown:maxDD}}
-async function main(){const out:any[]=[];for(const s of SYMS){const a=await history(s);out.push({symbol:s,...stats(a)})}console.log(JSON.stringify({ok:true,build:"046",program:"FREE_BINANCE_COINM_FUNDING_CARRY_BASELINE",interpretation:"Funding leg only. Delta-neutral realizable return still requires spot/perp basis, fees, rebalancing, collateral and execution modeling.",results:out,authorizedToTrade:false},null,2))}
-main().catch(e=>{console.error(e);process.exitCode=1});
+// Build 046: funding-carry baseline on STORED history (Kraken Futures linear perpetuals, FUND046-KRAKEN).
+// Reads Supabase only; never contacts an exchange. Ingest first with `npm run ingest:funding`.
+//
+// Reports the RAW FUNDING LEG of a short perpetual: cumulative and annualized funding, positive/negative
+// frequency, funding drawdowns, per-year results, and a no-look-ahead trailing-sign filter.
+// This is NOT a delta-neutral carry return. Not modeled: spot/perp basis changes, fees and spread on both
+// legs, rebalancing, collateral haircuts and idle margin, exchange/stablecoin risk. No profitability claim.
+import { byYear, fundingStats, trailingSignFilter } from "./funding/carryStats.js";
+import { loadStored } from "./funding/completenessJob.js";
+import { INSTRUMENTS, SENSOR_VERSION, SOURCE_TAG, VENUE } from "./funding/kraken.js";
+
+async function main() {
+  const results: any[] = [];
+  for (const { asset, instrument } of INSTRUMENTS) {
+    const rows = await loadStored(instrument);
+    if (!rows.length) throw new Error(`${instrument}: no stored ${SENSOR_VERSION} funding rows; run ingest:funding first`);
+    results.push({ asset, instrument, alwaysShortPerp: fundingStats(rows), byYear: byYear(rows), trailing7dSignFilter: trailingSignFilter(rows, 168) });
+  }
+  console.log(JSON.stringify({
+    ok: true, build: "046", program: "FUNDING_CARRY_BASELINE_RAW_FUNDING_LEG",
+    data: { venue: VENUE, sensorVersion: SENSOR_VERSION, sourceTag: SOURCE_TAG, units: "fraction of notional; annualized = cumulative / years (simple, not compounded)" },
+    interpretation: "Raw funding received by a short perpetual per unit notional. NOT a realizable delta-neutral return: spot/perp basis, fees and spread on both legs, rebalancing, collateral and counterparty risk are not modeled. No profitability claim.",
+    results, authorizedToTrade: false,
+  }, null, 2));
+}
+
+main().catch((e) => { console.error(e); process.exitCode = 1; });
