@@ -111,3 +111,20 @@ history, which would be a new source needing its own preregistration.
 
 Architect's read (not a classification): on the evidence from October 2019 onward, this specification is not a
 credible candidate. The Owner may reasonably choose to close it rather than spend a year on a forward log.
+
+## Owner/Architect addendum compliance (verified 2026-09-29 11:45 MST)
+
+The addendum arrived after Build 048 had run. It was not re-run: a second evaluation of the same untouched data would
+consume it twice. Each addendum requirement was checked against repository records:
+
+| Requirement | Evidence |
+|---|---|
+| Frozen strategy reused exactly from Build 047A | `slowTrend.ts`, `trendEconomics.ts`, `bootstrap.ts` and `split.ts` are byte-identical between the 047A run (`b0c4581`) and the 048 run (`a124ebc`); 048 calls the same `simulateTrend` |
+| Build 045 economics not reused | Costs on turnover only, 10 bps per unit (`COST = 0.001`, same as 047A); next-bar (044) timing |
+| Untouched period checked before any result | Audit recorded in the preregistration; no pre-2023-09-30 prices existed anywhere before this build |
+| Preregistration committed before results, with quantitative rules | `cf7f5f67` at 17:47:04 UTC; implementation `39a34b8` at 17:50:56 UTC; run started 17:51:04 UTC |
+| No optimization, asset or period selection | One run; all eight assets eligible mechanically and all reported; full available history |
+| Build 047A compared using exact artifacts | net +10.049%, CAGR 3.546%, Sharpe 0.298, max DD -16.55%, p 0.333, first 70% +10.32%, last 30% -0.25% (split 2025-12-01), INCONCLUSIVE |
+| Funding carry not touched | No change to funding code or the accumulation job during Build 048 |
+
+Result stands: **REPLICATION INCONCLUSIVE**. Returned to Owner/Architect for decision; no further research started.
