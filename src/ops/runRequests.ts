@@ -21,6 +21,7 @@ export const JOBS: Record<string, JobSpec> = {
   "calibrate": { script: "calibrate", outputs: ["calibration-report.md", "calibration-report.json"] },
   "temporal-audit": { script: "audit:temporal", stdoutTo: "temporal-integrity.json" },
   "mechanisms": { script: "research:mechanisms", stdoutTo: "mechanism-research.json" },
+  "funding-carry": { script: "research:funding-carry", stdoutTo: "funding-carry.json" },
 };
 
 const MAX_LOG = 200_000;
