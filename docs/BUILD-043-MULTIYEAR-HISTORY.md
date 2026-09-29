@@ -45,3 +45,26 @@ Worthless edges (equal to cost): 5–10% of runs with any false survivor.
   the research question without changing their records.
 - Rerunning the walk-forward miner over 3 years is optional and slower; it is only needed
   to generate new hypotheses.
+
+## Run requests and reports
+
+So research jobs can run and be read back without manual clicks and screenshots:
+
+- Adding a file to `ops/run-requests/` on `main` starts the **Run Requests** workflow, which
+  runs the listed jobs in order and stops at the first failure.
+- Only allow-listed jobs can run (`src/ops/runRequests.ts`): `backfill-prices`,
+  `backfill-volume`, `diagnose`, `calibrate`. None places trades, changes trading authority,
+  or touches credentials. Anything else is rejected and reported.
+- Each request's report (summary, logs, calibration and diagnostic output) is published to the
+  `reports` branch under its request id. The workflow has repository write permission only so
+  it can push that branch; its code only pushes `reports`.
+
+Working agreement (Owner, 2026-09-28): research-only changes (data, statistics, reports) may be
+merged and run by Claude, with a summary to the Owner. Anything touching trading, risk limits,
+credentials or capital stays a pull request that only the Owner merges.
+
+Example request:
+
+```json
+{ "note": "why", "jobs": [ { "job": "backfill-prices", "days": 1095 }, { "job": "calibrate" } ] }
+```

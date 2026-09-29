@@ -47,7 +47,8 @@
     "test:stats": "tsx tests/stats.test.ts",
     "test:calibration": "tsx tests/calibration.test.ts",
     "test:derivatives-missing": "tsx tests/derivativesMissing.test.ts",
-    "test:bootstrap": "tsx tests/bootstrap.test.ts"
+    "test:bootstrap": "tsx tests/bootstrap.test.ts",
+    "test:run-requests": "tsx tests/runRequests.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",

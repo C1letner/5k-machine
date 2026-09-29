@@ -1,0 +1,60 @@
+name: Run Requests
+# Build 043. Runs allow-listed research jobs when a new file lands in ops/run-requests/ on main,
+# then publishes the report to the `reports` branch. Allowed jobs are listed in
+# src/ops/runRequests.ts: price/volume backfills, data diagnostic, calibration. None trades,
+# changes trading authority, or touches credentials. Write access is used only to push to `reports`.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ops/run-requests/*.json"
+permissions:
+  contents: write
+concurrency:
+  group: run-requests
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm install
+      - name: Run requested jobs
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          CAL_BOOT_NULL_RUNS: "60"
+          BEFORE: ${{ github.event.before }}
+        run: |
+          if git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            files=$(git diff --name-only --diff-filter=A "$BEFORE" "$GITHUB_SHA" -- 'ops/run-requests/*.json')
+          else
+            files=$(git diff --name-only --diff-filter=A "$GITHUB_SHA~1" "$GITHUB_SHA" -- 'ops/run-requests/*.json')
+          fi
+          echo "Requests: $files"
+          npx tsx src/ops/runRequests.ts $files
+      - name: Publish reports
+        if: always()
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          [ -d reports-out ] || { echo "Nothing to publish"; exit 0; }
+          url="https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          mkdir -p /tmp/rep && cd /tmp/rep
+          if git ls-remote --exit-code --heads "$url" reports >/dev/null; then
+            git clone --quiet --depth 1 --branch reports "$url" .
+          else
+            git init --quiet -b reports . && git remote add origin "$url"
+          fi
+          cp -r "$GITHUB_WORKSPACE"/reports-out/. .
+          git config user.name "5k-machine reports"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit --quiet -m "report for ${GITHUB_SHA::7}" || { echo "No changes"; exit 0; }
+          git push --quiet origin reports
