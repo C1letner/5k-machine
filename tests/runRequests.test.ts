@@ -8,3 +8,4 @@ assert.throws(() => validate({ jobs: [{ job: "backfill-prices", days: 99999 }] }
 assert.throws(() => validate({ jobs: [] }), /non-empty/);
 assert.throws(() => validate({ jobs: [{ job: "enable-trading" }] }), /not allowed/);
 console.log("Build 043 run-request validation tests passed");
+assert.deepEqual(validate({ jobs: [{ job: "funding-ingest" }, { job: "funding-completeness" }, { job: "funding-carry" }] }), [{ job: "funding-ingest" }, { job: "funding-completeness" }, { job: "funding-carry" }]);

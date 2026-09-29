@@ -1,0 +1,8 @@
+{
+  "note": "Build 046 data: ingest Kraken Futures historical hourly funding (PF_XBTUSD, PF_ETHUSD, PF_SOLUSD) into Supabase once, verify completeness from stored data, then run the raw funding-leg baseline from the database only. Public data, no credentials, no trading.",
+  "jobs": [
+    { "job": "funding-ingest" },
+    { "job": "funding-completeness" },
+    { "job": "funding-carry" }
+  ]
+}
