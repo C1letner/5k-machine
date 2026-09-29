@@ -41,7 +41,7 @@ jobs:
           REQUEST_INPUT: ${{ inputs.request }}
         run: |
           if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
-            if [ -n "$REQUEST_INPUT" ]; then files="ops/run-requests/$REQUEST_INPUT"; else files=$(ls ops/run-requests/*.json 2>/dev/null | sort | tail -1); fi
+            if [ -n "$REQUEST_INPUT" ]; then case "$REQUEST_INPUT" in 20*) ;; *) REQUEST_INPUT="2$REQUEST_INPUT" ;; esac; files="ops/run-requests/$REQUEST_INPUT"; else files=$(ls ops/run-requests/*.json 2>/dev/null | sort | tail -1); fi
           elif [ -n "$BEFORE" ] && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
             files=$(git diff --name-only --diff-filter=AM "$BEFORE" "$GITHUB_SHA" -- 'ops/run-requests/*.json')
             if [ -z "$files" ] && git diff --name-only "$BEFORE" "$GITHUB_SHA" -- 'ops/run-signal.txt' | grep -q .; then files=$(ls ops/run-requests/*.json | sort | tail -1); fi
