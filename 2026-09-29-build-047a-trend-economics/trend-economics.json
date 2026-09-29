@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "build": "047A",
+  "classification": "INCONCLUSIVE",
+  "portfolio": {
+    "netCagr": 0.035461904317848125,
+    "sharpe": 0.2981969064560823,
+    "p": 0.3333333333333333
+  },
+  "authorizedToTrade": false
+}

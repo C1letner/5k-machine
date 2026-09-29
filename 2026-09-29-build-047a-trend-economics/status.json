@@ -1,0 +1,14 @@
+{
+  "id": "2026-09-29-build-047a-trend-economics",
+  "commit": "b0c458164a957d598aa121ced175abc2ead41ef0",
+  "finishedAt": "2026-09-29T17:13:08.095Z",
+  "ok": true,
+  "results": [
+    {
+      "job": "trend-economics",
+      "ok": true,
+      "exitCode": 0,
+      "minutes": 0.5
+    }
+  ]
+}

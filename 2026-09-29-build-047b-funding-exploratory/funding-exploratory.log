@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "build": "047B",
+  "mode": "EXPLORATORY_INSUFFICIENT_HISTORY_NOT_VALIDATION",
+  "classification": {
+    "label": "ECONOMICALLY UNINTERESTING",
+    "simpleAnnualized": 0.020176286941060686,
+    "fullMonths": 12,
+    "positiveMonthShare": 0.6666666666666666
+  },
+  "eligibleForPromotion": false,
+  "authorizedToTrade": false
+}

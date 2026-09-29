@@ -1,0 +1,779 @@
+{
+  "ok": true,
+  "build": "047A",
+  "program": "SLOW_VOL_SCALED_TREND_CORRECTED_ECONOMICS",
+  "specification": {
+    "lookbackDays": 90,
+    "volDays": 30,
+    "targetDailyVol": 0.01,
+    "maxLeverage": 1,
+    "note": "unchanged from Build 045"
+  },
+  "accounting": {
+    "costPerUnitTurnover": 0.001,
+    "sensitivityCostPerUnitTurnover": 0.0005,
+    "timing": "next-bar (044): decide on the day's last hourly close, trade at the next hourly close",
+    "endOfData": "open position marked to market, not liquidated",
+    "portfolio": "equal-weight average of the eight sleeves' daily returns (sleeve rebalancing costs not modeled)",
+    "annualization": "365 days"
+  },
+  "preregistration": "docs/BUILD-047-PREREGISTRATION.md",
+  "classification": "INCONCLUSIVE",
+  "classificationInputs": {
+    "portfolioSharpe": 0.2981969064560823,
+    "portfolioCagr": 0.035461904317848125,
+    "portfolioBootstrapP": 0.3333333333333333,
+    "bothSegmentsPositive": false
+  },
+  "holdoutNote": "The last 30% is not a pristine holdout: Build 045 already evaluated the full period with this specification.",
+  "assets": [
+    {
+      "asset": "BTC",
+      "primary": {
+        "start": "2023-12-30",
+        "end": "2026-09-27",
+        "days": 1003,
+        "years": 2.748,
+        "directionChanges": 28,
+        "daysWithTurnover": 1003,
+        "totalTurnover": 40.73887531491185,
+        "annualTurnover": 14.825213848397633,
+        "grossCumulative": 0.3061373722923153,
+        "netCumulative": 0.25401410654280654,
+        "cagr": 0.08585807370780563,
+        "annVol": 0.20949785797778459,
+        "sharpe": 0.497938094818649,
+        "maxDrawdown": -0.31802331229314174,
+        "positiveDaysPct": 0.5064805583250249,
+        "costsPaid": 0.05411138250526445,
+        "finalEquity": 1.2540141065428065
+      },
+      "bootstrap": {
+        "p": 0.21263157894736842,
+        "tStat": 0.8068910726193189
+      },
+      "costSensitivity5bps": {
+        "netCumulative": 0.27981508771565045,
+        "sharpe": 0.5333156983048213
+      },
+      "sameCloseTiming045": {
+        "netCumulative": 0.2314225740778184,
+        "sharpe": 0.4629900429529462
+      },
+      "build045AccountingForComparison": {
+        "meanDailyNet": -0.0006901799783460207
+      },
+      "segments": {
+        "splitAt": "2025-12-01",
+        "first70": {
+          "start": "2023-12-30",
+          "end": "2025-11-30",
+          "days": 702,
+          "years": 1.923,
+          "directionChanges": 23,
+          "daysWithTurnover": 702,
+          "totalTurnover": 31.145569274016733,
+          "annualTurnover": 16.19392134617679,
+          "grossCumulative": 0.603049680129149,
+          "netCumulative": 0.5539036250733504,
+          "cagr": 0.2575626035508316,
+          "annVol": 0.20763505306874178,
+          "sharpe": 1.207675961175128,
+          "maxDrawdown": -0.1641656781332821,
+          "positiveDaysPct": 0.5213675213675214,
+          "costsPaid": 0.03993899374169033,
+          "finalEquity": 1.5539036250733504
+        },
+        "last30": {
+          "start": "2025-12-01",
+          "end": "2026-09-27",
+          "days": 301,
+          "years": 0.825,
+          "directionChanges": 5,
+          "daysWithTurnover": 301,
+          "totalTurnover": 9.593306040895099,
+          "annualTurnover": 11.633078753909338,
+          "grossCumulative": -0.18521715921674609,
+          "netCumulative": -0.1929910669436704,
+          "cagr": -0.228957373657388,
+          "annVol": 0.21305683924721902,
+          "sharpe": -1.1133725126530714,
+          "maxDrawdown": -0.3180233122931415,
+          "positiveDaysPct": 0.4717607973421927,
+          "costsPaid": 0.009120506918764114,
+          "finalEquity": 0.8070089330563296
+        }
+      }
+    },
+    {
+      "asset": "ETH",
+      "primary": {
+        "start": "2023-12-30",
+        "end": "2026-09-27",
+        "days": 1003,
+        "years": 2.748,
+        "directionChanges": 28,
+        "daysWithTurnover": 1003,
+        "totalTurnover": 31.361129140354457,
+        "annualTurnover": 11.412574412990406,
+        "grossCumulative": 0.3387867606819581,
+        "netCumulative": 0.2975068228356288,
+        "cagr": 0.0994146954652615,
+        "annVol": 0.21498562106323302,
+        "sharpe": 0.5488666286086245,
+        "maxDrawdown": -0.28504841760668387,
+        "positiveDaysPct": 0.514456630109671,
+        "costsPaid": 0.04268711728258707,
+        "finalEquity": 1.2975068228356288
+      },
+      "bootstrap": {
+        "p": 0.1724,
+        "tStat": 0.9299722906625785
+      },
+      "costSensitivity5bps": {
+        "netCumulative": 0.3179886575424442,
+        "sharpe": 0.5753324952463128
+      },
+      "sameCloseTiming045": {
+        "netCumulative": 0.3127777508301326,
+        "sharpe": 0.5626270416217295
+      },
+      "build045AccountingForComparison": {
+        "meanDailyNet": -0.0006316238038358638
+      },
+      "segments": {
+        "splitAt": "2025-12-01",
+        "first70": {
+          "start": "2023-12-30",
+          "end": "2025-11-30",
+          "days": 702,
+          "years": 1.923,
+          "directionChanges": 19,
+          "daysWithTurnover": 702,
+          "totalTurnover": 18.874669985460724,
+          "annualTurnover": 9.813752912668324,
+          "grossCumulative": 0.583143821387192,
+          "netCumulative": 0.5536408674068105,
+          "cagr": 0.25745203431422214,
+          "annVol": 0.20981599124305078,
+          "sharpe": 1.196483917310951,
+          "maxDrawdown": -0.18659699375073302,
+          "positiveDaysPct": 0.51994301994302,
+          "costsPaid": 0.024295787981697545,
+          "finalEquity": 1.5536408674068105
+        },
+        "last30": {
+          "start": "2025-12-01",
+          "end": "2026-09-27",
+          "days": 301,
+          "years": 0.825,
+          "directionChanges": 9,
+          "daysWithTurnover": 301,
+          "totalTurnover": 12.486459154893753,
+          "annualTurnover": 15.14138734729641,
+          "grossCumulative": -0.15434924951488072,
+          "netCumulative": -0.16486052210939472,
+          "cagr": -0.19624616799829653,
+          "annVol": 0.226111092786784,
+          "sharpe": -0.8504136513560666,
+          "maxDrawdown": -0.28504841760668365,
+          "positiveDaysPct": 0.5016611295681063,
+          "costsPaid": 0.01183756792622649,
+          "finalEquity": 0.8351394778906053
+        }
+      }
+    },
+    {
+      "asset": "XRP",
+      "primary": {
+        "start": "2023-12-30",
+        "end": "2026-09-27",
+        "days": 1003,
+        "years": 2.748,
+        "directionChanges": 58,
+        "daysWithTurnover": 1003,
+        "totalTurnover": 43.785280930512,
+        "annualTurnover": 15.933826061452523,
+        "grossCumulative": -0.18751481554648342,
+        "netCumulative": -0.222372192001827,
+        "cagr": -0.0874620223586079,
+        "annVol": 0.22770780919578895,
+        "sharpe": -0.28776208229706723,
+        "maxDrawdown": -0.3556280494373333,
+        "positiveDaysPct": 0.5084745762711864,
+        "costsPaid": 0.03377088405945311,
+        "finalEquity": 0.777627807998173
+      },
+      "bootstrap": {
+        "p": 0.6688741721854304,
+        "tStat": -0.4163514901367802
+      },
+      "costSensitivity5bps": {
+        "netCumulative": -0.2051320874279292,
+        "sharpe": -0.25282204721406293
+      },
+      "sameCloseTiming045": {
+        "netCumulative": -0.2916502412078412,
+        "sharpe": -0.44111585371547823
+      },
+      "build045AccountingForComparison": {
+        "meanDailyNet": -0.0012296830706889183
+      },
+      "segments": {
+        "splitAt": "2025-12-01",
+        "first70": {
+          "start": "2023-12-30",
+          "end": "2025-11-30",
+          "days": 702,
+          "years": 1.923,
+          "directionChanges": 51,
+          "daysWithTurnover": 702,
+          "totalTurnover": 33.59989337556005,
+          "annualTurnover": 17.47003003145216,
+          "grossCumulative": -0.17916586232245635,
+          "netCumulative": -0.20631838279842174,
+          "cagr": -0.11320792078824182,
+          "annVol": 0.2287797551030287,
+          "sharpe": -0.4107493581798314,
+          "maxDrawdown": -0.3556280494373333,
+          "positiveDaysPct": 0.4886039886039886,
+          "costsPaid": 0.025511139865351924,
+          "finalEquity": 0.7936816172015783
+        },
+        "last30": {
+          "start": "2025-12-01",
+          "end": "2026-09-27",
+          "days": 301,
+          "years": 0.825,
+          "directionChanges": 7,
+          "daysWithTurnover": 301,
+          "totalTurnover": 10.185387554951921,
+          "annualTurnover": 12.351051354011465,
+          "grossCumulative": -0.010171303605439275,
+          "netCumulative": -0.020227014026114043,
+          "cagr": -0.024474747877518244,
+          "annVol": 0.2255282596874583,
+          "sharpe": 0.003616289619823952,
+          "maxDrawdown": -0.18274252034078386,
+          "positiveDaysPct": 0.5548172757475083,
+          "costsPaid": 0.010406873505807058,
+          "finalEquity": 0.979772985973886
+        }
+      }
+    },
+    {
+      "asset": "SOL",
+      "primary": {
+        "start": "2023-12-30",
+        "end": "2026-09-27",
+        "days": 1003,
+        "years": 2.748,
+        "directionChanges": 46,
+        "daysWithTurnover": 1003,
+        "totalTurnover": 34.275996333549024,
+        "annualTurnover": 12.473318705628508,
+        "grossCumulative": 0.03871979894891209,
+        "netCumulative": 0.0036607332928100256,
+        "cagr": 0.0013306232058707401,
+        "annVol": 0.203703436052003,
+        "sharpe": 0.10823843139126693,
+        "maxDrawdown": -0.30379333098789474,
+        "positiveDaysPct": 0.4945164506480558,
+        "costsPaid": 0.03526587692861717,
+        "finalEquity": 1.00366073329281
+      },
+      "bootstrap": {
+        "p": 0.37407407407407406,
+        "tStat": 0.17547605181311587
+      },
+      "costSensitivity5bps": {
+        "netCumulative": 0.021042130702718653,
+        "sharpe": 0.13889223219975397
+      },
+      "sameCloseTiming045": {
+        "netCumulative": 0.0017314917798669782,
+        "sharpe": 0.10552631021026959
+      },
+      "build045AccountingForComparison": {
+        "meanDailyNet": -0.0009065630136211604
+      },
+      "segments": {
+        "splitAt": "2025-12-01",
+        "first70": {
+          "start": "2023-12-30",
+          "end": "2025-11-30",
+          "days": 702,
+          "years": 1.923,
+          "directionChanges": 33,
+          "daysWithTurnover": 702,
+          "totalTurnover": 21.004486009632025,
+          "annualTurnover": 10.921135888198986,
+          "grossCumulative": -0.05847253406277986,
+          "netCumulative": -0.07810007530032326,
+          "cagr": -0.04139966227600855,
+          "annVol": 0.20046442000801626,
+          "sharpe": -0.11094619979353829,
+          "maxDrawdown": -0.29899720059883683,
+          "positiveDaysPct": 0.4943019943019943,
+          "costsPaid": 0.022418627001990876,
+          "finalEquity": 0.9218999246996767
+        },
+        "last30": {
+          "start": "2025-12-01",
+          "end": "2026-09-27",
+          "days": 301,
+          "years": 0.825,
+          "directionChanges": 13,
+          "daysWithTurnover": 301,
+          "totalTurnover": 13.271510323917,
+          "annualTurnover": 16.093359695115296,
+          "grossCumulative": 0.10322835660980134,
+          "netCumulative": 0.08868729284230037,
+          "cagr": 0.10853566848730667,
+          "annVol": 0.21130652523232232,
+          "sharpe": 0.5931724415733385,
+          "maxDrawdown": -0.14835195228268339,
+          "positiveDaysPct": 0.4950166112956811,
+          "costsPaid": 0.013935623143489811,
+          "finalEquity": 1.0886872928423004
+        }
+      }
+    },
+    {
+      "asset": "ADA",
+      "primary": {
+        "start": "2023-12-30",
+        "end": "2026-09-27",
+        "days": 1003,
+        "years": 2.748,
+        "directionChanges": 40,
+        "daysWithTurnover": 1003,
+        "totalTurnover": 29.759255188002527,
+        "annualTurnover": 10.829639225943092,
+        "grossCumulative": 0.3780391441787616,
+        "netCumulative": 0.3376772206354739,
+        "cagr": 0.1116812867442194,
+        "annVol": 0.2239745012497515,
+        "sharpe": 0.5862818591996871,
+        "maxDrawdown": -0.23968784308279478,
+        "positiveDaysPct": 0.5324027916251246,
+        "costsPaid": 0.031524310054582616,
+        "finalEquity": 1.337677220635474
+      },
+      "bootstrap": {
+        "p": 0.1824,
+        "tStat": 0.8971254837373572
+      },
+      "costSensitivity5bps": {
+        "netCumulative": 0.35771058687017576,
+        "sharpe": 0.6104055232283053
+      },
+      "sameCloseTiming045": {
+        "netCumulative": 0.2763023749734188,
+        "sharpe": 0.5111406691713435
+      },
+      "build045AccountingForComparison": {
+        "meanDailyNet": -0.0006571212960483021
+      },
+      "segments": {
+        "splitAt": "2025-12-01",
+        "first70": {
+          "start": "2023-12-30",
+          "end": "2025-11-30",
+          "days": 702,
+          "years": 1.923,
+          "directionChanges": 35,
+          "daysWithTurnover": 702,
+          "totalTurnover": 24.174751974620715,
+          "annualTurnover": 12.569493548057778,
+          "grossCumulative": 0.15296990576063862,
+          "netCumulative": 0.12546491955911376,
+          "cagr": 0.06338295743537481,
+          "annVol": 0.2348172285333303,
+          "sharpe": 0.38117992718954297,
+          "maxDrawdown": -0.23968784308279478,
+          "positiveDaysPct": 0.50997150997151,
+          "costsPaid": 0.024907125326086233,
+          "finalEquity": 1.1254649195591138
+        },
+        "last30": {
+          "start": "2025-12-01",
+          "end": "2026-09-27",
+          "days": 301,
+          "years": 0.825,
+          "directionChanges": 5,
+          "daysWithTurnover": 301,
+          "totalTurnover": 5.584503213381799,
+          "annualTurnover": 6.771905889981251,
+          "grossCumulative": 0.19520825070420122,
+          "netCumulative": 0.18855523383127037,
+          "cagr": 0.23302059590750668,
+          "annVol": 0.19664837866781681,
+          "sharpe": 1.1635483437659946,
+          "maxDrawdown": -0.12751863758508386,
+          "positiveDaysPct": 0.584717607973422,
+          "costsPaid": 0.00587951220291126,
+          "finalEquity": 1.1885552338312704
+        }
+      }
+    },
+    {
+      "asset": "DOGE",
+      "primary": {
+        "start": "2023-12-30",
+        "end": "2026-09-27",
+        "days": 1003,
+        "years": 2.748,
+        "directionChanges": 52,
+        "daysWithTurnover": 1003,
+        "totalTurnover": 32.20374919333689,
+        "annualTurnover": 11.719210823098669,
+        "grossCumulative": 0.1426329950535863,
+        "netCumulative": 0.10645346324855431,
+        "cagr": 0.037498882842988746,
+        "annVol": 0.21732147626819362,
+        "sharpe": 0.2777538103696089,
+        "maxDrawdown": -0.2934847002596763,
+        "positiveDaysPct": 0.5174476570289133,
+        "costsPaid": 0.03887799815452738,
+        "finalEquity": 1.1064534632485543
+      },
+      "bootstrap": {
+        "p": 0.33223684210526316,
+        "tStat": 0.41542696713755034
+      },
+      "costSensitivity5bps": {
+        "netCumulative": 0.12439963373921392,
+        "sharpe": 0.30468991675357315
+      },
+      "sameCloseTiming045": {
+        "netCumulative": 0.03146909338090853,
+        "sharpe": 0.15941929978936303
+      },
+      "build045AccountingForComparison": {
+        "meanDailyNet": -0.0008744253238227535
+      },
+      "segments": {
+        "splitAt": "2025-12-01",
+        "first70": {
+          "start": "2023-12-30",
+          "end": "2025-11-30",
+          "days": 702,
+          "years": 1.923,
+          "directionChanges": 45,
+          "daysWithTurnover": 702,
+          "totalTurnover": 24.535849677888713,
+          "annualTurnover": 12.75724377838943,
+          "grossCumulative": 0.2399711158316431,
+          "netCumulative": 0.20995611153155158,
+          "cagr": 0.10416883454329606,
+          "annVol": 0.2214317431107713,
+          "sharpe": 0.557599690237076,
+          "maxDrawdown": -0.27437805438046703,
+          "positiveDaysPct": 0.5085470085470085,
+          "costsPaid": 0.029961351910991658,
+          "finalEquity": 1.2099561115315516
+        },
+        "last30": {
+          "start": "2025-12-01",
+          "end": "2026-09-27",
+          "days": 301,
+          "years": 0.825,
+          "directionChanges": 7,
+          "daysWithTurnover": 301,
+          "totalTurnover": 7.66789951544817,
+          "annualTurnover": 9.298283465576684,
+          "grossCumulative": -0.07850031305993088,
+          "netCumulative": -0.08554248149710741,
+          "cagr": -0.1027655347059121,
+          "annVol": 0.2075741893396904,
+          "sharpe": -0.41826580469600955,
+          "maxDrawdown": -0.18784989882884628,
+          "positiveDaysPct": 0.5382059800664452,
+          "costsPaid": 0.007369396425667954,
+          "finalEquity": 0.9144575185028926
+        }
+      }
+    },
+    {
+      "asset": "AVAX",
+      "primary": {
+        "start": "2023-12-30",
+        "end": "2026-09-27",
+        "days": 1003,
+        "years": 2.748,
+        "directionChanges": 54,
+        "daysWithTurnover": 1003,
+        "totalTurnover": 33.173467277125546,
+        "annualTurnover": 12.072099258375697,
+        "grossCumulative": 0.02495914714778613,
+        "netCumulative": -0.00853632605246113,
+        "cagr": -0.0031149129823719868,
+        "annVol": 0.20688195673050735,
+        "sharpe": 0.08810296618685619,
+        "maxDrawdown": -0.3724712594067252,
+        "positiveDaysPct": 0.5024925224327019,
+        "costsPaid": 0.02840512211970729,
+        "finalEquity": 0.9914636739475389
+      },
+      "bootstrap": {
+        "p": 0.43162393162393164,
+        "tStat": 0.13338617224298904
+      },
+      "costSensitivity5bps": {
+        "netCumulative": 0.008074271720654114,
+        "sharpe": 0.11730649867605461
+      },
+      "sameCloseTiming045": {
+        "netCumulative": -0.005979561649440912,
+        "sharpe": 0.09157796321517504
+      },
+      "build045AccountingForComparison": {
+        "meanDailyNet": -0.0009155107421549726
+      },
+      "segments": {
+        "splitAt": "2025-12-01",
+        "first70": {
+          "start": "2023-12-30",
+          "end": "2025-11-30",
+          "days": 702,
+          "years": 1.923,
+          "directionChanges": 47,
+          "daysWithTurnover": 702,
+          "totalTurnover": 24.43058099262259,
+          "annualTurnover": 12.70251006026673,
+          "grossCumulative": -0.18327772149747934,
+          "netCumulative": -0.2030326527962968,
+          "cagr": -0.1113010018871674,
+          "annVol": 0.2048071039223803,
+          "sharpe": -0.47370489924938775,
+          "maxDrawdown": -0.3724712594067252,
+          "positiveDaysPct": 0.5,
+          "costsPaid": 0.020990009417786004,
+          "finalEquity": 0.7969673472037032
+        },
+        "last30": {
+          "start": "2025-12-01",
+          "end": "2026-09-27",
+          "days": 301,
+          "years": 0.825,
+          "directionChanges": 7,
+          "daysWithTurnover": 301,
+          "totalTurnover": 8.742886284502989,
+          "annualTurnover": 10.601838849978707,
+          "grossCumulative": 0.254966558555342,
+          "netCumulative": 0.24404554016705982,
+          "cagr": 0.3031691880266987,
+          "annVol": 0.21131741636754756,
+          "sharpe": 1.3581672238121139,
+          "maxDrawdown": -0.09528202894320714,
+          "positiveDaysPct": 0.5083056478405316,
+          "costsPaid": 0.009304161240656191,
+          "finalEquity": 1.2440455401670598
+        }
+      }
+    },
+    {
+      "asset": "LINK",
+      "primary": {
+        "start": "2023-12-30",
+        "end": "2026-09-27",
+        "days": 1003,
+        "years": 2.748,
+        "directionChanges": 26,
+        "daysWithTurnover": 1003,
+        "totalTurnover": 20.284693258890314,
+        "annualTurnover": 7.381767736286106,
+        "grossCumulative": -0.05550901395339214,
+        "netCumulative": -0.07451813562709597,
+        "cagr": -0.027787937563522047,
+        "annVol": 0.20353693205519083,
+        "sharpe": -0.036666244913730876,
+        "maxDrawdown": -0.25138279331709856,
+        "positiveDaysPct": 0.4915254237288136,
+        "costsPaid": 0.018935910220227996,
+        "finalEquity": 0.925481864372904
+      },
+      "bootstrap": {
+        "p": 0.6158536585365854,
+        "tStat": -0.060221409200158456
+      },
+      "costSensitivity5bps": {
+        "netCumulative": -0.06506095157001623,
+        "sharpe": -0.018536182241764024
+      },
+      "sameCloseTiming045": {
+        "netCumulative": -0.06954668296606015,
+        "sharpe": -0.023921491681581794
+      },
+      "build045AccountingForComparison": {
+        "meanDailyNet": -0.0009932994268431218
+      },
+      "segments": {
+        "splitAt": "2025-12-01",
+        "first70": {
+          "start": "2023-12-30",
+          "end": "2025-11-30",
+          "days": 702,
+          "years": 1.923,
+          "directionChanges": 21,
+          "daysWithTurnover": 702,
+          "totalTurnover": 14.02309746753009,
+          "annualTurnover": 7.2912116462229095,
+          "grossCumulative": -0.02278380504314459,
+          "netCumulative": -0.03641198172372517,
+          "cagr": -0.019100662396402956,
+          "annVol": 0.2044518724131519,
+          "sharpe": 0.00788518053154171,
+          "maxDrawdown": -0.22788585992081534,
+          "positiveDaysPct": 0.48575498575498577,
+          "costsPaid": 0.013152316079288429,
+          "finalEquity": 0.9635880182762748
+        },
+        "last30": {
+          "start": "2025-12-01",
+          "end": "2026-09-27",
+          "days": 301,
+          "years": 0.825,
+          "directionChanges": 5,
+          "daysWithTurnover": 301,
+          "totalTurnover": 6.261595791360244,
+          "annualTurnover": 7.592964996167737,
+          "grossCumulative": -0.0334881974727117,
+          "netCumulative": -0.03954610599199604,
+          "cagr": -0.0477508375341793,
+          "annVol": 0.20172102189758606,
+          "sharpe": -0.14191907038524182,
+          "maxDrawdown": -0.24075479779856557,
+          "positiveDaysPct": 0.5049833887043189,
+          "costsPaid": 0.0060021441022955055,
+          "finalEquity": 0.960453894008004
+        }
+      }
+    }
+  ],
+  "portfolio": {
+    "primary": {
+      "start": "2023-12-30",
+      "end": "2026-09-27",
+      "days": 1003,
+      "years": 2.748,
+      "directionChanges": 0,
+      "daysWithTurnover": 1003,
+      "totalTurnover": 33.19780582958529,
+      "annualTurnover": 12.080956259021566,
+      "grossCumulative": 0.13764336521905185,
+      "netCumulative": 0.10049417290542784,
+      "cagr": 0.035461904317848125,
+      "annVol": 0.15982572683468813,
+      "sharpe": 0.2981969064560823,
+      "maxDrawdown": -0.16550878199164332,
+      "positiveDaysPct": 0.5244267198404786,
+      "costsPaid": 0.035776034318078194,
+      "finalEquity": 1.1004941729054278
+    },
+    "bootstrap": {
+      "p": 0.3333333333333333,
+      "tStat": 0.4543983507126382
+    },
+    "costSensitivity5bps": {
+      "start": "2023-12-30",
+      "end": "2026-09-27",
+      "days": 1003,
+      "years": 2.748,
+      "directionChanges": 0,
+      "daysWithTurnover": 1003,
+      "totalTurnover": 33.19780582958529,
+      "annualTurnover": 12.080956259021566,
+      "grossCumulative": 0.13764336521905185,
+      "netCumulative": 0.11891529756516728,
+      "cagr": 0.041736087358989815,
+      "annVol": 0.15982010761008542,
+      "sharpe": 0.3360028737730676,
+      "maxDrawdown": -0.16296902343483766,
+      "positiveDaysPct": 0.5264207377866401,
+      "costsPaid": 0.018038297389504677,
+      "finalEquity": 1.1189152975651673
+    },
+    "sameCloseTiming045": {
+      "start": "2023-12-30",
+      "end": "2026-09-27",
+      "days": 1003,
+      "years": 2.748,
+      "directionChanges": 0,
+      "daysWithTurnover": 1003,
+      "totalTurnover": 33.19780582958529,
+      "annualTurnover": 12.080956259021566,
+      "grossCumulative": 0.10732953214569929,
+      "netCumulative": 0.07116033496261065,
+      "cagr": 0.025331484223819922,
+      "annVol": 0.16197861157977075,
+      "sharpe": 0.2357054410935301,
+      "maxDrawdown": -0.17066712051235255,
+      "positiveDaysPct": 0.5174476570289133,
+      "costsPaid": 0.03524429885652352,
+      "finalEquity": 1.0711603349626106
+    },
+    "grossNoCost": {
+      "start": "2023-12-30",
+      "end": "2026-09-27",
+      "days": 1003,
+      "years": 2.748,
+      "directionChanges": 0,
+      "daysWithTurnover": 1003,
+      "totalTurnover": 33.19780582958529,
+      "annualTurnover": 12.080956259021566,
+      "grossCumulative": 0.13764336521905185,
+      "netCumulative": 0.13764336521905185,
+      "cagr": 0.04804781577506301,
+      "annVol": 0.1598166834745862,
+      "sharpe": 0.37380636535809736,
+      "maxDrawdown": -0.1604217221174583,
+      "positiveDaysPct": 0.5284147557328016,
+      "costsPaid": 0,
+      "finalEquity": 1.1376433652190518
+    },
+    "segments": {
+      "splitAt": "2025-12-01",
+      "first70": {
+        "start": "2023-12-30",
+        "end": "2025-11-30",
+        "days": 702,
+        "years": 1.923,
+        "directionChanges": 0,
+        "daysWithTurnover": 702,
+        "totalTurnover": 23.97361234466644,
+        "annualTurnover": 12.46491240142913,
+        "grossCumulative": 0.12996467737477624,
+        "netCumulative": 0.10321122711156305,
+        "cagr": 0.05239815785500235,
+        "annVol": 0.15353112787067671,
+        "sharpe": 0.4096541545468415,
+        "maxDrawdown": -0.16550878199164332,
+        "positiveDaysPct": 0.5270655270655271,
+        "costsPaid": 0.02542848695641271,
+        "finalEquity": 1.103211227111563
+      },
+      "last30": {
+        "start": "2025-12-01",
+        "end": "2026-09-27",
+        "days": 301,
+        "years": 0.825,
+        "directionChanges": 0,
+        "daysWithTurnover": 301,
+        "totalTurnover": 9.224193484918867,
+        "annualTurnover": 11.185483794004606,
+        "grossCumulative": 0.006795511397857723,
+        "netCumulative": -0.0024628594591510344,
+        "cagr": -0.0029857414546160532,
+        "annVol": 0.17387761090053222,
+        "sharpe": 0.06974894065287227,
+        "maxDrawdown": -0.15299480691772083,
+        "positiveDaysPct": 0.5182724252491694,
+        "costsPaid": 0.009379479747280622,
+        "finalEquity": 0.997537140540849
+      }
+    }
+  },
+  "authorizedToTrade": false
+}

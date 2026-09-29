@@ -1,0 +1,1884 @@
+{
+  "ok": true,
+  "build": "047B",
+  "mode": "EXPLORATORY_INSUFFICIENT_HISTORY_NOT_VALIDATION",
+  "preregistration": "docs/BUILD-047-PREREGISTRATION.md",
+  "eligibleForPromotion": false,
+  "permanentMinimumDays": 730,
+  "coverageDays": 370.3,
+  "data": {
+    "venue": "KRAKEN_FUTURES",
+    "sensorVersion": "FUND046-KRAKEN",
+    "sourceTag": "kraken_futures_v3_historical_funding_rates|rate=relativeFundingRate,fraction_per_period|interval=1h|ts=period_start_utc|sign=positive_paid_to_shorts",
+    "semantics": "relativeFundingRate: fraction of notional per 1-hour period; timestamp = period start (UTC); positive = paid by longs, received by shorts (Kraken linear multi-collateral contract specifications). Units independently checked: |fundingRate / relativeFundingRate| equals the coin price (see docs/BUILD-047B-KRAKEN-FUNDING-CARRY.md)."
+  },
+  "label": "RAW FUNDING COMPENSATION to a short perpetual per unit notional. NOT realizable delta-neutral return.",
+  "notModeled": [
+    "spot/perpetual basis and its convergence/divergence",
+    "entry and exit prices",
+    "trading fees, spread and slippage on both legs",
+    "hedge rebalancing",
+    "collateral, margin and liquidation risk",
+    "exchange, counterparty and stablecoin risk",
+    "capital efficiency (margin plus spot capital)",
+    "taxes"
+  ],
+  "rules": {
+    "always": "always short the perpetual",
+    "prevHourPositive": "exposed in hour t only if hour t-1 settled > 0",
+    "trailing24hAbove10pct": "exposed in hour t only if mean of hours t-24..t-1 > 1.1408e-5 per hour (10%/yr simple)"
+  },
+  "quality": [
+    {
+      "asset": "BTC",
+      "instrument": "PF_XBTUSD",
+      "ok": true,
+      "problems": [],
+      "completeness": {
+        "observations": 8881,
+        "first": "2025-09-24T08:00:00.000Z",
+        "last": "2026-09-29T16:00:00.000Z",
+        "coverageDays": 370.3,
+        "medianIntervalHours": 1,
+        "expectedIntervalHours": 1,
+        "duplicates": 0,
+        "conflictingDuplicates": 0,
+        "offGridTimestamps": 0,
+        "gaps": 7,
+        "missingPeriods": 8,
+        "largestGapHours": 3,
+        "expectedObservations": 8889,
+        "completenessPct": 99.91,
+        "outOfBoundsRates": 0,
+        "staleHours": 1.2
+      },
+      "intervalChanges": [
+        {
+          "hours": 3,
+          "count": 1
+        },
+        {
+          "hours": 2,
+          "count": 6
+        }
+      ],
+      "permanentGate": {
+        "pass": false,
+        "problems": [
+          "coverage 370.3 days < 730"
+        ]
+      }
+    },
+    {
+      "asset": "ETH",
+      "instrument": "PF_ETHUSD",
+      "ok": true,
+      "problems": [],
+      "completeness": {
+        "observations": 8881,
+        "first": "2025-09-24T08:00:00.000Z",
+        "last": "2026-09-29T16:00:00.000Z",
+        "coverageDays": 370.3,
+        "medianIntervalHours": 1,
+        "expectedIntervalHours": 1,
+        "duplicates": 0,
+        "conflictingDuplicates": 0,
+        "offGridTimestamps": 0,
+        "gaps": 7,
+        "missingPeriods": 8,
+        "largestGapHours": 3,
+        "expectedObservations": 8889,
+        "completenessPct": 99.91,
+        "outOfBoundsRates": 0,
+        "staleHours": 1.2
+      },
+      "intervalChanges": [
+        {
+          "hours": 3,
+          "count": 1
+        },
+        {
+          "hours": 2,
+          "count": 6
+        }
+      ],
+      "permanentGate": {
+        "pass": false,
+        "problems": [
+          "coverage 370.3 days < 730"
+        ]
+      }
+    },
+    {
+      "asset": "SOL",
+      "instrument": "PF_SOLUSD",
+      "ok": true,
+      "problems": [],
+      "completeness": {
+        "observations": 8882,
+        "first": "2025-09-24T08:00:00.000Z",
+        "last": "2026-09-29T16:00:00.000Z",
+        "coverageDays": 370.3,
+        "medianIntervalHours": 1,
+        "expectedIntervalHours": 1,
+        "duplicates": 0,
+        "conflictingDuplicates": 0,
+        "offGridTimestamps": 0,
+        "gaps": 6,
+        "missingPeriods": 7,
+        "largestGapHours": 3,
+        "expectedObservations": 8889,
+        "completenessPct": 99.92,
+        "outOfBoundsRates": 0,
+        "staleHours": 1.2
+      },
+      "intervalChanges": [
+        {
+          "hours": 3,
+          "count": 1
+        },
+        {
+          "hours": 2,
+          "count": 5
+        }
+      ],
+      "permanentGate": {
+        "pass": false,
+        "problems": [
+          "coverage 370.3 days < 730"
+        ]
+      }
+    }
+  ],
+  "perAsset": [
+    {
+      "asset": "BTC",
+      "instrument": "PF_XBTUSD",
+      "rawFundingCompensation": {
+        "observations": 8881,
+        "first": "2025-09-24T08:00:00.000Z",
+        "last": "2026-09-29T16:00:00.000Z",
+        "years": 1.013,
+        "meanPerHour": 0.0000036290176760500034,
+        "medianPerHour": 0.000003499565,
+        "sdPerHour": 0.000008335926683549741,
+        "positivePct": 0.6923769845738093,
+        "zeroPct": 0,
+        "negativePct": 0.30762301542619075,
+        "cumulative": 0.03222930598100008,
+        "simpleAnnualized": 0.031811968948254325,
+        "compoundedAnnualized": 0.03232300424240764,
+        "bestDay": {
+          "date": "2026-08-22",
+          "funding": 0.0007006431849999999
+        },
+        "worstDay": {
+          "date": "2026-04-20",
+          "funding": -0.000333363112
+        },
+        "bestMonth": {
+          "month": "2026-01",
+          "funding": 0.006513073356000004
+        },
+        "worstMonth": {
+          "month": "2026-04",
+          "funding": -0.002827630902
+        },
+        "longestPositiveStreakHours": 362,
+        "longestNegativeStreakHours": 94,
+        "maxCumulativeDrawdown": -0.005029556323999984,
+        "monthly": [
+          {
+            "month": "2025-09",
+            "funding": 0.001000957479,
+            "hours": 160
+          },
+          {
+            "month": "2025-10",
+            "funding": 0.005420688775,
+            "hours": 744
+          },
+          {
+            "month": "2025-11",
+            "funding": 0.004835826165000004,
+            "hours": 716
+          },
+          {
+            "month": "2025-12",
+            "funding": 0.004304053711999997,
+            "hours": 743
+          },
+          {
+            "month": "2026-01",
+            "funding": 0.006513073356000004,
+            "hours": 744
+          },
+          {
+            "month": "2026-02",
+            "funding": -0.0006430824439999993,
+            "hours": 670
+          },
+          {
+            "month": "2026-03",
+            "funding": -0.0008615335410000007,
+            "hours": 744
+          },
+          {
+            "month": "2026-04",
+            "funding": -0.002827630902,
+            "hours": 720
+          },
+          {
+            "month": "2026-05",
+            "funding": 0.00040008614999999915,
+            "hours": 743
+          },
+          {
+            "month": "2026-06",
+            "funding": 0.0001914910919999996,
+            "hours": 720
+          },
+          {
+            "month": "2026-07",
+            "funding": 0.004668947811000001,
+            "hours": 744
+          },
+          {
+            "month": "2026-08",
+            "funding": 0.0045426230739999945,
+            "hours": 744
+          },
+          {
+            "month": "2026-09",
+            "funding": 0.0046838052539999965,
+            "hours": 689
+          }
+        ]
+      },
+      "rules": {
+        "always": {
+          "rule": "always",
+          "eligibleHours": 8881,
+          "exposedHours": 8881,
+          "fractionExposed": 1,
+          "switches": 0,
+          "summary": {
+            "observations": 8881,
+            "first": "2025-09-24T08:00:00.000Z",
+            "last": "2026-09-29T16:00:00.000Z",
+            "years": 1.013,
+            "meanPerHour": 0.0000036290176760500034,
+            "medianPerHour": 0.000003499565,
+            "sdPerHour": 0.000008335926683549741,
+            "positivePct": 0.6923769845738093,
+            "zeroPct": 0,
+            "negativePct": 0.30762301542619075,
+            "cumulative": 0.03222930598100008,
+            "simpleAnnualized": 0.031811968948254325,
+            "compoundedAnnualized": 0.03232300424240764,
+            "bestDay": {
+              "date": "2026-08-22",
+              "funding": 0.0007006431849999999
+            },
+            "worstDay": {
+              "date": "2026-04-20",
+              "funding": -0.000333363112
+            },
+            "bestMonth": {
+              "month": "2026-01",
+              "funding": 0.006513073356000004
+            },
+            "worstMonth": {
+              "month": "2026-04",
+              "funding": -0.002827630902
+            },
+            "longestPositiveStreakHours": 362,
+            "longestNegativeStreakHours": 94,
+            "maxCumulativeDrawdown": -0.005029556323999984,
+            "monthly": [
+              {
+                "month": "2025-09",
+                "funding": 0.001000957479,
+                "hours": 160
+              },
+              {
+                "month": "2025-10",
+                "funding": 0.005420688775,
+                "hours": 744
+              },
+              {
+                "month": "2025-11",
+                "funding": 0.004835826165000004,
+                "hours": 716
+              },
+              {
+                "month": "2025-12",
+                "funding": 0.004304053711999997,
+                "hours": 743
+              },
+              {
+                "month": "2026-01",
+                "funding": 0.006513073356000004,
+                "hours": 744
+              },
+              {
+                "month": "2026-02",
+                "funding": -0.0006430824439999993,
+                "hours": 670
+              },
+              {
+                "month": "2026-03",
+                "funding": -0.0008615335410000007,
+                "hours": 744
+              },
+              {
+                "month": "2026-04",
+                "funding": -0.002827630902,
+                "hours": 720
+              },
+              {
+                "month": "2026-05",
+                "funding": 0.00040008614999999915,
+                "hours": 743
+              },
+              {
+                "month": "2026-06",
+                "funding": 0.0001914910919999996,
+                "hours": 720
+              },
+              {
+                "month": "2026-07",
+                "funding": 0.004668947811000001,
+                "hours": 744
+              },
+              {
+                "month": "2026-08",
+                "funding": 0.0045426230739999945,
+                "hours": 744
+              },
+              {
+                "month": "2026-09",
+                "funding": 0.0046838052539999965,
+                "hours": 689
+              }
+            ]
+          }
+        },
+        "prevHourPositive": {
+          "rule": "prevHourPositive",
+          "eligibleHours": 8873,
+          "exposedHours": 6143,
+          "fractionExposed": 0.6923250309928998,
+          "switches": 1026,
+          "summary": {
+            "observations": 8873,
+            "first": "2025-09-24T09:00:00.000Z",
+            "last": "2026-09-29T16:00:00.000Z",
+            "years": 1.012,
+            "meanPerHour": 0.000004909177799616825,
+            "medianPerHour": 0.000003276846,
+            "sdPerHour": 0.000006557478406765293,
+            "positivePct": 0.6346218866223374,
+            "zeroPct": 0.3076749690071002,
+            "negativePct": 0.05770314437056238,
+            "cumulative": 0.043559134616000084,
+            "simpleAnnualized": 0.04303385259144108,
+            "compoundedAnnualized": 0.043972928441174286,
+            "bestDay": {
+              "date": "2026-08-22",
+              "funding": 0.0007006431849999999
+            },
+            "worstDay": {
+              "date": "2026-06-05",
+              "funding": -0.000017711346
+            },
+            "bestMonth": {
+              "month": "2026-01",
+              "funding": 0.0066774513900000046
+            },
+            "worstMonth": {
+              "month": "2026-04",
+              "funding": 0.00017019529099999997
+            },
+            "longestPositiveStreakHours": 361,
+            "longestNegativeStreakHours": 1,
+            "maxCumulativeDrawdown": -0.00017922074599999996,
+            "monthly": [
+              {
+                "month": "2025-09",
+                "funding": 0.001005658284,
+                "hours": 159
+              },
+              {
+                "month": "2025-10",
+                "funding": 0.0054147184919999996,
+                "hours": 744
+              },
+              {
+                "month": "2025-11",
+                "funding": 0.005037695692,
+                "hours": 713
+              },
+              {
+                "month": "2025-12",
+                "funding": 0.004421746234999997,
+                "hours": 742
+              },
+              {
+                "month": "2026-01",
+                "funding": 0.0066774513900000046,
+                "hours": 744
+              },
+              {
+                "month": "2026-02",
+                "funding": 0.0008867711669999996,
+                "hours": 668
+              },
+              {
+                "month": "2026-03",
+                "funding": 0.0009402011170000001,
+                "hours": 744
+              },
+              {
+                "month": "2026-04",
+                "funding": 0.00017019529099999997,
+                "hours": 720
+              },
+              {
+                "month": "2026-05",
+                "funding": 0.0013400809160000007,
+                "hours": 742
+              },
+              {
+                "month": "2026-06",
+                "funding": 0.0023256915010000014,
+                "hours": 720
+              },
+              {
+                "month": "2026-07",
+                "funding": 0.004989325675000006,
+                "hours": 744
+              },
+              {
+                "month": "2026-08",
+                "funding": 0.005306160182999996,
+                "hours": 744
+              },
+              {
+                "month": "2026-09",
+                "funding": 0.005043438672999994,
+                "hours": 689
+              }
+            ]
+          }
+        },
+        "trailing24hAbove10pct": {
+          "rule": "trailing24hAbove10pct",
+          "eligibleHours": 8703,
+          "exposedHours": 777,
+          "fractionExposed": 0.08927955877283696,
+          "switches": 69,
+          "summary": {
+            "observations": 8703,
+            "first": "2025-09-25T08:00:00.000Z",
+            "last": "2026-09-29T16:00:00.000Z",
+            "years": 0.993,
+            "meanPerHour": 0.0000011624208098356885,
+            "medianPerHour": 0,
+            "sdPerHour": 0.000004874517348384862,
+            "positivePct": 0.08583247156153051,
+            "zeroPct": 0.910720441227163,
+            "negativePct": 0.003447087211306446,
+            "cumulative": 0.010116548307999997,
+            "simpleAnnualized": 0.010189780819019644,
+            "compoundedAnnualized": 0.010241762240485341,
+            "bestDay": {
+              "date": "2026-08-22",
+              "funding": 0.0007006431849999999
+            },
+            "worstDay": {
+              "date": "2026-07-07",
+              "funding": -0.000005034396
+            },
+            "bestMonth": {
+              "month": "2026-08",
+              "funding": 0.002238191752
+            },
+            "worstMonth": {
+              "month": "2026-02",
+              "funding": 0
+            },
+            "longestPositiveStreakHours": 84,
+            "longestNegativeStreakHours": 4,
+            "maxCumulativeDrawdown": -0.00017729196700000003,
+            "monthly": [
+              {
+                "month": "2025-09",
+                "funding": 0.00014072017299999995,
+                "hours": 136
+              },
+              {
+                "month": "2025-10",
+                "funding": 0.001233436777,
+                "hours": 744
+              },
+              {
+                "month": "2025-11",
+                "funding": 0.0011873481289999997,
+                "hours": 658
+              },
+              {
+                "month": "2025-12",
+                "funding": 0.000608490556,
+                "hours": 719
+              },
+              {
+                "month": "2026-01",
+                "funding": 0.002223613649,
+                "hours": 744
+              },
+              {
+                "month": "2026-02",
+                "funding": 0,
+                "hours": 622
+              },
+              {
+                "month": "2026-03",
+                "funding": 0,
+                "hours": 744
+              },
+              {
+                "month": "2026-04",
+                "funding": 0,
+                "hours": 720
+              },
+              {
+                "month": "2026-05",
+                "funding": 0,
+                "hours": 719
+              },
+              {
+                "month": "2026-06",
+                "funding": 0.00021965219400000004,
+                "hours": 720
+              },
+              {
+                "month": "2026-07",
+                "funding": 0.0007990539089999999,
+                "hours": 744
+              },
+              {
+                "month": "2026-08",
+                "funding": 0.002238191752,
+                "hours": 744
+              },
+              {
+                "month": "2026-09",
+                "funding": 0.0014660411689999995,
+                "hours": 689
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "asset": "ETH",
+      "instrument": "PF_ETHUSD",
+      "rawFundingCompensation": {
+        "observations": 8881,
+        "first": "2025-09-24T08:00:00.000Z",
+        "last": "2026-09-29T16:00:00.000Z",
+        "years": 1.013,
+        "meanPerHour": 0.0000036475496878729803,
+        "medianPerHour": 0.000003594513,
+        "sdPerHour": 0.000011530164498346027,
+        "positivePct": 0.683256390046166,
+        "zeroPct": 0,
+        "negativePct": 0.31674360995383405,
+        "cumulative": 0.03239388877799994,
+        "simpleAnnualized": 0.03197442056389454,
+        "compoundedAnnualized": 0.032490432586682605,
+        "bestDay": {
+          "date": "2026-09-16",
+          "funding": 0.000497454292
+        },
+        "worstDay": {
+          "date": "2025-10-10",
+          "funding": -0.000821911089
+        },
+        "bestMonth": {
+          "month": "2026-09",
+          "funding": 0.006630334910000009
+        },
+        "worstMonth": {
+          "month": "2026-02",
+          "funding": -0.0013586103439999998
+        },
+        "longestPositiveStreakHours": 176,
+        "longestNegativeStreakHours": 86,
+        "maxCumulativeDrawdown": -0.0032744544470000147,
+        "monthly": [
+          {
+            "month": "2025-09",
+            "funding": 0.00019611399399999997,
+            "hours": 160
+          },
+          {
+            "month": "2025-10",
+            "funding": 0.002147257883000004,
+            "hours": 744
+          },
+          {
+            "month": "2025-11",
+            "funding": 0.002141431423999998,
+            "hours": 716
+          },
+          {
+            "month": "2025-12",
+            "funding": 0.0027737914690000014,
+            "hours": 743
+          },
+          {
+            "month": "2026-01",
+            "funding": 0.004474138633999997,
+            "hours": 744
+          },
+          {
+            "month": "2026-02",
+            "funding": -0.0013586103439999998,
+            "hours": 670
+          },
+          {
+            "month": "2026-03",
+            "funding": -0.00019895469299999996,
+            "hours": 744
+          },
+          {
+            "month": "2026-04",
+            "funding": -0.001326338712,
+            "hours": 720
+          },
+          {
+            "month": "2026-05",
+            "funding": 0.004465451688000001,
+            "hours": 743
+          },
+          {
+            "month": "2026-06",
+            "funding": 0.0017623208280000016,
+            "hours": 720
+          },
+          {
+            "month": "2026-07",
+            "funding": 0.004277777439999999,
+            "hours": 744
+          },
+          {
+            "month": "2026-08",
+            "funding": 0.006409174257000001,
+            "hours": 744
+          },
+          {
+            "month": "2026-09",
+            "funding": 0.006630334910000009,
+            "hours": 689
+          }
+        ]
+      },
+      "rules": {
+        "always": {
+          "rule": "always",
+          "eligibleHours": 8881,
+          "exposedHours": 8881,
+          "fractionExposed": 1,
+          "switches": 0,
+          "summary": {
+            "observations": 8881,
+            "first": "2025-09-24T08:00:00.000Z",
+            "last": "2026-09-29T16:00:00.000Z",
+            "years": 1.013,
+            "meanPerHour": 0.0000036475496878729803,
+            "medianPerHour": 0.000003594513,
+            "sdPerHour": 0.000011530164498346027,
+            "positivePct": 0.683256390046166,
+            "zeroPct": 0,
+            "negativePct": 0.31674360995383405,
+            "cumulative": 0.03239388877799994,
+            "simpleAnnualized": 0.03197442056389454,
+            "compoundedAnnualized": 0.032490432586682605,
+            "bestDay": {
+              "date": "2026-09-16",
+              "funding": 0.000497454292
+            },
+            "worstDay": {
+              "date": "2025-10-10",
+              "funding": -0.000821911089
+            },
+            "bestMonth": {
+              "month": "2026-09",
+              "funding": 0.006630334910000009
+            },
+            "worstMonth": {
+              "month": "2026-02",
+              "funding": -0.0013586103439999998
+            },
+            "longestPositiveStreakHours": 176,
+            "longestNegativeStreakHours": 86,
+            "maxCumulativeDrawdown": -0.0032744544470000147,
+            "monthly": [
+              {
+                "month": "2025-09",
+                "funding": 0.00019611399399999997,
+                "hours": 160
+              },
+              {
+                "month": "2025-10",
+                "funding": 0.002147257883000004,
+                "hours": 744
+              },
+              {
+                "month": "2025-11",
+                "funding": 0.002141431423999998,
+                "hours": 716
+              },
+              {
+                "month": "2025-12",
+                "funding": 0.0027737914690000014,
+                "hours": 743
+              },
+              {
+                "month": "2026-01",
+                "funding": 0.004474138633999997,
+                "hours": 744
+              },
+              {
+                "month": "2026-02",
+                "funding": -0.0013586103439999998,
+                "hours": 670
+              },
+              {
+                "month": "2026-03",
+                "funding": -0.00019895469299999996,
+                "hours": 744
+              },
+              {
+                "month": "2026-04",
+                "funding": -0.001326338712,
+                "hours": 720
+              },
+              {
+                "month": "2026-05",
+                "funding": 0.004465451688000001,
+                "hours": 743
+              },
+              {
+                "month": "2026-06",
+                "funding": 0.0017623208280000016,
+                "hours": 720
+              },
+              {
+                "month": "2026-07",
+                "funding": 0.004277777439999999,
+                "hours": 744
+              },
+              {
+                "month": "2026-08",
+                "funding": 0.006409174257000001,
+                "hours": 744
+              },
+              {
+                "month": "2026-09",
+                "funding": 0.006630334910000009,
+                "hours": 689
+              }
+            ]
+          }
+        },
+        "prevHourPositive": {
+          "rule": "prevHourPositive",
+          "eligibleHours": 8873,
+          "exposedHours": 6062,
+          "fractionExposed": 0.6831962132311507,
+          "switches": 1225,
+          "summary": {
+            "observations": 8873,
+            "first": "2025-09-24T09:00:00.000Z",
+            "last": "2026-09-29T16:00:00.000Z",
+            "years": 1.012,
+            "meanPerHour": 0.000005064012710695367,
+            "medianPerHour": 0.000003069456,
+            "sdPerHour": 0.000006917639636767414,
+            "positivePct": 0.6142229234757128,
+            "zeroPct": 0.3168037867688493,
+            "negativePct": 0.06897328975543784,
+            "cumulative": 0.044932984781999995,
+            "simpleAnnualized": 0.04439113542195559,
+            "compoundedAnnualized": 0.04539082771213887,
+            "bestDay": {
+              "date": "2026-09-16",
+              "funding": 0.000497454292
+            },
+            "worstDay": {
+              "date": "2026-06-08",
+              "funding": -0.000027232846
+            },
+            "bestMonth": {
+              "month": "2026-08",
+              "funding": 0.0067068296590000005
+            },
+            "worstMonth": {
+              "month": "2025-09",
+              "funding": 0.000429278
+            },
+            "longestPositiveStreakHours": 175,
+            "longestNegativeStreakHours": 1,
+            "maxCumulativeDrawdown": -0.00008546242599999972,
+            "monthly": [
+              {
+                "month": "2025-09",
+                "funding": 0.000429278,
+                "hours": 159
+              },
+              {
+                "month": "2025-10",
+                "funding": 0.0035903537949999982,
+                "hours": 744
+              },
+              {
+                "month": "2025-11",
+                "funding": 0.0029512115049999954,
+                "hours": 713
+              },
+              {
+                "month": "2025-12",
+                "funding": 0.003229842700999998,
+                "hours": 742
+              },
+              {
+                "month": "2026-01",
+                "funding": 0.004734854466999997,
+                "hours": 744
+              },
+              {
+                "month": "2026-02",
+                "funding": 0.0006780404630000001,
+                "hours": 668
+              },
+              {
+                "month": "2026-03",
+                "funding": 0.001145102594000001,
+                "hours": 744
+              },
+              {
+                "month": "2026-04",
+                "funding": 0.001051850438,
+                "hours": 720
+              },
+              {
+                "month": "2026-05",
+                "funding": 0.004624566466999998,
+                "hours": 742
+              },
+              {
+                "month": "2026-06",
+                "funding": 0.003722004648,
+                "hours": 720
+              },
+              {
+                "month": "2026-07",
+                "funding": 0.005425617397000002,
+                "hours": 744
+              },
+              {
+                "month": "2026-08",
+                "funding": 0.0067068296590000005,
+                "hours": 744
+              },
+              {
+                "month": "2026-09",
+                "funding": 0.006643432648000008,
+                "hours": 689
+              }
+            ]
+          }
+        },
+        "trailing24hAbove10pct": {
+          "rule": "trailing24hAbove10pct",
+          "eligibleHours": 8703,
+          "exposedHours": 917,
+          "fractionExposed": 0.1053659657589337,
+          "switches": 96,
+          "summary": {
+            "observations": 8703,
+            "first": "2025-09-25T08:00:00.000Z",
+            "last": "2026-09-29T16:00:00.000Z",
+            "years": 0.993,
+            "meanPerHour": 0.0000011974797575548681,
+            "medianPerHour": 0,
+            "sdPerHour": 0.000004645327504721353,
+            "positivePct": 0.09456509249684017,
+            "zeroPct": 0.8946340342410662,
+            "negativePct": 0.010800873262093532,
+            "cumulative": 0.010421666330000016,
+            "simpleAnnualized": 0.010497107554725974,
+            "compoundedAnnualized": 0.010552293555284642,
+            "bestDay": {
+              "date": "2026-08-22",
+              "funding": 0.0004438376539999999
+            },
+            "worstDay": {
+              "date": "2026-07-07",
+              "funding": -0.000035749679
+            },
+            "bestMonth": {
+              "month": "2026-09",
+              "funding": 0.002951623308
+            },
+            "worstMonth": {
+              "month": "2025-09",
+              "funding": 0
+            },
+            "longestPositiveStreakHours": 60,
+            "longestNegativeStreakHours": 9,
+            "maxCumulativeDrawdown": -0.00011092429599999978,
+            "monthly": [
+              {
+                "month": "2025-09",
+                "funding": 0,
+                "hours": 136
+              },
+              {
+                "month": "2025-10",
+                "funding": 0.000715068492,
+                "hours": 744
+              },
+              {
+                "month": "2025-11",
+                "funding": 0.000250143594,
+                "hours": 658
+              },
+              {
+                "month": "2025-12",
+                "funding": 0.000388966862,
+                "hours": 719
+              },
+              {
+                "month": "2026-01",
+                "funding": 0.0011562658879999998,
+                "hours": 744
+              },
+              {
+                "month": "2026-02",
+                "funding": 0,
+                "hours": 622
+              },
+              {
+                "month": "2026-03",
+                "funding": 0,
+                "hours": 744
+              },
+              {
+                "month": "2026-04",
+                "funding": 0,
+                "hours": 720
+              },
+              {
+                "month": "2026-05",
+                "funding": 0.0005451906079999999,
+                "hours": 719
+              },
+              {
+                "month": "2026-06",
+                "funding": 0.00043731155300000014,
+                "hours": 720
+              },
+              {
+                "month": "2026-07",
+                "funding": 0.0013193163070000006,
+                "hours": 744
+              },
+              {
+                "month": "2026-08",
+                "funding": 0.002657779717999998,
+                "hours": 744
+              },
+              {
+                "month": "2026-09",
+                "funding": 0.002951623308,
+                "hours": 689
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "asset": "SOL",
+      "instrument": "PF_SOLUSD",
+      "rawFundingCompensation": {
+        "observations": 8882,
+        "first": "2025-09-24T08:00:00.000Z",
+        "last": "2026-09-29T16:00:00.000Z",
+        "years": 1.013,
+        "meanPerHour": -3.7237678833596116e-7,
+        "medianPerHour": 5.811085e-7,
+        "sdPerHour": 0.000026768546318845884,
+        "positivePct": 0.5180139608196352,
+        "zeroPct": 0,
+        "negativePct": 0.48198603918036476,
+        "cumulative": -0.003307450634000007,
+        "simpleAnnualized": -0.003264254926553036,
+        "compoundedAnnualized": -0.003262064868405301,
+        "bestDay": {
+          "date": "2026-08-23",
+          "funding": 0.0015210809850000004
+        },
+        "worstDay": {
+          "date": "2025-10-11",
+          "funding": -0.002379669602
+        },
+        "bestMonth": {
+          "month": "2026-08",
+          "funding": 0.005223464234000002
+        },
+        "worstMonth": {
+          "month": "2026-02",
+          "funding": -0.007518027449999996
+        },
+        "longestPositiveStreakHours": 125,
+        "longestNegativeStreakHours": 117,
+        "maxCumulativeDrawdown": -0.017632663705000006,
+        "monthly": [
+          {
+            "month": "2025-09",
+            "funding": 0.000387131365,
+            "hours": 160
+          },
+          {
+            "month": "2025-10",
+            "funding": -0.003476894830999991,
+            "hours": 744
+          },
+          {
+            "month": "2025-11",
+            "funding": 0.0005788533679999999,
+            "hours": 716
+          },
+          {
+            "month": "2025-12",
+            "funding": 0.0028440701719999986,
+            "hours": 743
+          },
+          {
+            "month": "2026-01",
+            "funding": 0.0025904059569999997,
+            "hours": 744
+          },
+          {
+            "month": "2026-02",
+            "funding": -0.007518027449999996,
+            "hours": 670
+          },
+          {
+            "month": "2026-03",
+            "funding": -0.004300346046999999,
+            "hours": 744
+          },
+          {
+            "month": "2026-04",
+            "funding": 0.0003472758440000002,
+            "hours": 720
+          },
+          {
+            "month": "2026-05",
+            "funding": 0.0004664514619999995,
+            "hours": 744
+          },
+          {
+            "month": "2026-06",
+            "funding": -0.004823804629999999,
+            "hours": 720
+          },
+          {
+            "month": "2026-07",
+            "funding": 0.00003076795799999968,
+            "hours": 744
+          },
+          {
+            "month": "2026-08",
+            "funding": 0.005223464234000002,
+            "hours": 744
+          },
+          {
+            "month": "2026-09",
+            "funding": 0.004343201963999999,
+            "hours": 689
+          }
+        ]
+      },
+      "rules": {
+        "always": {
+          "rule": "always",
+          "eligibleHours": 8882,
+          "exposedHours": 8882,
+          "fractionExposed": 1,
+          "switches": 0,
+          "summary": {
+            "observations": 8882,
+            "first": "2025-09-24T08:00:00.000Z",
+            "last": "2026-09-29T16:00:00.000Z",
+            "years": 1.013,
+            "meanPerHour": -3.7237678833596116e-7,
+            "medianPerHour": 5.811085e-7,
+            "sdPerHour": 0.000026768546318845884,
+            "positivePct": 0.5180139608196352,
+            "zeroPct": 0,
+            "negativePct": 0.48198603918036476,
+            "cumulative": -0.003307450634000007,
+            "simpleAnnualized": -0.003264254926553036,
+            "compoundedAnnualized": -0.003262064868405301,
+            "bestDay": {
+              "date": "2026-08-23",
+              "funding": 0.0015210809850000004
+            },
+            "worstDay": {
+              "date": "2025-10-11",
+              "funding": -0.002379669602
+            },
+            "bestMonth": {
+              "month": "2026-08",
+              "funding": 0.005223464234000002
+            },
+            "worstMonth": {
+              "month": "2026-02",
+              "funding": -0.007518027449999996
+            },
+            "longestPositiveStreakHours": 125,
+            "longestNegativeStreakHours": 117,
+            "maxCumulativeDrawdown": -0.017632663705000006,
+            "monthly": [
+              {
+                "month": "2025-09",
+                "funding": 0.000387131365,
+                "hours": 160
+              },
+              {
+                "month": "2025-10",
+                "funding": -0.003476894830999991,
+                "hours": 744
+              },
+              {
+                "month": "2025-11",
+                "funding": 0.0005788533679999999,
+                "hours": 716
+              },
+              {
+                "month": "2025-12",
+                "funding": 0.0028440701719999986,
+                "hours": 743
+              },
+              {
+                "month": "2026-01",
+                "funding": 0.0025904059569999997,
+                "hours": 744
+              },
+              {
+                "month": "2026-02",
+                "funding": -0.007518027449999996,
+                "hours": 670
+              },
+              {
+                "month": "2026-03",
+                "funding": -0.004300346046999999,
+                "hours": 744
+              },
+              {
+                "month": "2026-04",
+                "funding": 0.0003472758440000002,
+                "hours": 720
+              },
+              {
+                "month": "2026-05",
+                "funding": 0.0004664514619999995,
+                "hours": 744
+              },
+              {
+                "month": "2026-06",
+                "funding": -0.004823804629999999,
+                "hours": 720
+              },
+              {
+                "month": "2026-07",
+                "funding": 0.00003076795799999968,
+                "hours": 744
+              },
+              {
+                "month": "2026-08",
+                "funding": 0.005223464234000002,
+                "hours": 744
+              },
+              {
+                "month": "2026-09",
+                "funding": 0.004343201963999999,
+                "hours": 689
+              }
+            ]
+          }
+        },
+        "prevHourPositive": {
+          "rule": "prevHourPositive",
+          "eligibleHours": 8875,
+          "exposedHours": 4599,
+          "fractionExposed": 0.5181971830985915,
+          "switches": 1822,
+          "summary": {
+            "observations": 8875,
+            "first": "2025-09-24T09:00:00.000Z",
+            "last": "2026-09-29T16:00:00.000Z",
+            "years": 1.012,
+            "meanPerHour": 0.0000048706877134647835,
+            "medianPerHour": 0,
+            "sdPerHour": 0.000012326952502005092,
+            "positivePct": 0.41532394366197184,
+            "zeroPct": 0.48180281690140847,
+            "negativePct": 0.10287323943661972,
+            "cumulative": 0.043227353456999955,
+            "simpleAnnualized": 0.04269644849623229,
+            "compoundedAnnualized": 0.0436202505519212,
+            "bestDay": {
+              "date": "2026-08-23",
+              "funding": 0.0016557387140000003
+            },
+            "worstDay": {
+              "date": "2026-06-05",
+              "funding": -0.000060799575000000005
+            },
+            "bestMonth": {
+              "month": "2026-08",
+              "funding": 0.009193941629999994
+            },
+            "worstMonth": {
+              "month": "2026-02",
+              "funding": 0.000225933304
+            },
+            "longestPositiveStreakHours": 124,
+            "longestNegativeStreakHours": 1,
+            "maxCumulativeDrawdown": -0.00010857233400000596,
+            "monthly": [
+              {
+                "month": "2025-09",
+                "funding": 0.0006208456039999998,
+                "hours": 159
+              },
+              {
+                "month": "2025-10",
+                "funding": 0.004235504486999997,
+                "hours": 744
+              },
+              {
+                "month": "2025-11",
+                "funding": 0.0026321351379999984,
+                "hours": 713
+              },
+              {
+                "month": "2025-12",
+                "funding": 0.0036777726570000014,
+                "hours": 742
+              },
+              {
+                "month": "2026-01",
+                "funding": 0.003987821666000001,
+                "hours": 744
+              },
+              {
+                "month": "2026-02",
+                "funding": 0.000225933304,
+                "hours": 668
+              },
+              {
+                "month": "2026-03",
+                "funding": 0.0006591005949999999,
+                "hours": 744
+              },
+              {
+                "month": "2026-04",
+                "funding": 0.002497509678999998,
+                "hours": 720
+              },
+              {
+                "month": "2026-05",
+                "funding": 0.002644507507999998,
+                "hours": 744
+              },
+              {
+                "month": "2026-06",
+                "funding": 0.0031020995209999984,
+                "hours": 720
+              },
+              {
+                "month": "2026-07",
+                "funding": 0.003796382477999999,
+                "hours": 744
+              },
+              {
+                "month": "2026-08",
+                "funding": 0.009193941629999994,
+                "hours": 744
+              },
+              {
+                "month": "2026-09",
+                "funding": 0.005953799190000004,
+                "hours": 689
+              }
+            ]
+          }
+        },
+        "trailing24hAbove10pct": {
+          "rule": "trailing24hAbove10pct",
+          "eligibleHours": 8728,
+          "exposedHours": 791,
+          "fractionExposed": 0.09062786434463795,
+          "switches": 110,
+          "summary": {
+            "observations": 8728,
+            "first": "2025-09-25T08:00:00.000Z",
+            "last": "2026-09-29T16:00:00.000Z",
+            "years": 0.996,
+            "meanPerHour": 0.0000012317778914986241,
+            "medianPerHour": 0,
+            "sdPerHour": 0.00001643693982209369,
+            "positivePct": 0.07160861594867095,
+            "zeroPct": 0.909372135655362,
+            "negativePct": 0.019019248395967,
+            "cumulative": 0.010750957436999992,
+            "simpleAnnualized": 0.01079776499687694,
+            "compoundedAnnualized": 0.010855067005554941,
+            "bestDay": {
+              "date": "2026-08-23",
+              "funding": 0.0013748194180000003
+            },
+            "worstDay": {
+              "date": "2025-10-10",
+              "funding": -0.000942075502
+            },
+            "bestMonth": {
+              "month": "2026-08",
+              "funding": 0.005035939457999999
+            },
+            "worstMonth": {
+              "month": "2026-07",
+              "funding": -0.00005596146899999997
+            },
+            "longestPositiveStreakHours": 51,
+            "longestNegativeStreakHours": 9,
+            "maxCumulativeDrawdown": -0.0012517656709999999,
+            "monthly": [
+              {
+                "month": "2025-09",
+                "funding": 0,
+                "hours": 136
+              },
+              {
+                "month": "2025-10",
+                "funding": 0.0003228051559999998,
+                "hours": 744
+              },
+              {
+                "month": "2025-11",
+                "funding": 0.0004321563459999999,
+                "hours": 658
+              },
+              {
+                "month": "2025-12",
+                "funding": 0.0008646499970000001,
+                "hours": 719
+              },
+              {
+                "month": "2026-01",
+                "funding": 0.0007455470500000002,
+                "hours": 744
+              },
+              {
+                "month": "2026-02",
+                "funding": 0,
+                "hours": 622
+              },
+              {
+                "month": "2026-03",
+                "funding": 0.000042860575999999995,
+                "hours": 744
+              },
+              {
+                "month": "2026-04",
+                "funding": 0.00033559373399999996,
+                "hours": 720
+              },
+              {
+                "month": "2026-05",
+                "funding": 0.000137628647,
+                "hours": 744
+              },
+              {
+                "month": "2026-06",
+                "funding": 0.00048307735199999995,
+                "hours": 720
+              },
+              {
+                "month": "2026-07",
+                "funding": -0.00005596146899999997,
+                "hours": 744
+              },
+              {
+                "month": "2026-08",
+                "funding": 0.005035939457999999,
+                "hours": 744
+              },
+              {
+                "month": "2026-09",
+                "funding": 0.0024066605899999986,
+                "hours": 689
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "portfolio": {
+    "alignedHours": 8881,
+    "droppedHoursPerAsset": [
+      0,
+      0,
+      1
+    ],
+    "rawFundingCompensation": {
+      "observations": 8881,
+      "first": "2025-09-24T08:00:00.000Z",
+      "last": "2026-09-29T16:00:00.000Z",
+      "years": 1.013,
+      "meanPerHour": 0.0000023016526284577557,
+      "medianPerHour": 0.0000024547886666666666,
+      "sdPerHour": 0.000013077536248512748,
+      "positivePct": 0.6328116203130278,
+      "zeroPct": 0,
+      "negativePct": 0.3671883796869722,
+      "cumulative": 0.02044097699333333,
+      "simpleAnnualized": 0.020176286941060686,
+      "compoundedAnnualized": 0.020380415441551225,
+      "bestDay": {
+        "date": "2026-08-23",
+        "funding": 0.000831021243
+      },
+      "worstDay": {
+        "date": "2025-10-10",
+        "funding": -0.0009359920436666667
+      },
+      "bestMonth": {
+        "month": "2026-08",
+        "funding": 0.005391753855000002
+      },
+      "worstMonth": {
+        "month": "2026-02",
+        "funding": -0.0031732400793333345
+      },
+      "longestPositiveStreakHours": 245,
+      "longestNegativeStreakHours": 70,
+      "maxCumulativeDrawdown": -0.006695354476666668,
+      "monthly": [
+        {
+          "month": "2025-09",
+          "funding": 0.0005280676126666665,
+          "hours": 160
+        },
+        {
+          "month": "2025-10",
+          "funding": 0.0013636839423333336,
+          "hours": 744
+        },
+        {
+          "month": "2025-11",
+          "funding": 0.002518703652333332,
+          "hours": 716
+        },
+        {
+          "month": "2025-12",
+          "funding": 0.0033073051176666654,
+          "hours": 743
+        },
+        {
+          "month": "2026-01",
+          "funding": 0.0045258726489999955,
+          "hours": 744
+        },
+        {
+          "month": "2026-02",
+          "funding": -0.0031732400793333345,
+          "hours": 670
+        },
+        {
+          "month": "2026-03",
+          "funding": -0.001786944760333331,
+          "hours": 744
+        },
+        {
+          "month": "2026-04",
+          "funding": -0.0012688979233333349,
+          "hours": 720
+        },
+        {
+          "month": "2026-05",
+          "funding": 0.001779725384999998,
+          "hours": 743
+        },
+        {
+          "month": "2026-06",
+          "funding": -0.000956664236666664,
+          "hours": 720
+        },
+        {
+          "month": "2026-07",
+          "funding": 0.0029924977363333305,
+          "hours": 744
+        },
+        {
+          "month": "2026-08",
+          "funding": 0.005391753855000002,
+          "hours": 744
+        },
+        {
+          "month": "2026-09",
+          "funding": 0.005219114042666667,
+          "hours": 689
+        }
+      ]
+    },
+    "rules": {
+      "always": {
+        "alignedHours": 8881,
+        "meanFractionExposed": 1,
+        "totalSwitches": 0,
+        "summary": {
+          "observations": 8881,
+          "first": "2025-09-24T08:00:00.000Z",
+          "last": "2026-09-29T16:00:00.000Z",
+          "years": 1.013,
+          "meanPerHour": 0.0000023016526284577557,
+          "medianPerHour": 0.0000024547886666666666,
+          "sdPerHour": 0.000013077536248512748,
+          "positivePct": 0.6328116203130278,
+          "zeroPct": 0,
+          "negativePct": 0.3671883796869722,
+          "cumulative": 0.02044097699333333,
+          "simpleAnnualized": 0.020176286941060686,
+          "compoundedAnnualized": 0.020380415441551225,
+          "bestDay": {
+            "date": "2026-08-23",
+            "funding": 0.000831021243
+          },
+          "worstDay": {
+            "date": "2025-10-10",
+            "funding": -0.0009359920436666667
+          },
+          "bestMonth": {
+            "month": "2026-08",
+            "funding": 0.005391753855000002
+          },
+          "worstMonth": {
+            "month": "2026-02",
+            "funding": -0.0031732400793333345
+          },
+          "longestPositiveStreakHours": 245,
+          "longestNegativeStreakHours": 70,
+          "maxCumulativeDrawdown": -0.006695354476666668,
+          "monthly": [
+            {
+              "month": "2025-09",
+              "funding": 0.0005280676126666665,
+              "hours": 160
+            },
+            {
+              "month": "2025-10",
+              "funding": 0.0013636839423333336,
+              "hours": 744
+            },
+            {
+              "month": "2025-11",
+              "funding": 0.002518703652333332,
+              "hours": 716
+            },
+            {
+              "month": "2025-12",
+              "funding": 0.0033073051176666654,
+              "hours": 743
+            },
+            {
+              "month": "2026-01",
+              "funding": 0.0045258726489999955,
+              "hours": 744
+            },
+            {
+              "month": "2026-02",
+              "funding": -0.0031732400793333345,
+              "hours": 670
+            },
+            {
+              "month": "2026-03",
+              "funding": -0.001786944760333331,
+              "hours": 744
+            },
+            {
+              "month": "2026-04",
+              "funding": -0.0012688979233333349,
+              "hours": 720
+            },
+            {
+              "month": "2026-05",
+              "funding": 0.001779725384999998,
+              "hours": 743
+            },
+            {
+              "month": "2026-06",
+              "funding": -0.000956664236666664,
+              "hours": 720
+            },
+            {
+              "month": "2026-07",
+              "funding": 0.0029924977363333305,
+              "hours": 744
+            },
+            {
+              "month": "2026-08",
+              "funding": 0.005391753855000002,
+              "hours": 744
+            },
+            {
+              "month": "2026-09",
+              "funding": 0.005219114042666667,
+              "hours": 689
+            }
+          ]
+        }
+      },
+      "prevHourPositive": {
+        "alignedHours": 8873,
+        "meanFractionExposed": 0.631239475774214,
+        "totalSwitches": 4073,
+        "summary": {
+          "observations": 8873,
+          "first": "2025-09-24T09:00:00.000Z",
+          "last": "2026-09-29T16:00:00.000Z",
+          "years": 1.012,
+          "meanPerHour": 0.000004948595353319063,
+          "medianPerHour": 0.000003505197333333333,
+          "sdPerHour": 0.0000063741478553855645,
+          "positivePct": 0.8026597543108306,
+          "zeroPct": 0.11191254367181337,
+          "negativePct": 0.08542770201735603,
+          "cumulative": 0.04390888657000004,
+          "simpleAnnualized": 0.0433793868671949,
+          "compoundedAnnualized": 0.044333728274890793,
+          "bestDay": {
+            "date": "2026-08-23",
+            "funding": 0.0008742652763333333
+          },
+          "worstDay": {
+            "date": "2026-06-05",
+            "funding": -0.000008644627
+          },
+          "bestMonth": {
+            "month": "2026-08",
+            "funding": 0.007068977157333328
+          },
+          "worstMonth": {
+            "month": "2026-02",
+            "funding": 0.0005969149779999998
+          },
+          "longestPositiveStreakHours": 362,
+          "longestNegativeStreakHours": 3,
+          "maxCumulativeDrawdown": -0.00006095978066666648,
+          "monthly": [
+            {
+              "month": "2025-09",
+              "funding": 0.0006852606293333335,
+              "hours": 159
+            },
+            {
+              "month": "2025-10",
+              "funding": 0.004413525591333332,
+              "hours": 744
+            },
+            {
+              "month": "2025-11",
+              "funding": 0.003540347445,
+              "hours": 713
+            },
+            {
+              "month": "2025-12",
+              "funding": 0.0037764538643333336,
+              "hours": 742
+            },
+            {
+              "month": "2026-01",
+              "funding": 0.005133375840999995,
+              "hours": 744
+            },
+            {
+              "month": "2026-02",
+              "funding": 0.0005969149779999998,
+              "hours": 668
+            },
+            {
+              "month": "2026-03",
+              "funding": 0.0009148014353333331,
+              "hours": 744
+            },
+            {
+              "month": "2026-04",
+              "funding": 0.0012398518026666664,
+              "hours": 720
+            },
+            {
+              "month": "2026-05",
+              "funding": 0.0028721139153333342,
+              "hours": 742
+            },
+            {
+              "month": "2026-06",
+              "funding": 0.0030499318899999983,
+              "hours": 720
+            },
+            {
+              "month": "2026-07",
+              "funding": 0.004737108516666672,
+              "hours": 744
+            },
+            {
+              "month": "2026-08",
+              "funding": 0.007068977157333328,
+              "hours": 744
+            },
+            {
+              "month": "2026-09",
+              "funding": 0.005880223503666672,
+              "hours": 689
+            }
+          ]
+        }
+      },
+      "trailing24hAbove10pct": {
+        "alignedHours": 8703,
+        "meanFractionExposed": 0.09509112962546952,
+        "totalSwitches": 275,
+        "summary": {
+          "observations": 8703,
+          "first": "2025-09-25T08:00:00.000Z",
+          "last": "2026-09-29T16:00:00.000Z",
+          "years": 0.993,
+          "meanPerHour": 0.0000011984056101344386,
+          "medianPerHour": 0,
+          "sdPerHour": 0.000006833072998981634,
+          "positivePct": 0.182350913478111,
+          "zeroPct": 0.7928300586004826,
+          "negativePct": 0.02481902792140641,
+          "cumulative": 0.010429724025000019,
+          "simpleAnnualized": 0.010505223578438489,
+          "compoundedAnnualized": 0.010560383994656863,
+          "bestDay": {
+            "date": "2026-08-23",
+            "funding": 0.0007822673873333333
+          },
+          "worstDay": {
+            "date": "2025-10-10",
+            "funding": -0.0002721918403333334
+          },
+          "bestMonth": {
+            "month": "2026-08",
+            "funding": 0.0033106369759999987
+          },
+          "worstMonth": {
+            "month": "2026-02",
+            "funding": 0
+          },
+          "longestPositiveStreakHours": 91,
+          "longestNegativeStreakHours": 9,
+          "maxCumulativeDrawdown": -0.00047527182866666674,
+          "monthly": [
+            {
+              "month": "2025-09",
+              "funding": 0.00004690672433333334,
+              "hours": 136
+            },
+            {
+              "month": "2025-10",
+              "funding": 0.0007571034750000001,
+              "hours": 744
+            },
+            {
+              "month": "2025-11",
+              "funding": 0.0006232160229999998,
+              "hours": 658
+            },
+            {
+              "month": "2025-12",
+              "funding": 0.0006207024716666668,
+              "hours": 719
+            },
+            {
+              "month": "2026-01",
+              "funding": 0.0013751421956666662,
+              "hours": 744
+            },
+            {
+              "month": "2026-02",
+              "funding": 0,
+              "hours": 622
+            },
+            {
+              "month": "2026-03",
+              "funding": 0.000014286858666666667,
+              "hours": 744
+            },
+            {
+              "month": "2026-04",
+              "funding": 0.00011186457800000003,
+              "hours": 720
+            },
+            {
+              "month": "2026-05",
+              "funding": 0.00022760641833333338,
+              "hours": 719
+            },
+            {
+              "month": "2026-06",
+              "funding": 0.00038001369966666657,
+              "hours": 720
+            },
+            {
+              "month": "2026-07",
+              "funding": 0.0006874695823333333,
+              "hours": 744
+            },
+            {
+              "month": "2026-08",
+              "funding": 0.0033106369759999987,
+              "hours": 744
+            },
+            {
+              "month": "2026-09",
+              "funding": 0.0022747750223333324,
+              "hours": 689
+            }
+          ]
+        }
+      }
+    }
+  },
+  "classification": {
+    "label": "ECONOMICALLY UNINTERESTING",
+    "simpleAnnualized": 0.020176286941060686,
+    "fullMonths": 12,
+    "positiveMonthShare": 0.6666666666666666
+  },
+  "authorizedToTrade": false
+}
