@@ -51,7 +51,8 @@
     "test:run-requests": "tsx tests/runRequests.test.ts",
     "audit:temporal": "tsx src/temporalIntegrity.ts",
     "research:mechanisms": "tsx src/mechanismLab.ts",
-    "test:mechanisms": "tsx tests/mechanisms.test.ts"
+    "test:mechanisms": "tsx tests/mechanisms.test.ts",
+    "research:funding-carry": "tsx src/fundingCarryFree.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
