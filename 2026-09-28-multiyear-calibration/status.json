@@ -1,7 +1,7 @@
 {
   "id": "2026-09-28-multiyear-calibration",
-  "commit": "47dc8adb2f73aa123e9e6c8a3e661b92511f2dd5",
-  "finishedAt": "2026-09-29T14:17:19.036Z",
+  "commit": "9912577064ecaec5669a98fc16e08361cf3c282b",
+  "finishedAt": "2026-09-29T15:20:51.209Z",
   "ok": false,
   "results": [
     {
@@ -9,13 +9,13 @@
       "days": 1095,
       "ok": true,
       "exitCode": 0,
-      "minutes": 7.1
+      "minutes": 6.9
     },
     {
       "job": "diagnose",
       "ok": true,
       "exitCode": 0,
-      "minutes": 1.3
+      "minutes": 1.2
     },
     {
       "job": "calibrate",
