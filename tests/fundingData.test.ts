@@ -91,4 +91,6 @@ const holey = { result: { timestamp: [sec(t0), sec(t0 + H)], data: { relativeRat
 assert.equal(parseAnalytics(holey, "PF_X").candles.length, 1);
 assert.throws(() => parseAnalytics({ result: {}, errors: [] }, "PF_X"), /unexpected/);
 assert.throws(() => parseAnalytics({ ...holey, errors: [{ msg: "bad" }] }, "PF_X"), /errors/);
+const ms = parseAnalytics({ result: { timestamp: [t0], data: { relativeRate: [[1e-5, 1e-5, 1e-5, 1e-5]] }, more: false }, errors: [] }, "PF_X").candles;
+assert.equal(ms[0].t, t0, "millisecond timestamps must not be scaled again");
 console.log("Analytics validation tests passed");
