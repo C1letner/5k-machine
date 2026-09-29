@@ -34,12 +34,14 @@ jobs:
           CAL_BOOT_NULL_RUNS: "60"
           BEFORE: ${{ github.event.before }}
         run: |
-          if git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            files=$(ls ops/run-requests/*.json 2>/dev/null | sort | tail -1)
+          elif [ -n "$BEFORE" ] && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
             files=$(git diff --name-only --diff-filter=AM "$BEFORE" "$GITHUB_SHA" -- 'ops/run-requests/*.json')
+            if [ -z "$files" ] && git diff --name-only "$BEFORE" "$GITHUB_SHA" -- 'ops/run-signal.txt' | grep -q .; then files=$(ls ops/run-requests/*.json | sort | tail -1); fi
           else
             files=$(git diff --name-only --diff-filter=AM "$GITHUB_SHA~1" "$GITHUB_SHA" -- 'ops/run-requests/*.json')
           fi
-          if [ -z "$files" ] && git diff --name-only "$BEFORE" "$GITHUB_SHA" -- 'ops/run-signal.txt' | grep -q .; then files=$(ls ops/run-requests/*.json | tail -1); fi
           echo "Requests: $files"
           npx tsx src/ops/runRequests.ts $files
       - name: Publish reports
