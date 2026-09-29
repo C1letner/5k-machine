@@ -63,7 +63,8 @@
     "test:funding-exploratory": "tsx tests/fundingExploratory.test.ts",
     "backfill:untouched": "tsx src/backfillUntouched.ts",
     "research:replication-048": "tsx src/replication048.ts",
-    "test:replication-048": "tsx tests/replication048.test.ts"
+    "test:replication-048": "tsx tests/replication048.test.ts",
+    "probe:kalshi-cpi": "tsx src/probes/kalshiCpiProbe.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",

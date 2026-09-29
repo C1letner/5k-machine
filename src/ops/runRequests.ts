@@ -28,6 +28,7 @@ export const JOBS: Record<string, JobSpec> = {
   "trend-economics": { script: "research:trend-economics", stdoutTo: "trend-economics.json", outputs: ["trend-economics-report.md", "trend-economics-report.json", "trend-economics-daily.csv.gz"] },
   "backfill-untouched": { script: "backfill:untouched", stdoutTo: "backfill-untouched.json" },
   "replication-048": { script: "research:replication-048", stdoutTo: "replication-048.json", outputs: ["replication-048-report.md", "replication-048-report.json", "replication-048-daily.csv.gz"] },
+  "kalshi-cpi-probe": { script: "probe:kalshi-cpi", stdoutTo: "kalshi-cpi-probe.json" },
   "funding-exploratory": { script: "research:funding-exploratory", stdoutTo: "funding-exploratory.json", outputs: ["funding-exploratory-report.md", "funding-exploratory-report.json"] },
 };
 
