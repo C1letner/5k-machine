@@ -1,0 +1,377 @@
+{
+  "ok": true,
+  "build": "041-diagnostic",
+  "generatedAt": "2026-09-29T05:05:49.772Z",
+  "readOnly": true,
+  "authorizedToTrade": false,
+  "priceTable": [
+    {
+      "asset": "ADA",
+      "sensor": "HIST-028",
+      "rows": 26270,
+      "first": "2023-09-30T04:00:00+00:00",
+      "last": "2026-09-29T03:00:00+00:00",
+      "topMinutesPastHour": [
+        {
+          "minute": 0,
+          "count": 26270
+        }
+      ],
+      "missingHours": 10,
+      "largestGapHours": 6,
+      "duplicates": 0
+    },
+    {
+      "asset": "ADA",
+      "sensor": "U2",
+      "rows": 33,
+      "first": "2026-09-27T21:04:00+00:00",
+      "last": "2026-09-29T05:04:00+00:00",
+      "topMinutesPastHour": [
+        {
+          "minute": 4,
+          "count": 33
+        }
+      ]
+    },
+    {
+      "asset": "AVAX",
+      "sensor": "HIST-028",
+      "rows": 26270,
+      "first": "2023-09-30T04:00:00+00:00",
+      "last": "2026-09-29T03:00:00+00:00",
+      "topMinutesPastHour": [
+        {
+          "minute": 0,
+          "count": 26270
+        }
+      ],
+      "missingHours": 10,
+      "largestGapHours": 6,
+      "duplicates": 0
+    },
+    {
+      "asset": "AVAX",
+      "sensor": "U2",
+      "rows": 33,
+      "first": "2026-09-27T21:04:00+00:00",
+      "last": "2026-09-29T05:04:00+00:00",
+      "topMinutesPastHour": [
+        {
+          "minute": 4,
+          "count": 33
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "sensor": "HIST-028",
+      "rows": 26270,
+      "first": "2023-09-30T04:00:00+00:00",
+      "last": "2026-09-29T03:00:00+00:00",
+      "topMinutesPastHour": [
+        {
+          "minute": 0,
+          "count": 26270
+        }
+      ],
+      "missingHours": 10,
+      "largestGapHours": 6,
+      "duplicates": 0
+    },
+    {
+      "asset": "BTC",
+      "sensor": "U2",
+      "rows": 33,
+      "first": "2026-09-27T21:04:00+00:00",
+      "last": "2026-09-29T05:04:00+00:00",
+      "topMinutesPastHour": [
+        {
+          "minute": 4,
+          "count": 33
+        }
+      ]
+    },
+    {
+      "asset": "DOGE",
+      "sensor": "HIST-028",
+      "rows": 26270,
+      "first": "2023-09-30T04:00:00+00:00",
+      "last": "2026-09-29T03:00:00+00:00",
+      "topMinutesPastHour": [
+        {
+          "minute": 0,
+          "count": 26270
+        }
+      ],
+      "missingHours": 10,
+      "largestGapHours": 6,
+      "duplicates": 0
+    },
+    {
+      "asset": "DOGE",
+      "sensor": "U2",
+      "rows": 33,
+      "first": "2026-09-27T21:04:00+00:00",
+      "last": "2026-09-29T05:04:00+00:00",
+      "topMinutesPastHour": [
+        {
+          "minute": 4,
+          "count": 33
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "sensor": "HIST-028",
+      "rows": 26270,
+      "first": "2023-09-30T04:00:00+00:00",
+      "last": "2026-09-29T03:00:00+00:00",
+      "topMinutesPastHour": [
+        {
+          "minute": 0,
+          "count": 26270
+        }
+      ],
+      "missingHours": 10,
+      "largestGapHours": 6,
+      "duplicates": 0
+    },
+    {
+      "asset": "ETH",
+      "sensor": "U2",
+      "rows": 33,
+      "first": "2026-09-27T21:04:00+00:00",
+      "last": "2026-09-29T05:04:00+00:00",
+      "topMinutesPastHour": [
+        {
+          "minute": 4,
+          "count": 33
+        }
+      ]
+    },
+    {
+      "asset": "LINK",
+      "sensor": "HIST-028",
+      "rows": 26270,
+      "first": "2023-09-30T04:00:00+00:00",
+      "last": "2026-09-29T03:00:00+00:00",
+      "topMinutesPastHour": [
+        {
+          "minute": 0,
+          "count": 26270
+        }
+      ],
+      "missingHours": 10,
+      "largestGapHours": 6,
+      "duplicates": 0
+    },
+    {
+      "asset": "LINK",
+      "sensor": "U2",
+      "rows": 33,
+      "first": "2026-09-27T21:04:00+00:00",
+      "last": "2026-09-29T05:04:00+00:00",
+      "topMinutesPastHour": [
+        {
+          "minute": 4,
+          "count": 33
+        }
+      ]
+    },
+    {
+      "asset": "SOL",
+      "sensor": "HIST-028",
+      "rows": 26270,
+      "first": "2023-09-30T04:00:00+00:00",
+      "last": "2026-09-29T03:00:00+00:00",
+      "topMinutesPastHour": [
+        {
+          "minute": 0,
+          "count": 26270
+        }
+      ],
+      "missingHours": 10,
+      "largestGapHours": 6,
+      "duplicates": 0
+    },
+    {
+      "asset": "SOL",
+      "sensor": "U2",
+      "rows": 33,
+      "first": "2026-09-27T21:04:00+00:00",
+      "last": "2026-09-29T05:04:00+00:00",
+      "topMinutesPastHour": [
+        {
+          "minute": 4,
+          "count": 33
+        }
+      ]
+    },
+    {
+      "asset": "XRP",
+      "sensor": "HIST-028",
+      "rows": 26270,
+      "first": "2023-09-30T04:00:00+00:00",
+      "last": "2026-09-29T03:00:00+00:00",
+      "topMinutesPastHour": [
+        {
+          "minute": 0,
+          "count": 26270
+        }
+      ],
+      "missingHours": 10,
+      "largestGapHours": 6,
+      "duplicates": 0
+    },
+    {
+      "asset": "XRP",
+      "sensor": "U2",
+      "rows": 33,
+      "first": "2026-09-27T21:04:00+00:00",
+      "last": "2026-09-29T05:04:00+00:00",
+      "topMinutesPastHour": [
+        {
+          "minute": 4,
+          "count": 33
+        }
+      ]
+    }
+  ],
+  "historicalVsLiveOverlap": [
+    {
+      "asset": "ADA",
+      "overlappingLiveRows": 0
+    },
+    {
+      "asset": "AVAX",
+      "overlappingLiveRows": 0
+    },
+    {
+      "asset": "BTC",
+      "overlappingLiveRows": 0
+    },
+    {
+      "asset": "DOGE",
+      "overlappingLiveRows": 0
+    },
+    {
+      "asset": "ETH",
+      "overlappingLiveRows": 0
+    },
+    {
+      "asset": "LINK",
+      "overlappingLiveRows": 0
+    },
+    {
+      "asset": "SOL",
+      "overlappingLiveRows": 0
+    },
+    {
+      "asset": "XRP",
+      "overlappingLiveRows": 0
+    }
+  ],
+  "oldDiscoveryTestQuery": [
+    {
+      "asset": "ADA",
+      "rowsReturned": 1000,
+      "rowsAvailableInWindow": 4346,
+      "first": "2026-04-02T06:00:00+00:00",
+      "last": "2026-05-14T02:00:00+00:00",
+      "daysCovered": 42,
+      "sensorsMixed": [
+        "HIST-028"
+      ]
+    },
+    {
+      "asset": "AVAX",
+      "rowsReturned": 1000,
+      "rowsAvailableInWindow": 4346,
+      "first": "2026-04-02T06:00:00+00:00",
+      "last": "2026-05-14T02:00:00+00:00",
+      "daysCovered": 42,
+      "sensorsMixed": [
+        "HIST-028"
+      ]
+    },
+    {
+      "asset": "BTC",
+      "rowsReturned": 1000,
+      "rowsAvailableInWindow": 4346,
+      "first": "2026-04-02T06:00:00+00:00",
+      "last": "2026-05-14T02:00:00+00:00",
+      "daysCovered": 42,
+      "sensorsMixed": [
+        "HIST-028"
+      ]
+    },
+    {
+      "asset": "DOGE",
+      "rowsReturned": 1000,
+      "rowsAvailableInWindow": 4346,
+      "first": "2026-04-02T06:00:00+00:00",
+      "last": "2026-05-14T02:00:00+00:00",
+      "daysCovered": 42,
+      "sensorsMixed": [
+        "HIST-028"
+      ]
+    },
+    {
+      "asset": "ETH",
+      "rowsReturned": 1000,
+      "rowsAvailableInWindow": 4346,
+      "first": "2026-04-02T06:00:00+00:00",
+      "last": "2026-05-14T02:00:00+00:00",
+      "daysCovered": 42,
+      "sensorsMixed": [
+        "HIST-028"
+      ]
+    },
+    {
+      "asset": "LINK",
+      "rowsReturned": 1000,
+      "rowsAvailableInWindow": 4346,
+      "first": "2026-04-02T06:00:00+00:00",
+      "last": "2026-05-14T02:00:00+00:00",
+      "daysCovered": 42,
+      "sensorsMixed": [
+        "HIST-028"
+      ]
+    },
+    {
+      "asset": "SOL",
+      "rowsReturned": 1000,
+      "rowsAvailableInWindow": 4346,
+      "first": "2026-04-02T06:00:00+00:00",
+      "last": "2026-05-14T02:00:00+00:00",
+      "daysCovered": 42,
+      "sensorsMixed": [
+        "HIST-028"
+      ]
+    },
+    {
+      "asset": "XRP",
+      "rowsReturned": 1000,
+      "rowsAvailableInWindow": 4346,
+      "first": "2026-04-02T06:00:00+00:00",
+      "last": "2026-05-14T02:00:00+00:00",
+      "daysCovered": 42,
+      "sensorsMixed": [
+        "HIST-028"
+      ]
+    }
+  ],
+  "volume": {
+    "vol035Rows": 210160,
+    "alignedWithHist028": 210144
+  },
+  "discoveryTestsByCodeVersion": {
+    "build-029-v1": {
+      "INCONCLUSIVE": 820,
+      "PASS": 146,
+      "FAIL": 34
+    }
+  },
+  "timestampConvention": "HIST-028 and VOL035 rows are labeled with the candle START time but hold the candle CLOSE price / full-hour volume, which is only known at observed_at + 1h. U1 live rows are labeled with the actual observation time."
+}

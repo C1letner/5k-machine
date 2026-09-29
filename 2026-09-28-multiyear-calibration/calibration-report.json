@@ -1,0 +1,548 @@
+{
+  "ok": true,
+  "build": "043-calibration",
+  "readOnly": true,
+  "authorizedToTrade": false,
+  "meta": {
+    "source": "Supabase HIST-028",
+    "assets": 8,
+    "hours": 26270,
+    "seconds": 303
+  },
+  "hypotheses": 153,
+  "duplicatesMerged": [
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:ADA->AVAX",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:AVAX->ADA"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:ADA->BTC",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:BTC->ADA"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:ADA->DOGE",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:DOGE->ADA"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:ADA->ETH",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:ETH->ADA"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:ADA->LINK",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:LINK->ADA"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:ADA->SOL",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:SOL->ADA"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:ADA->XRP",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:XRP->ADA"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:AVAX->BTC",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:BTC->AVAX"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:AVAX->DOGE",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:DOGE->AVAX"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:AVAX->ETH",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:ETH->AVAX"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:AVAX->LINK",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:LINK->AVAX"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:AVAX->SOL",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:SOL->AVAX"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:AVAX->XRP",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:XRP->AVAX"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:BTC->DOGE",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:DOGE->BTC"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:BTC->ETH",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:ETH->BTC"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:BTC->LINK",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:LINK->BTC"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:BTC->SOL",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:SOL->BTC"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:BTC->XRP",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:XRP->BTC"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:DOGE->ETH",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:ETH->DOGE"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:DOGE->LINK",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:LINK->DOGE"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:DOGE->SOL",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:SOL->DOGE"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:DOGE->XRP",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:XRP->DOGE"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:ETH->LINK",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:LINK->ETH"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:ETH->SOL",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:SOL->ETH"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:ETH->XRP",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:XRP->ETH"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:LINK->SOL",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:SOL->LINK"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:LINK->XRP",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:XRP->LINK"
+      ]
+    },
+    {
+      "kept": "RELATIVE_STRENGTH_DIVERGENCE:SOL->XRP",
+      "duplicates": [
+        "RELATIVE_STRENGTH_DIVERGENCE:XRP->SOL"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:ADA->AVAX",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:AVAX->ADA"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:ADA->BTC",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:BTC->ADA"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:ADA->DOGE",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:DOGE->ADA"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:ADA->ETH",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:ETH->ADA"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:ADA->LINK",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:LINK->ADA"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:ADA->SOL",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:SOL->ADA"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:ADA->XRP",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:XRP->ADA"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:AVAX->BTC",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:BTC->AVAX"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:AVAX->DOGE",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:DOGE->AVAX"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:AVAX->ETH",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:ETH->AVAX"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:AVAX->LINK",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:LINK->AVAX"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:AVAX->SOL",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:SOL->AVAX"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:BTC->DOGE",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:DOGE->BTC"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:BTC->ETH",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:ETH->BTC"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:BTC->LINK",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:LINK->BTC"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:BTC->SOL",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:SOL->BTC"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:BTC->XRP",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:XRP->BTC"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:DOGE->ETH",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:ETH->DOGE"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:DOGE->LINK",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:LINK->DOGE"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:DOGE->SOL",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:SOL->DOGE"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:DOGE->XRP",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:XRP->DOGE"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:ETH->LINK",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:LINK->ETH"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:ETH->SOL",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:SOL->ETH"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:ETH->XRP",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:XRP->ETH"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:LINK->SOL",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:SOL->LINK"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:LINK->XRP",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:XRP->LINK"
+      ]
+    },
+    {
+      "kept": "CORRELATION_BREAKDOWN:SOL->XRP",
+      "duplicates": [
+        "CORRELATION_BREAKDOWN:XRP->SOL"
+      ]
+    }
+  ],
+  "strongestCandidates": [
+    {
+      "id": "MOMENTUM_REVERSAL:BTC",
+      "p": 0.4007936507936508,
+      "horizon": 24,
+      "netMeanPct": 0.28024860273161883,
+      "events": 225
+    },
+    {
+      "id": "CORRELATION_BREAKDOWN:DOGE->SOL",
+      "p": 0.808,
+      "horizon": 24,
+      "netMeanPct": -0.05734809568856709,
+      "events": 654
+    },
+    {
+      "id": "CORRELATION_BREAKDOWN:ADA->AVAX",
+      "p": 0.8859649122807017,
+      "horizon": 24,
+      "netMeanPct": -0.15404873145321205,
+      "events": 699
+    },
+    {
+      "id": "RELATIVE_STRENGTH_DIVERGENCE:ETH->XRP",
+      "p": 0.8938053097345132,
+      "horizon": 24,
+      "netMeanPct": -0.11486567491793676,
+      "events": 1853
+    },
+    {
+      "id": "RELATIVE_STRENGTH_DIVERGENCE:DOGE->XRP",
+      "p": 0.9181818181818182,
+      "horizon": 24,
+      "netMeanPct": -0.16798372331746306,
+      "events": 2505
+    },
+    {
+      "id": "CORRELATION_BREAKDOWN:DOGE->LINK",
+      "p": 0.9181818181818182,
+      "horizon": 24,
+      "netMeanPct": -0.18831920972727073,
+      "events": 622
+    },
+    {
+      "id": "MOMENTUM_REVERSAL:LINK",
+      "p": 0.9439252336448598,
+      "horizon": 24,
+      "netMeanPct": -0.11981111301763761,
+      "events": 1055
+    },
+    {
+      "id": "VOLATILITY_EXPANSION:LINK",
+      "p": 0.9528301886792453,
+      "horizon": 24,
+      "netMeanPct": -0.2080274961859399,
+      "events": 553
+    }
+  ],
+  "realData": {
+    "block bootstrap (042)": {
+      "discoveryPass": 136,
+      "fdrPass": 0,
+      "prosecutorPass": 0,
+      "survivors": []
+    }
+  },
+  "detection": [
+    {
+      "edgePct": 0,
+      "trials": 60,
+      "rule": "block bootstrap (042)",
+      "discovery": 0.8,
+      "fdr": 0,
+      "prosecutor": 0
+    },
+    {
+      "edgePct": 0.1,
+      "trials": 60,
+      "rule": "block bootstrap (042)",
+      "discovery": 1,
+      "fdr": 0,
+      "prosecutor": 0
+    },
+    {
+      "edgePct": 0.25,
+      "trials": 60,
+      "rule": "block bootstrap (042)",
+      "discovery": 1,
+      "fdr": 0,
+      "prosecutor": 0
+    },
+    {
+      "edgePct": 0.5,
+      "trials": 60,
+      "rule": "block bootstrap (042)",
+      "discovery": 1,
+      "fdr": 0,
+      "prosecutor": 0
+    },
+    {
+      "edgePct": 0.75,
+      "trials": 60,
+      "rule": "block bootstrap (042)",
+      "discovery": 1,
+      "fdr": 0.9333333333333333,
+      "prosecutor": 0.7166666666666667
+    },
+    {
+      "edgePct": 1,
+      "trials": 60,
+      "rule": "block bootstrap (042)",
+      "discovery": 1,
+      "fdr": 1,
+      "prosecutor": 0.8666666666666667
+    },
+    {
+      "edgePct": 1.5,
+      "trials": 60,
+      "rule": "block bootstrap (042)",
+      "discovery": 1,
+      "fdr": 1,
+      "prosecutor": 1
+    },
+    {
+      "edgePct": 2,
+      "trials": 60,
+      "rule": "block bootstrap (042)",
+      "discovery": 1,
+      "fdr": 1,
+      "prosecutor": 1
+    },
+    {
+      "edgePct": 3,
+      "trials": 60,
+      "rule": "block bootstrap (042)",
+      "discovery": 1,
+      "fdr": 1,
+      "prosecutor": 1
+    }
+  ],
+  "nullControl": [
+    {
+      "nullEdge": "zero",
+      "block": 1,
+      "runs": 60,
+      "rule": "block bootstrap (042)",
+      "meanFdrSurvivors": 0,
+      "meanProsecutorSurvivors": 0,
+      "runsWithAnyFinalSurvivor": 0
+    },
+    {
+      "nullEdge": "zero",
+      "block": 10,
+      "runs": 60,
+      "rule": "block bootstrap (042)",
+      "meanFdrSurvivors": 0,
+      "meanProsecutorSurvivors": 0,
+      "runsWithAnyFinalSurvivor": 0
+    },
+    {
+      "nullEdge": "zero",
+      "block": 25,
+      "runs": 60,
+      "rule": "block bootstrap (042)",
+      "meanFdrSurvivors": 0,
+      "meanProsecutorSurvivors": 0,
+      "runsWithAnyFinalSurvivor": 0
+    },
+    {
+      "nullEdge": "equal to cost",
+      "block": 1,
+      "runs": 60,
+      "rule": "block bootstrap (042)",
+      "meanFdrSurvivors": 0.26666666666666666,
+      "meanProsecutorSurvivors": 0.13333333333333333,
+      "runsWithAnyFinalSurvivor": 0.13333333333333333
+    },
+    {
+      "nullEdge": "equal to cost",
+      "block": 10,
+      "runs": 60,
+      "rule": "block bootstrap (042)",
+      "meanFdrSurvivors": 0.16666666666666666,
+      "meanProsecutorSurvivors": 0.03333333333333333,
+      "runsWithAnyFinalSurvivor": 0.03333333333333333
+    },
+    {
+      "nullEdge": "equal to cost",
+      "block": 25,
+      "runs": 60,
+      "rule": "block bootstrap (042)",
+      "meanFdrSurvivors": 0.35,
+      "meanProsecutorSurvivors": 0.16666666666666666,
+      "runsWithAnyFinalSurvivor": 0.11666666666666667
+    }
+  ],
+  "minimumDetectableEdge": {
+    "medianPct": 0.10534080368590874,
+    "p25Pct": 0.06568997408528346,
+    "p75Pct": 0.12778195668896894,
+    "shareAboveCostPct": 0,
+    "note": "Treats overlapping events as independent, so the true minimum detectable edge is larger than shown."
+  }
+}

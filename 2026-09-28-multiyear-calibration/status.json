@@ -1,0 +1,27 @@
+{
+  "id": "2026-09-28-multiyear-calibration",
+  "commit": "007577aacbd9cd1941abd4d6f25bda058c5f5f40",
+  "finishedAt": "2026-09-29T05:11:13.556Z",
+  "ok": true,
+  "results": [
+    {
+      "job": "backfill-volume",
+      "days": 1095,
+      "ok": true,
+      "exitCode": 0,
+      "minutes": 4.2
+    },
+    {
+      "job": "diagnose",
+      "ok": true,
+      "exitCode": 0,
+      "minutes": 0.7
+    },
+    {
+      "job": "calibrate",
+      "ok": true,
+      "exitCode": 0,
+      "minutes": 5.4
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{"asset":"BTC","done":true}
+{"asset":"ETH","done":true}
+{"asset":"XRP","done":true}
+{"asset":"SOL","done":true}
+{"asset":"ADA","done":true}
+{"asset":"DOGE","done":true}
+{"asset":"AVAX","done":true}
+{"asset":"LINK","done":true}
+{
+  "ok": true,
+  "build": "043",
+  "daysRequested": 1095,
+  "rowsConsidered": 210160,
+  "assets": [
+    "BTC",
+    "ETH",
+    "XRP",
+    "SOL",
+    "ADA",
+    "DOGE",
+    "AVAX",
+    "LINK"
+  ],
+  "authorizedToTrade": false
+}
