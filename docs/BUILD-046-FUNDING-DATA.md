@@ -34,6 +34,30 @@ Semantics (Kraken docs and contract specifications):
 These are single-venue rates for linear USD-margined perpetuals, not a cross-exchange average.
 Funding on other venues (8-hour intervals, different participants) will differ.
 
+## First run (2026-09-29): settled rates cover only the last year
+
+The runner reached Kraken without restriction and stored 8,881 (BTC, ETH) and 8,882 (SOL) hourly settled
+rates, from 2025-09-24 08:00 to 2026-09-29 16:00 UTC. The settled-rate endpoint returns about the most
+recent year only, so the completeness gate (730 days) correctly failed and the carry job did not run.
+(The run also flagged "mismatches" that were only the database column's 12-decimal rounding; the check
+now compares at 12 decimals. Full-precision values remain in the raw snapshot.)
+
+## Older history: Kraken market-analytics funding series, validated before use
+
+`GET https://futures.kraken.com/api/charts/v1/analytics/{symbol}/funding?since=&to=&interval=3600`
+(public, no authentication) returns hourly OHLC candles of the funding rate, including `relativeRate`.
+It is a sampled feed, not the settlement record, so it is trusted only after validation:
+
+1. Fetch hourly candles from the listing date to now.
+2. For each OHLC field and each hour offset from -2 to +2, compare with the stored settled rates over the
+   overlapping period.
+3. Store the series (`FUND046-KRAKEN-AN`) only if the best combination matches at least 99% of at least
+   180 days of overlapping hours, to 12 decimals or 1e-6 relative. The chosen field, offset, match rate and
+   overlap are written into every row's `source` tag. Otherwise nothing is stored and the job fails.
+
+The carry job uses the validated analytics series if it passes the completeness gate, else the settled
+series, and reports a cross-check of both over the settled period.
+
 ## Storage
 
 `derivatives_observations`, `sensor_version = FUND046-KRAKEN`, `venue = KRAKEN_FUTURES`:
@@ -51,6 +75,7 @@ with URL, fetch time, byte count and SHA-256 to the `reports` branch.
 | Job | Script | Contacts Kraken | Writes |
 |---|---|---|---|
 | funding-ingest | `npm run ingest:funding` | yes, once per instrument | new rows only |
+| funding-ingest-analytics | `npm run ingest:funding-analytics` | yes, ~30 requests per instrument | validated rows only |
 | funding-completeness | `npm run check:funding` | no | nothing |
 | funding-carry | `npm run research:funding-carry` | no | nothing |
 
@@ -87,7 +112,8 @@ instruments, which would allow basis modeling from the same venue.
 | Coinbase Derivatives (existing Build 038 sensor) | Public API returned no usable funding history (Build 039). |
 | OKX, Deribit, BitMEX, dYdX, Hyperliquid | Not pursued: their terms restrict US persons, which would conflict with the no-circumvention rule. |
 | Community CSVs (Kaggle, GitHub) | Not used: accounts required and/or unverifiable provenance. |
-| **Kraken Futures** | **Chosen:** public, documented, US-accessible, hourly, >4 years for BTC/ETH/SOL. |
+| **Kraken Futures settled rates** | **Used:** public, documented, reachable from runners; about the last year only. |
+| **Kraken Futures analytics funding** | **Used if validated** against settled rates; may cover back to listing (2022). |
 
 If the runner cannot reach Kraken, or Kraken returns less than two years, the completeness gate fails
 and the carry job does not run.

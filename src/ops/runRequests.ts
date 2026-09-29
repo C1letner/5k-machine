@@ -22,6 +22,7 @@ export const JOBS: Record<string, JobSpec> = {
   "temporal-audit": { script: "audit:temporal", stdoutTo: "temporal-integrity.json" },
   "mechanisms": { script: "research:mechanisms", stdoutTo: "mechanism-research.json" },
   "funding-ingest": { script: "ingest:funding", stdoutTo: "funding-ingest.json", outputs: ["kraken-funding-raw.json.gz", "kraken-funding-manifest.json"] },
+  "funding-ingest-analytics": { script: "ingest:funding-analytics", stdoutTo: "funding-ingest-analytics.json", outputs: ["kraken-funding-analytics-raw.json.gz", "kraken-funding-analytics-manifest.json"] },
   "funding-completeness": { script: "check:funding", stdoutTo: "funding-completeness.json" },
   "funding-carry": { script: "research:funding-carry", stdoutTo: "funding-carry.json" },
 };

@@ -60,8 +60,35 @@ console.log("Build 046 funding data tests passed", { annualized: s.annualizedFun
 
 // Research runs must not contact exchanges: only the ingest job may make network calls.
 import { readFileSync } from "node:fs";
-for (const f of ["src/fundingCarryFree.ts", "src/funding/carryStats.ts", "src/funding/completenessJob.ts", "src/funding/kraken.ts"]) {
+for (const f of ["src/fundingCarryFree.ts", "src/funding/carryStats.ts", "src/funding/completenessJob.ts", "src/funding/kraken.ts", "src/funding/krakenAnalytics.ts"]) {
   const src = readFileSync(f, "utf8");
-  assert.ok(!/\bfetch\s*\(|https?:\/\/(?!futures\.kraken\.com\/derivatives\/api\/v3\/historical-funding-rates)/.test(src.replace(/\/\/.*$/gm, "")), `${f} must not make network calls`);
+  assert.ok(!/\bfetch\s*\(|https?:\/\/(?!futures\.kraken\.com\/(derivatives\/api\/v3\/historical-funding-rates|api\/charts\/v1\/analytics))/.test(src.replace(/\/\/.*$/gm, "")), `${f} must not make network calls`);
 }
 console.log("No-network guard passed for research files");
+
+// Analytics series: parsing and validation against settled rates.
+import { parseAnalytics, toFundingRows, validate, VALIDATION_GATE } from "../src/funding/krakenAnalytics.js";
+const sec = (t: number) => t / 1000;
+const settled = Array.from({ length: 24 * 200 }, (_, i) => ({ t: t0 + i * H, relative: 1e-5 * Math.sin(i / 7) + 2e-6 }));
+// Simulated feed: the settled rate for period t appears as the CLOSE of the candle one hour earlier; open is noise.
+const feed = { result: { timestamp: settled.map((s) => sec(s.t - H)), data: { rate: settled.map(() => [0, 0, 0, 0]), relativeRate: settled.map((s, i) => [Math.cos(i), s.relative + 1e-7, s.relative - 1e-7, s.relative]) }, more: false }, errors: [] };
+const { candles, more } = parseAnalytics(feed, "PF_XBTUSD");
+assert.equal(more, false);
+assert.equal(candles.length, settled.length);
+const ranking = validate(candles, settled);
+assert.equal(ranking[0].field, "close");
+assert.equal(ranking[0].offsetHours, -1);
+assert.equal(ranking[0].matchRate, 1);
+assert.ok(ranking[0].overlap >= VALIDATION_GATE.minOverlapHours);
+const mapped = toFundingRows(candles, ranking[0]);
+assert.equal(mapped[5].t, settled[5].t);
+assert.equal(mapped[5].relative, settled[5].relative);
+// A feed that never matches must fail the gate.
+const bad = { ...feed, result: { ...feed.result, data: { ...feed.result.data, relativeRate: settled.map(() => [1, 1, 1, 1]) } } };
+assert.ok(validate(parseAnalytics(bad, "PF_X").candles, settled)[0].matchRate < VALIDATION_GATE.minMatchRate);
+// Missing values are dropped, not zero-filled; errors and malformed payloads throw.
+const holey = { result: { timestamp: [sec(t0), sec(t0 + H)], data: { relativeRate: [[1e-5, 1e-5, 1e-5, 1e-5], [null, null, null, null]] }, more: true }, errors: [] };
+assert.equal(parseAnalytics(holey, "PF_X").candles.length, 1);
+assert.throws(() => parseAnalytics({ result: {}, errors: [] }, "PF_X"), /unexpected/);
+assert.throws(() => parseAnalytics({ ...holey, errors: [{ msg: "bad" }] }, "PF_X"), /errors/);
+console.log("Analytics validation tests passed");
