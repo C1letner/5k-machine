@@ -1,0 +1,9 @@
+{
+  "note": "Build 043 first run: backfill 3 years of hourly prices and volume, check data integrity, then calibrate the funnel on the full history.",
+  "jobs": [
+    { "job": "backfill-prices", "days": 1095 },
+    { "job": "backfill-volume", "days": 1095 },
+    { "job": "diagnose" },
+    { "job": "calibrate" }
+  ]
+}
