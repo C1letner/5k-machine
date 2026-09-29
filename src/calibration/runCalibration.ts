@@ -1,0 +1,74 @@
+// Build 041: funnel calibration runner. READ-ONLY: loads HIST-028 prices, writes nothing to the database.
+//   npm run calibrate              -> real data from Supabase
+//   npm run calibrate -- --synthetic -> random-walk data, no database needed (pipeline smoke test)
+import { appendFileSync, writeFileSync } from "node:fs";
+import { calibrate, rng, type CalibrationReport } from "./funnel.js";
+import type { Pt } from "../science/priceEvents.js";
+
+const ASSETS = ["ADA", "AVAX", "BTC", "DOGE", "ETH", "LINK", "SOL", "XRP"];
+const PAGE = 1000;
+
+async function loadHist028(): Promise<Record<string, Pt[]>> {
+  const { db } = await import("../db.js");
+  const rows: any[] = [];
+  for (let from = 0; ; from += PAGE) {
+    const { data, error } = await db.from("crypto_universe_snapshots").select("observed_at,asset,price_usd").eq("sensor_version", "HIST-028")
+      .order("observed_at", { ascending: true }).order("asset", { ascending: true }).range(from, from + PAGE - 1);
+    if (error) throw error;
+    rows.push(...(data ?? []));
+    if ((data ?? []).length < PAGE) break;
+  }
+  const out: Record<string, Pt[]> = {};
+  for (const r of rows) (out[r.asset] ??= []).push({ t: Date.parse(r.observed_at), p: Number(r.price_usd) });
+  return out;
+}
+
+/** Correlated random walks with crypto-like hourly volatility; contains no edge by construction. */
+export function syntheticSeries(hours = 4315, seed = 7): Record<string, Pt[]> {
+  const r = rng(seed), gauss = () => Math.sqrt(-2 * Math.log(r() || 1e-12)) * Math.cos(2 * Math.PI * r());
+  const out: Record<string, Pt[]> = {};
+  const market = Array.from({ length: hours }, () => gauss());
+  ASSETS.forEach((a, k) => {
+    let p = 100;
+    const vol = 0.005 + 0.001 * k;
+    out[a] = market.map((m, i) => { p *= Math.exp(vol * (0.8 * m + 0.6 * gauss())); return { t: Date.UTC(2026, 0, 1) + i * 3600_000, p }; });
+  });
+  return out;
+}
+
+const pct = (x: number) => `${(x * 100).toFixed(0)}%`;
+
+function markdown(rep: CalibrationReport, meta: Record<string, unknown>) {
+  const L: string[] = ["## Funnel calibration (build 041)", "", `Data: ${meta.source}, ${meta.hours} hours × ${meta.assets} assets, ${rep.hypotheses} hypotheses. Read-only; nothing was written to the database.`, ""];
+  L.push("### Positive control: share of planted edges that survive each stage", "", "Edge = extra return added to every event of one hypothesis, before 50 bps costs.", "",
+    "| Edge per trade | p-value rule | Discovery | FDR | Prosecutor |", "|---:|---|---:|---:|---:|");
+  for (const d of rep.detection) L.push(`| ${d.edgePct}% | ${d.rule} | ${pct(d.discovery)} | ${pct(d.fdr)} | ${pct(d.prosecutor)} |`);
+  L.push("", "### Negative control: scrambled data with no edge", "", "| Sign-flip block | p-value rule | Mean FDR survivors | Mean final survivors | Runs with any final survivor |", "|---:|---|---:|---:|---:|");
+  for (const n of rep.nullControl) L.push(`| ${n.block} events | ${n.rule} | ${n.meanFdrSurvivors.toFixed(2)} | ${n.meanProsecutorSurvivors.toFixed(2)} | ${pct(n.runsWithAnyFinalSurvivor)} |`);
+  L.push("", "### Real data", "", "| p-value rule | Discovery PASS | FDR PASS | Prosecutor PASS | Survivors |", "|---|---:|---:|---:|---|");
+  for (const [rule, r] of Object.entries(rep.realData)) L.push(`| ${rule} | ${r.discoveryPass} | ${r.fdrPass} | ${r.prosecutorPass} | ${r.survivors.join(", ") || "none"} |`);
+  const m = rep.minimumDetectableEdge;
+  L.push("", "### Minimum detectable edge at 4h", "", `Median ${m.medianPct.toFixed(2)}% per trade (middle half ${m.p25Pct.toFixed(2)}–${m.p75Pct.toFixed(2)}%). ${m.shareAboveCostPct.toFixed(0)}% of hypotheses cannot detect an edge as small as the 0.50% cost. ${m.note}`, "");
+  return L.join("\n");
+}
+
+async function main() {
+  const synthetic = process.argv.includes("--synthetic");
+  const series = synthetic ? syntheticSeries() : await loadHist028();
+  const assets = Object.keys(series).sort();
+  const hours = Math.min(...assets.map((a) => series[a].length));
+  if (assets.length < 2 || hours < 500) throw new Error(`Not enough HIST-028 data to calibrate (assets=${assets.length}, hours=${hours})`);
+
+  const started = Date.now();
+  const rep = calibrate(series, { trialsPerEdge: Number(process.env.CAL_TRIALS ?? 60), nullRuns: Number(process.env.CAL_NULL_RUNS ?? 200) });
+  const meta = { source: synthetic ? "synthetic random walks (no edge)" : "Supabase HIST-028", assets: assets.length, hours, seconds: Math.round((Date.now() - started) / 1000) };
+  const full = { ok: true, build: "041-calibration", readOnly: true, authorizedToTrade: false, meta, ...rep };
+
+  writeFileSync("calibration-report.json", JSON.stringify(full, null, 2));
+  const md = markdown(rep, meta);
+  writeFileSync("calibration-report.md", md);
+  if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, md);
+  console.log(md);
+}
+
+if (process.argv[1]?.endsWith("runCalibration.ts")) main().catch((e) => { console.error(e); process.exitCode = 1; });
