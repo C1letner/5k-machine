@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - "ops/run-requests/*.json"
+      - "ops/run-signal.txt"
 permissions:
   contents: write
 concurrency:
@@ -33,10 +34,11 @@ jobs:
           BEFORE: ${{ github.event.before }}
         run: |
           if git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
-            files=$(git diff --name-only --diff-filter=A "$BEFORE" "$GITHUB_SHA" -- 'ops/run-requests/*.json')
+            files=$(git diff --name-only --diff-filter=AM "$BEFORE" "$GITHUB_SHA" -- 'ops/run-requests/*.json')
           else
-            files=$(git diff --name-only --diff-filter=A "$GITHUB_SHA~1" "$GITHUB_SHA" -- 'ops/run-requests/*.json')
+            files=$(git diff --name-only --diff-filter=AM "$GITHUB_SHA~1" "$GITHUB_SHA" -- 'ops/run-requests/*.json')
           fi
+          if [ -z "$files" ] && git diff --name-only "$BEFORE" "$GITHUB_SHA" -- 'ops/run-signal.txt' | grep -q .; then files=$(ls ops/run-requests/*.json | tail -1); fi
           echo "Requests: $files"
           npx tsx src/ops/runRequests.ts $files
       - name: Publish reports
