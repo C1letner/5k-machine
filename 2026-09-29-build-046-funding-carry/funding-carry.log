@@ -1,0 +1,7 @@
+
+--- stderr ---
+Error: BTCUSDT HTTP 403
+    at page (/home/runner/work/5k-machine/5k-machine/src/fundingCarryFree.ts:5:312)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async history (/home/runner/work/5k-machine/5k-machine/src/fundingCarryFree.ts:6:178)
+    at async main (/home/runner/work/5k-machine/5k-machine/src/fundingCarryFree.ts:8:71)
