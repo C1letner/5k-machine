@@ -25,6 +25,8 @@ export const JOBS: Record<string, JobSpec> = {
   "funding-ingest-analytics": { script: "ingest:funding-analytics", stdoutTo: "funding-ingest-analytics.json", outputs: ["kraken-funding-analytics-raw.json.gz", "kraken-funding-analytics-manifest.json"] },
   "funding-completeness": { script: "check:funding", stdoutTo: "funding-completeness.json" },
   "funding-carry": { script: "research:funding-carry", stdoutTo: "funding-carry.json" },
+  "trend-economics": { script: "research:trend-economics", stdoutTo: "trend-economics.json", outputs: ["trend-economics-report.md", "trend-economics-report.json", "trend-economics-daily.csv.gz"] },
+  "funding-exploratory": { script: "research:funding-exploratory", stdoutTo: "funding-exploratory.json", outputs: ["funding-exploratory-report.md", "funding-exploratory-report.json"] },
 };
 
 const MAX_LOG = 200_000;
