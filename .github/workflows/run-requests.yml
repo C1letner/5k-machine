@@ -5,6 +5,11 @@ name: Run Requests
 # changes trading authority, or touches credentials. Write access is used only to push to `reports`.
 on:
   workflow_dispatch:
+    inputs:
+      request:
+        description: "Run-request filename (without path), blank = latest"
+        required: false
+        type: string
   push:
     branches: [main]
     paths:
@@ -33,9 +38,10 @@ jobs:
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           CAL_BOOT_NULL_RUNS: "60"
           BEFORE: ${{ github.event.before }}
+          REQUEST_INPUT: ${{ inputs.request }}
         run: |
           if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
-            files=$(ls ops/run-requests/*.json 2>/dev/null | sort | tail -1)
+            if [ -n "$REQUEST_INPUT" ]; then files="ops/run-requests/$REQUEST_INPUT"; else files=$(ls ops/run-requests/*.json 2>/dev/null | sort | tail -1); fi
           elif [ -n "$BEFORE" ] && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
             files=$(git diff --name-only --diff-filter=AM "$BEFORE" "$GITHUB_SHA" -- 'ops/run-requests/*.json')
             if [ -z "$files" ] && git diff --name-only "$BEFORE" "$GITHUB_SHA" -- 'ops/run-signal.txt' | grep -q .; then files=$(ls ops/run-requests/*.json | sort | tail -1); fi
