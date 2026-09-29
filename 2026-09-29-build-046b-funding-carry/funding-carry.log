@@ -1,0 +1,10 @@
+
+--- stderr ---
+Error: BTCUSD_PERP HTTP 451: {
+  "code": 0,
+  "msg": "Service unavailable from a restricted location according to 'b. Eligibility' in https://www.binance.com/en/terms. Please contact customer service if you believe you received this message in error."
+}
+    at page (/home/runner/work/5k-machine/5k-machine/src/fundingCarryFree.ts:5:322)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async history (/home/runner/work/5k-machine/5k-machine/src/fundingCarryFree.ts:6:193)
+    at async main (/home/runner/work/5k-machine/5k-machine/src/fundingCarryFree.ts:8:71)
