@@ -1,0 +1,87 @@
+{
+  "ok": false,
+  "build": "046-data",
+  "check": "funding completeness (stored data)",
+  "minCoverageDays": 730,
+  "results": [
+    {
+      "asset": "BTC",
+      "instrument": "PF_XBTUSD",
+      "observations": 8881,
+      "first": "2025-09-24T08:00:00.000Z",
+      "last": "2026-09-29T16:00:00.000Z",
+      "coverageDays": 370.3,
+      "medianIntervalHours": 1,
+      "expectedIntervalHours": 1,
+      "duplicates": 0,
+      "conflictingDuplicates": 0,
+      "offGridTimestamps": 0,
+      "gaps": 7,
+      "missingPeriods": 8,
+      "largestGapHours": 3,
+      "expectedObservations": 8889,
+      "completenessPct": 99.91,
+      "outOfBoundsRates": 0,
+      "staleHours": 0.8,
+      "gate": {
+        "pass": false,
+        "problems": [
+          "coverage 370.3 days < 730"
+        ]
+      }
+    },
+    {
+      "asset": "ETH",
+      "instrument": "PF_ETHUSD",
+      "observations": 8881,
+      "first": "2025-09-24T08:00:00.000Z",
+      "last": "2026-09-29T16:00:00.000Z",
+      "coverageDays": 370.3,
+      "medianIntervalHours": 1,
+      "expectedIntervalHours": 1,
+      "duplicates": 0,
+      "conflictingDuplicates": 0,
+      "offGridTimestamps": 0,
+      "gaps": 7,
+      "missingPeriods": 8,
+      "largestGapHours": 3,
+      "expectedObservations": 8889,
+      "completenessPct": 99.91,
+      "outOfBoundsRates": 0,
+      "staleHours": 0.8,
+      "gate": {
+        "pass": false,
+        "problems": [
+          "coverage 370.3 days < 730"
+        ]
+      }
+    },
+    {
+      "asset": "SOL",
+      "instrument": "PF_SOLUSD",
+      "observations": 8882,
+      "first": "2025-09-24T08:00:00.000Z",
+      "last": "2026-09-29T16:00:00.000Z",
+      "coverageDays": 370.3,
+      "medianIntervalHours": 1,
+      "expectedIntervalHours": 1,
+      "duplicates": 0,
+      "conflictingDuplicates": 0,
+      "offGridTimestamps": 0,
+      "gaps": 6,
+      "missingPeriods": 7,
+      "largestGapHours": 3,
+      "expectedObservations": 8889,
+      "completenessPct": 99.92,
+      "outOfBoundsRates": 0,
+      "staleHours": 0.8,
+      "gate": {
+        "pass": false,
+        "problems": [
+          "coverage 370.3 days < 730"
+        ]
+      }
+    }
+  ],
+  "authorizedToTrade": false
+}

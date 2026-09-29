@@ -1,0 +1,128 @@
+{
+  "ok": true,
+  "build": "046-data",
+  "venue": "KRAKEN_FUTURES",
+  "sensorVersion": "FUND046-KRAKEN",
+  "sourceTag": "kraken_futures_v3_historical_funding_rates|rate=relativeFundingRate,fraction_per_period|interval=1h|ts=period_start_utc|sign=positive_paid_to_shorts",
+  "fetchedAt": "2026-09-29T16:50:02.955Z",
+  "results": [
+    {
+      "asset": "BTC",
+      "instrument": "PF_XBTUSD",
+      "fetchedRows": 8881,
+      "newRowsWritten": 8881,
+      "storedRowsAfter": 8881,
+      "missingAfterWrite": 0,
+      "valueMismatchesVsStored": 8083,
+      "mismatchExamples": [
+        {
+          "t": "2025-09-24T08:00:00.000Z",
+          "stored": 0.000011795815,
+          "fetched": 0.000011795815277778
+        },
+        {
+          "t": "2025-09-24T09:00:00.000Z",
+          "stored": 0.000013625182,
+          "fetched": 0.000013625181944444
+        },
+        {
+          "t": "2025-09-24T11:00:00.000Z",
+          "stored": 0.000016237606,
+          "fetched": 0.000016237605555556
+        },
+        {
+          "t": "2025-09-24T13:00:00.000Z",
+          "stored": 0.00001310196,
+          "fetched": 0.000013101959722222
+        },
+        {
+          "t": "2025-09-24T14:00:00.000Z",
+          "stored": 0.000010939593,
+          "fetched": 0.000010939593055556
+        }
+      ],
+      "fetchedFirst": "2025-09-24T08:00:00.000Z",
+      "fetchedLast": "2026-09-29T16:00:00.000Z",
+      "fetchedCoverageDays": 370.3
+    },
+    {
+      "asset": "ETH",
+      "instrument": "PF_ETHUSD",
+      "fetchedRows": 8881,
+      "newRowsWritten": 8881,
+      "storedRowsAfter": 8881,
+      "missingAfterWrite": 0,
+      "valueMismatchesVsStored": 8065,
+      "mismatchExamples": [
+        {
+          "t": "2025-09-24T08:00:00.000Z",
+          "stored": -0.000002330667,
+          "fetched": -0.000002330666666667
+        },
+        {
+          "t": "2025-09-24T09:00:00.000Z",
+          "stored": 5.05204e-7,
+          "fetched": 5.05204166667e-7
+        },
+        {
+          "t": "2025-09-24T10:00:00.000Z",
+          "stored": 0.000001073883,
+          "fetched": 0.000001073883333333
+        },
+        {
+          "t": "2025-09-24T11:00:00.000Z",
+          "stored": 3.9286e-8,
+          "fetched": 3.9286111111e-8
+        },
+        {
+          "t": "2025-09-24T12:00:00.000Z",
+          "stored": -0.00000360876,
+          "fetched": -0.000003608759722222
+        }
+      ],
+      "fetchedFirst": "2025-09-24T08:00:00.000Z",
+      "fetchedLast": "2026-09-29T16:00:00.000Z",
+      "fetchedCoverageDays": 370.3
+    },
+    {
+      "asset": "SOL",
+      "instrument": "PF_SOLUSD",
+      "fetchedRows": 8882,
+      "newRowsWritten": 8882,
+      "storedRowsAfter": 8882,
+      "missingAfterWrite": 0,
+      "valueMismatchesVsStored": 8043,
+      "mismatchExamples": [
+        {
+          "t": "2025-09-24T08:00:00.000Z",
+          "stored": 0.000015068563,
+          "fetched": 0.0000150685625
+        },
+        {
+          "t": "2025-09-24T09:00:00.000Z",
+          "stored": 0.000018167321,
+          "fetched": 0.000018167320833333
+        },
+        {
+          "t": "2025-09-24T10:00:00.000Z",
+          "stored": 0.000022691558,
+          "fetched": 0.000022691558333333
+        },
+        {
+          "t": "2025-09-24T11:00:00.000Z",
+          "stored": 0.000021927107,
+          "fetched": 0.000021927106944444
+        },
+        {
+          "t": "2025-09-24T12:00:00.000Z",
+          "stored": 0.000030006253,
+          "fetched": 0.000030006252777778
+        }
+      ],
+      "fetchedFirst": "2025-09-24T08:00:00.000Z",
+      "fetchedLast": "2026-09-29T16:00:00.000Z",
+      "fetchedCoverageDays": 370.3
+    }
+  ],
+  "authorizedToTrade": false
+}

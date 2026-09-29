@@ -1,0 +1,31 @@
+{
+  "fetchedAt": "2026-09-29T16:50:02.955Z",
+  "sensorVersion": "FUND046-KRAKEN",
+  "sourceTag": "kraken_futures_v3_historical_funding_rates|rate=relativeFundingRate,fraction_per_period|interval=1h|ts=period_start_utc|sign=positive_paid_to_shorts",
+  "files": [
+    {
+      "instrument": "PF_XBTUSD",
+      "url": "https://futures.kraken.com/derivatives/api/v3/historical-funding-rates?symbol=PF_XBTUSD",
+      "fetchedAt": "2026-09-29T16:50:02.955Z",
+      "bytes": 1023004,
+      "sha256": "9e1e519fb92188278bddad9ecb36b8023b465efe4bf40f828dc2d11752407362",
+      "serverTime": "2026-09-29T16:50:03.09Z"
+    },
+    {
+      "instrument": "PF_ETHUSD",
+      "url": "https://futures.kraken.com/derivatives/api/v3/historical-funding-rates?symbol=PF_ETHUSD",
+      "fetchedAt": "2026-09-29T16:50:02.955Z",
+      "bytes": 1023432,
+      "sha256": "e12e5a85176467d9dd64cfbab9c7aaca83f079e626d43f6844d47733cba5d976",
+      "serverTime": "2026-09-29T16:50:07.937Z"
+    },
+    {
+      "instrument": "PF_SOLUSD",
+      "url": "https://futures.kraken.com/derivatives/api/v3/historical-funding-rates?symbol=PF_SOLUSD",
+      "fetchedAt": "2026-09-29T16:50:02.955Z",
+      "bytes": 1027716,
+      "sha256": "c64e502f9d452d24709f9342c15cdc3035fbf56ac1de36700cc2504630b38c40",
+      "serverTime": "2026-09-29T16:50:10.839Z"
+    }
+  ]
+}

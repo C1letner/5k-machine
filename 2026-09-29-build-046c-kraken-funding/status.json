@@ -1,0 +1,20 @@
+{
+  "id": "2026-09-29-build-046c-kraken-funding",
+  "commit": "78644b856438cd37398154617e6d71839b948fdf",
+  "finishedAt": "2026-09-29T16:50:16.154Z",
+  "ok": false,
+  "results": [
+    {
+      "job": "funding-ingest",
+      "ok": true,
+      "exitCode": 0,
+      "minutes": 0.2
+    },
+    {
+      "job": "funding-completeness",
+      "ok": false,
+      "exitCode": 1,
+      "minutes": 0
+    }
+  ]
+}
