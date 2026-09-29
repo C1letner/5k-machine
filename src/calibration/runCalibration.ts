@@ -39,14 +39,18 @@ export function syntheticSeries(hours = 4315, seed = 7): Record<string, Pt[]> {
 const pct = (x: number) => `${(x * 100).toFixed(0)}%`;
 
 function markdown(rep: CalibrationReport, meta: Record<string, unknown>) {
-  const L: string[] = ["## Funnel calibration (build 041)", "", `Data: ${meta.source}, ${meta.hours} hours × ${meta.assets} assets, ${rep.hypotheses} hypotheses. Read-only; nothing was written to the database.`, ""];
+  const L: string[] = ["## Funnel calibration (build 042)", "", `Data: ${meta.source}, ${meta.hours} hours × ${meta.assets} assets, ${rep.hypotheses} distinct hypotheses (${rep.duplicatesMerged.reduce((n, d) => n + d.duplicates.length, 0)} exact duplicates merged, e.g. A->B and B->A of the same trade). Read-only; nothing was written to the database.`, ""];
   L.push("### Positive control: share of planted edges that survive each stage", "", "Edge = extra return added to every event of one hypothesis, before 50 bps costs.", "",
     "| Edge per trade | p-value rule | Discovery | FDR | Prosecutor |", "|---:|---|---:|---:|---:|");
   for (const d of rep.detection) L.push(`| ${d.edgePct}% | ${d.rule} | ${pct(d.discovery)} | ${pct(d.fdr)} | ${pct(d.prosecutor)} |`);
-  L.push("", "### Negative control: scrambled data with no edge", "", "| Sign-flip block | p-value rule | Mean FDR survivors | Mean final survivors | Runs with any final survivor |", "|---:|---|---:|---:|---:|");
-  for (const n of rep.nullControl) L.push(`| ${n.block} events | ${n.rule} | ${n.meanFdrSurvivors.toFixed(2)} | ${n.meanProsecutorSurvivors.toFixed(2)} | ${pct(n.runsWithAnyFinalSurvivor)} |`);
+  L.push("", "### Negative control: scrambled data with no edge", "", "Zero = no edge at all. Equal to cost = gross edge exactly 0.50%, so nothing is left after costs: the hardest worthless case.", "",
+    "| Null edge | Sign-flip block | p-value rule | Mean FDR survivors | Mean final survivors | Runs with any final survivor |", "|---|---:|---|---:|---:|---:|");
+  for (const n of rep.nullControl) L.push(`| ${n.nullEdge} | ${n.block} events | ${n.rule} | ${n.meanFdrSurvivors.toFixed(2)} | ${n.meanProsecutorSurvivors.toFixed(2)} | ${pct(n.runsWithAnyFinalSurvivor)} |`);
   L.push("", "### Real data", "", "| p-value rule | Discovery PASS | FDR PASS | Prosecutor PASS | Survivors |", "|---|---:|---:|---:|---|");
   for (const [rule, r] of Object.entries(rep.realData)) L.push(`| ${rule} | ${r.discoveryPass} | ${r.fdrPass} | ${r.prosecutorPass} | ${r.survivors.join(", ") || "none"} |`);
+  L.push("", "### Strongest candidates under the block-bootstrap test (real data)", "", "p is for a net-of-cost edge at the best horizon. With this many hypotheses, a lone real edge needs p well below 0.001 to pass FDR.", "",
+    "| Hypothesis | p | Horizon | Net mean per trade | Events |", "|---|---:|---:|---:|---:|");
+  for (const c of rep.strongestCandidates) L.push(`| ${c.id} | ${c.p.toFixed(4)} | ${c.horizon ?? ""}h | ${c.netMeanPct == null ? "" : c.netMeanPct.toFixed(3) + "%"} | ${c.events} |`);
   const m = rep.minimumDetectableEdge;
   L.push("", "### Minimum detectable edge at 4h", "", `Median ${m.medianPct.toFixed(2)}% per trade (middle half ${m.p25Pct.toFixed(2)}–${m.p75Pct.toFixed(2)}%). ${m.shareAboveCostPct.toFixed(0)}% of hypotheses cannot detect an edge as small as the 0.50% cost. ${m.note}`, "");
   return L.join("\n");
@@ -60,9 +64,9 @@ async function main() {
   if (assets.length < 2 || hours < 500) throw new Error(`Not enough HIST-028 data to calibrate (assets=${assets.length}, hours=${hours})`);
 
   const started = Date.now();
-  const rep = calibrate(series, { trialsPerEdge: Number(process.env.CAL_TRIALS ?? 60), nullRuns: Number(process.env.CAL_NULL_RUNS ?? 200) });
+  const rep = calibrate(series, { trialsPerEdge: Number(process.env.CAL_TRIALS ?? 60), nullRuns: Number(process.env.CAL_NULL_RUNS ?? 200), bootstrapNullRuns: Number(process.env.CAL_BOOT_NULL_RUNS ?? 100) });
   const meta = { source: synthetic ? "synthetic random walks (no edge)" : "Supabase HIST-028", assets: assets.length, hours, seconds: Math.round((Date.now() - started) / 1000) };
-  const full = { ok: true, build: "041-calibration", readOnly: true, authorizedToTrade: false, meta, ...rep };
+  const full = { ok: true, build: "042-calibration", readOnly: true, authorizedToTrade: false, meta, ...rep };
 
   writeFileSync("calibration-report.json", JSON.stringify(full, null, 2));
   const md = markdown(rep, meta);

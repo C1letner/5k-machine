@@ -22,4 +22,7 @@ const rep = calibrate(syntheticSeries(1500, 3), { edgesPct: [0, 3], trialsPerEdg
 const at = (e: number) => rep.detection.find((d) => d.edgePct === e && d.rule === "one-sided (041)")!;
 assert.ok(at(3).prosecutor >= 0.9, `3% edge should be detected, got ${at(3).prosecutor}`);
 assert.ok(at(0).prosecutor <= 0.1, `no edge should not be detected, got ${at(0).prosecutor}`);
-console.log("Build 041 calibration tests passed", { detect3pct: at(3).prosecutor, detect0pct: at(0).prosecutor, hypotheses: rep.hypotheses });
+const boot0 = rep.detection.find((d) => d.edgePct === 0 && d.rule === "block bootstrap (042)")!;
+assert.equal(boot0.prosecutor, 0, "bootstrap rule must not pass a hypothesis with no planted edge");
+assert.ok(rep.duplicatesMerged.length > 0, "mirror-image pair hypotheses should be merged");
+console.log("Build 041/042 calibration tests passed", { detect3pct: at(3).prosecutor, detect0pct: at(0).prosecutor, hypotheses: rep.hypotheses });
