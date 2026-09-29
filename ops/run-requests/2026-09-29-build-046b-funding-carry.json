@@ -1,0 +1,8 @@
+{
+  "note": "Build 046 repair: free Binance COIN-M historical funding baseline after Bybit blocked GitHub runner with HTTP 403. BTC/ETH/SOL; research only.",
+  "jobs": [
+    {
+      "job": "funding-carry"
+    }
+  ]
+}
