@@ -1,0 +1,1 @@
+{ "note": "Build 049 Phase 0: read-only probe of Kalshi public market-data REST API (KXCPIYOY) from GitHub runners. No credentials, no orders, no storage.", "jobs": [ { "job": "kalshi-cpi-probe" } ] }

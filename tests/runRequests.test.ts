@@ -11,3 +11,4 @@ console.log("Build 043 run-request validation tests passed");
 assert.deepEqual(validate({ jobs: [{ job: "funding-ingest" }, { job: "funding-completeness" }, { job: "funding-carry" }] }), [{ job: "funding-ingest" }, { job: "funding-completeness" }, { job: "funding-carry" }]);
 assert.deepEqual(validate({ jobs: [{ job: "trend-economics" }, { job: "funding-exploratory" }] }), [{ job: "trend-economics" }, { job: "funding-exploratory" }]);
 assert.deepEqual(validate({ jobs: [{ job: "backfill-untouched" }, { job: "replication-048" }] }), [{ job: "backfill-untouched" }, { job: "replication-048" }]);
+assert.deepEqual(validate({ jobs: [{ job: "kalshi-cpi-probe" }] }), [{ job: "kalshi-cpi-probe" }]);
