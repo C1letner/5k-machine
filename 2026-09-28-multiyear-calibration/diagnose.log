@@ -1,7 +1,7 @@
 {
   "ok": true,
   "build": "041-diagnostic",
-  "generatedAt": "2026-09-29T05:05:49.772Z",
+  "generatedAt": "2026-09-29T14:17:17.149Z",
   "readOnly": true,
   "authorizedToTrade": false,
   "priceTable": [
@@ -24,13 +24,13 @@
     {
       "asset": "ADA",
       "sensor": "U2",
-      "rows": 33,
+      "rows": 42,
       "first": "2026-09-27T21:04:00+00:00",
-      "last": "2026-09-29T05:04:00+00:00",
+      "last": "2026-09-29T14:04:00+00:00",
       "topMinutesPastHour": [
         {
           "minute": 4,
-          "count": 33
+          "count": 42
         }
       ]
     },
@@ -53,13 +53,13 @@
     {
       "asset": "AVAX",
       "sensor": "U2",
-      "rows": 33,
+      "rows": 42,
       "first": "2026-09-27T21:04:00+00:00",
-      "last": "2026-09-29T05:04:00+00:00",
+      "last": "2026-09-29T14:04:00+00:00",
       "topMinutesPastHour": [
         {
           "minute": 4,
-          "count": 33
+          "count": 42
         }
       ]
     },
@@ -82,13 +82,13 @@
     {
       "asset": "BTC",
       "sensor": "U2",
-      "rows": 33,
+      "rows": 42,
       "first": "2026-09-27T21:04:00+00:00",
-      "last": "2026-09-29T05:04:00+00:00",
+      "last": "2026-09-29T14:04:00+00:00",
       "topMinutesPastHour": [
         {
           "minute": 4,
-          "count": 33
+          "count": 42
         }
       ]
     },
@@ -111,13 +111,13 @@
     {
       "asset": "DOGE",
       "sensor": "U2",
-      "rows": 33,
+      "rows": 42,
       "first": "2026-09-27T21:04:00+00:00",
-      "last": "2026-09-29T05:04:00+00:00",
+      "last": "2026-09-29T14:04:00+00:00",
       "topMinutesPastHour": [
         {
           "minute": 4,
-          "count": 33
+          "count": 42
         }
       ]
     },
@@ -140,13 +140,13 @@
     {
       "asset": "ETH",
       "sensor": "U2",
-      "rows": 33,
+      "rows": 42,
       "first": "2026-09-27T21:04:00+00:00",
-      "last": "2026-09-29T05:04:00+00:00",
+      "last": "2026-09-29T14:04:00+00:00",
       "topMinutesPastHour": [
         {
           "minute": 4,
-          "count": 33
+          "count": 42
         }
       ]
     },
@@ -169,13 +169,13 @@
     {
       "asset": "LINK",
       "sensor": "U2",
-      "rows": 33,
+      "rows": 42,
       "first": "2026-09-27T21:04:00+00:00",
-      "last": "2026-09-29T05:04:00+00:00",
+      "last": "2026-09-29T14:04:00+00:00",
       "topMinutesPastHour": [
         {
           "minute": 4,
-          "count": 33
+          "count": 42
         }
       ]
     },
@@ -198,13 +198,13 @@
     {
       "asset": "SOL",
       "sensor": "U2",
-      "rows": 33,
+      "rows": 42,
       "first": "2026-09-27T21:04:00+00:00",
-      "last": "2026-09-29T05:04:00+00:00",
+      "last": "2026-09-29T14:04:00+00:00",
       "topMinutesPastHour": [
         {
           "minute": 4,
-          "count": 33
+          "count": 42
         }
       ]
     },
@@ -227,13 +227,13 @@
     {
       "asset": "XRP",
       "sensor": "U2",
-      "rows": 33,
+      "rows": 42,
       "first": "2026-09-27T21:04:00+00:00",
-      "last": "2026-09-29T05:04:00+00:00",
+      "last": "2026-09-29T14:04:00+00:00",
       "topMinutesPastHour": [
         {
           "minute": 4,
-          "count": 33
+          "count": 42
         }
       ]
     }
@@ -277,8 +277,8 @@
       "asset": "ADA",
       "rowsReturned": 1000,
       "rowsAvailableInWindow": 4346,
-      "first": "2026-04-02T06:00:00+00:00",
-      "last": "2026-05-14T02:00:00+00:00",
+      "first": "2026-04-02T15:00:00+00:00",
+      "last": "2026-05-14T11:00:00+00:00",
       "daysCovered": 42,
       "sensorsMixed": [
         "HIST-028"
@@ -288,8 +288,8 @@
       "asset": "AVAX",
       "rowsReturned": 1000,
       "rowsAvailableInWindow": 4346,
-      "first": "2026-04-02T06:00:00+00:00",
-      "last": "2026-05-14T02:00:00+00:00",
+      "first": "2026-04-02T15:00:00+00:00",
+      "last": "2026-05-14T11:00:00+00:00",
       "daysCovered": 42,
       "sensorsMixed": [
         "HIST-028"
@@ -299,8 +299,8 @@
       "asset": "BTC",
       "rowsReturned": 1000,
       "rowsAvailableInWindow": 4346,
-      "first": "2026-04-02T06:00:00+00:00",
-      "last": "2026-05-14T02:00:00+00:00",
+      "first": "2026-04-02T15:00:00+00:00",
+      "last": "2026-05-14T11:00:00+00:00",
       "daysCovered": 42,
       "sensorsMixed": [
         "HIST-028"
@@ -310,8 +310,8 @@
       "asset": "DOGE",
       "rowsReturned": 1000,
       "rowsAvailableInWindow": 4346,
-      "first": "2026-04-02T06:00:00+00:00",
-      "last": "2026-05-14T02:00:00+00:00",
+      "first": "2026-04-02T15:00:00+00:00",
+      "last": "2026-05-14T11:00:00+00:00",
       "daysCovered": 42,
       "sensorsMixed": [
         "HIST-028"
@@ -321,8 +321,8 @@
       "asset": "ETH",
       "rowsReturned": 1000,
       "rowsAvailableInWindow": 4346,
-      "first": "2026-04-02T06:00:00+00:00",
-      "last": "2026-05-14T02:00:00+00:00",
+      "first": "2026-04-02T15:00:00+00:00",
+      "last": "2026-05-14T11:00:00+00:00",
       "daysCovered": 42,
       "sensorsMixed": [
         "HIST-028"
@@ -332,8 +332,8 @@
       "asset": "LINK",
       "rowsReturned": 1000,
       "rowsAvailableInWindow": 4346,
-      "first": "2026-04-02T06:00:00+00:00",
-      "last": "2026-05-14T02:00:00+00:00",
+      "first": "2026-04-02T15:00:00+00:00",
+      "last": "2026-05-14T11:00:00+00:00",
       "daysCovered": 42,
       "sensorsMixed": [
         "HIST-028"
@@ -343,8 +343,8 @@
       "asset": "SOL",
       "rowsReturned": 1000,
       "rowsAvailableInWindow": 4346,
-      "first": "2026-04-02T06:00:00+00:00",
-      "last": "2026-05-14T02:00:00+00:00",
+      "first": "2026-04-02T15:00:00+00:00",
+      "last": "2026-05-14T11:00:00+00:00",
       "daysCovered": 42,
       "sensorsMixed": [
         "HIST-028"
@@ -354,8 +354,8 @@
       "asset": "XRP",
       "rowsReturned": 1000,
       "rowsAvailableInWindow": 4346,
-      "first": "2026-04-02T06:00:00+00:00",
-      "last": "2026-05-14T02:00:00+00:00",
+      "first": "2026-04-02T15:00:00+00:00",
+      "last": "2026-05-14T11:00:00+00:00",
       "daysCovered": 42,
       "sensorsMixed": [
         "HIST-028"
@@ -363,7 +363,7 @@
     }
   ],
   "volume": {
-    "vol035Rows": 210160,
+    "vol035Rows": 210232,
     "alignedWithHist028": 210144
   },
   "discoveryTestsByCodeVersion": {
