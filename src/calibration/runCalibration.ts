@@ -2,7 +2,7 @@
 //   npm run calibrate              -> real data from Supabase
 //   npm run calibrate -- --synthetic -> random-walk data, no database needed (pipeline smoke test)
 import { appendFileSync, writeFileSync } from "node:fs";
-import { calibrate, rng, type CalibrationReport } from "./funnel.js";
+import { ALL_RULES, calibrate, rng, type CalibrationReport, type PValueRule } from "./funnel.js";
 import type { Pt } from "../science/priceEvents.js";
 
 const ASSETS = ["ADA", "AVAX", "BTC", "DOGE", "ETH", "LINK", "SOL", "XRP"];
@@ -24,7 +24,7 @@ async function loadHist028(): Promise<Record<string, Pt[]>> {
 }
 
 /** Correlated random walks with crypto-like hourly volatility; contains no edge by construction. */
-export function syntheticSeries(hours = 4315, seed = 7): Record<string, Pt[]> {
+export function syntheticSeries(hours = Number(process.env.CAL_SYNTH_HOURS ?? 4315), seed = 7): Record<string, Pt[]> {
   const r = rng(seed), gauss = () => Math.sqrt(-2 * Math.log(r() || 1e-12)) * Math.cos(2 * Math.PI * r());
   const out: Record<string, Pt[]> = {};
   const market = Array.from({ length: hours }, () => gauss());
@@ -39,7 +39,7 @@ export function syntheticSeries(hours = 4315, seed = 7): Record<string, Pt[]> {
 const pct = (x: number) => `${(x * 100).toFixed(0)}%`;
 
 function markdown(rep: CalibrationReport, meta: Record<string, unknown>) {
-  const L: string[] = ["## Funnel calibration (build 042)", "", `Data: ${meta.source}, ${meta.hours} hours × ${meta.assets} assets, ${rep.hypotheses} distinct hypotheses (${rep.duplicatesMerged.reduce((n, d) => n + d.duplicates.length, 0)} exact duplicates merged, e.g. A->B and B->A of the same trade). Read-only; nothing was written to the database.`, ""];
+  const L: string[] = ["## Funnel calibration (build 043)", "", `Data: ${meta.source}, ${meta.hours} hours × ${meta.assets} assets, ${rep.hypotheses} distinct hypotheses (${rep.duplicatesMerged.reduce((n, d) => n + d.duplicates.length, 0)} exact duplicates merged, e.g. A->B and B->A of the same trade). Read-only; nothing was written to the database.`, ""];
   L.push("### Positive control: share of planted edges that survive each stage", "", "Edge = extra return added to every event of one hypothesis, before 50 bps costs.", "",
     "| Edge per trade | p-value rule | Discovery | FDR | Prosecutor |", "|---:|---|---:|---:|---:|");
   for (const d of rep.detection) L.push(`| ${d.edgePct}% | ${d.rule} | ${pct(d.discovery)} | ${pct(d.fdr)} | ${pct(d.prosecutor)} |`);
@@ -64,9 +64,12 @@ async function main() {
   if (assets.length < 2 || hours < 500) throw new Error(`Not enough HIST-028 data to calibrate (assets=${assets.length}, hours=${hours})`);
 
   const started = Date.now();
-  const rep = calibrate(series, { trialsPerEdge: Number(process.env.CAL_TRIALS ?? 60), nullRuns: Number(process.env.CAL_NULL_RUNS ?? 200), bootstrapNullRuns: Number(process.env.CAL_BOOT_NULL_RUNS ?? 100) });
+  // Build 043: by default calibrate only the rule production uses; CAL_RULES=all adds the retired
+// pre-042 rules for comparison (slow on multi-year data).
+  const rules: PValueRule[] = process.env.CAL_RULES === "all" ? ALL_RULES : ["block bootstrap (042)"];
+  const rep = calibrate(series, { rules, trialsPerEdge: Number(process.env.CAL_TRIALS ?? 60), nullRuns: Number(process.env.CAL_NULL_RUNS ?? 200), bootstrapNullRuns: Number(process.env.CAL_BOOT_NULL_RUNS ?? 100) });
   const meta = { source: synthetic ? "synthetic random walks (no edge)" : "Supabase HIST-028", assets: assets.length, hours, seconds: Math.round((Date.now() - started) / 1000) };
-  const full = { ok: true, build: "042-calibration", readOnly: true, authorizedToTrade: false, meta, ...rep };
+  const full = { ok: true, build: "043-calibration", readOnly: true, authorizedToTrade: false, meta, ...rep };
 
   writeFileSync("calibration-report.json", JSON.stringify(full, null, 2));
   const md = markdown(rep, meta);
