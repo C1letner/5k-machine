@@ -1,0 +1,7 @@
+{
+  "note": "Build 048: backfill untouched Coinbase hourly history (2015-01-01 to <2023-09-30, HIST-048), then run the frozen slow trend once under the preregistration committed at cf7f5f67. Research only; no trading.",
+  "jobs": [
+    { "job": "backfill-untouched" },
+    { "job": "replication-048" }
+  ]
+}

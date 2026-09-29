@@ -60,7 +60,10 @@
     "research:trend-economics": "tsx src/trendEconomicsLab.ts",
     "research:funding-exploratory": "tsx src/fundingExploratory.ts",
     "test:trend-economics": "tsx tests/trendEconomics.test.ts",
-    "test:funding-exploratory": "tsx tests/fundingExploratory.test.ts"
+    "test:funding-exploratory": "tsx tests/fundingExploratory.test.ts",
+    "backfill:untouched": "tsx src/backfillUntouched.ts",
+    "research:replication-048": "tsx src/replication048.ts",
+    "test:replication-048": "tsx tests/replication048.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",
