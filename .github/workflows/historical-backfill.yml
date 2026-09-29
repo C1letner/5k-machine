@@ -1,12 +1,17 @@
 name: Historical Data Backfill
 on:
   workflow_dispatch:
+    inputs:
+      days:
+        description: "How many days of hourly history to backfill (build 043; 1095 = 3 years)"
+        required: true
+        default: "1095"
 permissions:
   contents: read
 jobs:
   backfill:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -17,3 +22,4 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          BACKFILL_DAYS: ${{ inputs.days }}
