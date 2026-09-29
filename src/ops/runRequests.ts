@@ -19,6 +19,8 @@ export const JOBS: Record<string, JobSpec> = {
   "backfill-volume": { script: "backfill:volume", needsDays: true },
   "diagnose": { script: "diagnose:data", stdoutTo: "data-integrity.json" },
   "calibrate": { script: "calibrate", outputs: ["calibration-report.md", "calibration-report.json"] },
+  "temporal-audit": { script: "audit:temporal", stdoutTo: "temporal-integrity.json" },
+  "mechanisms": { script: "research:mechanisms", stdoutTo: "mechanism-research.json" },
 };
 
 const MAX_LOG = 200_000;
