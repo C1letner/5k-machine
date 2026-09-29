@@ -1,0 +1,913 @@
+{
+  "ok": true,
+  "build": "048",
+  "program": "UNTOUCHED_REPLICATION_FROZEN_SLOW_TREND",
+  "preregistration": {
+    "file": "docs/BUILD-048-PREREGISTRATION.md",
+    "commit": "cf7f5f67be519be0f3e98afc2c96b3d0a08829dd"
+  },
+  "codeCommit": "a124ebc64088ce765f1d41f447828b5244da4c67",
+  "data": {
+    "sensorVersion": "HIST-048",
+    "source": "Coinbase Exchange public hourly candles; ts = candle start (UTC); value = close",
+    "window": "2015-01-01T00:00Z to <2023-09-30T00:00Z"
+  },
+  "specification": {
+    "lookbackDays": 90,
+    "volDays": 30,
+    "targetDailyVol": 0.01,
+    "maxLeverage": 1,
+    "costPerUnitTurnover": 0.001,
+    "timing": "next-bar (044)",
+    "note": "frozen; unchanged from Build 045/047A"
+  },
+  "requestedUniverse": [
+    "BTC",
+    "ETH",
+    "XRP",
+    "SOL",
+    "ADA",
+    "DOGE",
+    "AVAX",
+    "LINK"
+  ],
+  "eligibleUniverse": [
+    "BTC",
+    "ETH",
+    "XRP",
+    "SOL",
+    "ADA",
+    "DOGE",
+    "AVAX",
+    "LINK"
+  ],
+  "quality": [
+    {
+      "asset": "BTC",
+      "first": "2015-07-20T21:00:00.000Z",
+      "last": "2023-09-29T23:00:00.000Z",
+      "observations": 71790,
+      "duplicates": 0,
+      "missingHours": 45,
+      "completenessPct": 99.94,
+      "majorGapsOver24h": 0,
+      "largestGaps": [],
+      "rowsAtOrAfterCutoff": 0,
+      "offGridTimestamps": 0,
+      "nonPositivePrices": 0
+    },
+    {
+      "asset": "ETH",
+      "first": "2016-05-18T00:00:00.000Z",
+      "last": "2023-09-29T23:00:00.000Z",
+      "observations": 64381,
+      "duplicates": 0,
+      "missingHours": 203,
+      "completenessPct": 99.69,
+      "majorGapsOver24h": 1,
+      "largestGaps": [
+        {
+          "after": "2016-05-20T20:00:00.000Z",
+          "before": "2016-05-23T14:00:00.000Z",
+          "hours": 66
+        }
+      ],
+      "rowsAtOrAfterCutoff": 0,
+      "offGridTimestamps": 0,
+      "nonPositivePrices": 0
+    },
+    {
+      "asset": "XRP",
+      "first": "2019-02-26T17:00:00.000Z",
+      "last": "2023-09-29T23:00:00.000Z",
+      "observations": 18505,
+      "duplicates": 0,
+      "missingHours": 21726,
+      "completenessPct": 46,
+      "majorGapsOver24h": 1,
+      "largestGaps": [
+        {
+          "after": "2021-01-19T18:00:00.000Z",
+          "before": "2023-07-13T20:00:00.000Z",
+          "hours": 21722
+        }
+      ],
+      "rowsAtOrAfterCutoff": 0,
+      "offGridTimestamps": 0,
+      "nonPositivePrices": 0
+    },
+    {
+      "asset": "SOL",
+      "first": "2021-06-17T16:00:00.000Z",
+      "last": "2023-09-29T23:00:00.000Z",
+      "observations": 20019,
+      "duplicates": 0,
+      "missingHours": 5,
+      "completenessPct": 99.98,
+      "majorGapsOver24h": 0,
+      "largestGaps": [],
+      "rowsAtOrAfterCutoff": 0,
+      "offGridTimestamps": 0,
+      "nonPositivePrices": 0
+    },
+    {
+      "asset": "ADA",
+      "first": "2021-03-18T16:00:00.000Z",
+      "last": "2023-09-29T23:00:00.000Z",
+      "observations": 22203,
+      "duplicates": 0,
+      "missingHours": 5,
+      "completenessPct": 99.98,
+      "majorGapsOver24h": 0,
+      "largestGaps": [],
+      "rowsAtOrAfterCutoff": 0,
+      "offGridTimestamps": 0,
+      "nonPositivePrices": 0
+    },
+    {
+      "asset": "DOGE",
+      "first": "2021-06-03T16:00:00.000Z",
+      "last": "2023-09-29T23:00:00.000Z",
+      "observations": 20355,
+      "duplicates": 0,
+      "missingHours": 5,
+      "completenessPct": 99.98,
+      "majorGapsOver24h": 0,
+      "largestGaps": [],
+      "rowsAtOrAfterCutoff": 0,
+      "offGridTimestamps": 0,
+      "nonPositivePrices": 0
+    },
+    {
+      "asset": "AVAX",
+      "first": "2021-09-30T19:00:00.000Z",
+      "last": "2023-09-29T23:00:00.000Z",
+      "observations": 17497,
+      "duplicates": 0,
+      "missingHours": 4,
+      "completenessPct": 99.98,
+      "majorGapsOver24h": 0,
+      "largestGaps": [],
+      "rowsAtOrAfterCutoff": 0,
+      "offGridTimestamps": 0,
+      "nonPositivePrices": 0
+    },
+    {
+      "asset": "LINK",
+      "first": "2019-06-27T16:00:00.000Z",
+      "last": "2023-09-29T23:00:00.000Z",
+      "observations": 37317,
+      "duplicates": 0,
+      "missingHours": 11,
+      "completenessPct": 99.97,
+      "majorGapsOver24h": 0,
+      "largestGaps": [],
+      "rowsAtOrAfterCutoff": 0,
+      "offGridTimestamps": 0,
+      "nonPositivePrices": 0
+    }
+  ],
+  "eligibility": [
+    {
+      "asset": "BTC",
+      "eligible": true,
+      "longestSegment": {
+        "first": "2015-07-20",
+        "last": "2023-09-28",
+        "dates": 2993,
+        "decisions": 2901
+      },
+      "segmentCount": 1,
+      "otherSegments": [],
+      "reason": null
+    },
+    {
+      "asset": "ETH",
+      "eligible": true,
+      "longestSegment": {
+        "first": "2016-05-23",
+        "last": "2023-09-28",
+        "dates": 2685,
+        "decisions": 2593
+      },
+      "segmentCount": 2,
+      "otherSegments": [
+        {
+          "first": "2016-05-18",
+          "last": "2016-05-19",
+          "dates": 2
+        }
+      ],
+      "reason": null
+    },
+    {
+      "asset": "XRP",
+      "eligible": true,
+      "longestSegment": {
+        "first": "2019-02-26",
+        "last": "2021-01-18",
+        "dates": 693,
+        "decisions": 601
+      },
+      "segmentCount": 2,
+      "otherSegments": [
+        {
+          "first": "2023-07-13",
+          "last": "2023-09-28",
+          "dates": 78
+        }
+      ],
+      "reason": null
+    },
+    {
+      "asset": "SOL",
+      "eligible": true,
+      "longestSegment": {
+        "first": "2021-06-17",
+        "last": "2023-09-28",
+        "dates": 834,
+        "decisions": 742
+      },
+      "segmentCount": 1,
+      "otherSegments": [],
+      "reason": null
+    },
+    {
+      "asset": "ADA",
+      "eligible": true,
+      "longestSegment": {
+        "first": "2021-03-18",
+        "last": "2023-09-28",
+        "dates": 925,
+        "decisions": 833
+      },
+      "segmentCount": 1,
+      "otherSegments": [],
+      "reason": null
+    },
+    {
+      "asset": "DOGE",
+      "eligible": true,
+      "longestSegment": {
+        "first": "2021-06-03",
+        "last": "2023-09-28",
+        "dates": 848,
+        "decisions": 756
+      },
+      "segmentCount": 1,
+      "otherSegments": [],
+      "reason": null
+    },
+    {
+      "asset": "AVAX",
+      "eligible": true,
+      "longestSegment": {
+        "first": "2021-09-30",
+        "last": "2023-09-28",
+        "dates": 729,
+        "decisions": 637
+      },
+      "segmentCount": 1,
+      "otherSegments": [],
+      "reason": null
+    },
+    {
+      "asset": "LINK",
+      "eligible": true,
+      "longestSegment": {
+        "first": "2019-06-27",
+        "last": "2023-09-28",
+        "dates": 1555,
+        "decisions": 1463
+      },
+      "segmentCount": 1,
+      "otherSegments": [],
+      "reason": null
+    }
+  ],
+  "assets": [
+    {
+      "asset": "BTC",
+      "primary": {
+        "start": "2015-10-19",
+        "end": "2023-09-27",
+        "days": 2901,
+        "years": 7.948,
+        "directionChanges": 108,
+        "daysWithTurnover": 2858,
+        "totalTurnover": 122.2541153586565,
+        "annualTurnover": 15.381851811757885,
+        "grossCumulative": 3.262863817794387,
+        "netCumulative": 2.773442736523584,
+        "cagr": 0.18185551464966387,
+        "annVol": 0.23384489238466652,
+        "sharpe": 0.8312182464225568,
+        "maxDrawdown": -0.4429362969158648,
+        "positiveDaysPct": 0.5274043433298863,
+        "costsPaid": 0.40848804902233393,
+        "finalEquity": 3.773442736523584
+      },
+      "bootstrap": {
+        "p": 0.0136,
+        "tStat": 2.109533814160752
+      },
+      "calendarYears": [
+        {
+          "year": 2015,
+          "days": 74,
+          "net": 0.10202485146043938,
+          "gross": 0.10506020215128964
+        },
+        {
+          "year": 2016,
+          "days": 366,
+          "net": 0.29214278189374454,
+          "gross": 0.32367405746249744
+        },
+        {
+          "year": 2017,
+          "days": 365,
+          "net": 1.1408366755370727,
+          "gross": 1.1481986101754198
+        },
+        {
+          "year": 2018,
+          "days": 365,
+          "net": 0.07359699506298778,
+          "gross": 0.09778382981597478
+        },
+        {
+          "year": 2019,
+          "days": 365,
+          "net": 0.5779558371162985,
+          "gross": 0.5968117993551525
+        },
+        {
+          "year": 2020,
+          "days": 366,
+          "net": 0.03898375992459946,
+          "gross": 0.049495182430244755
+        },
+        {
+          "year": 2021,
+          "days": 365,
+          "net": -0.01884450990946185,
+          "gross": -0.011666193700585303
+        },
+        {
+          "year": 2022,
+          "days": 365,
+          "net": 0.0044108634303750005,
+          "gross": 0.017327485064778658
+        },
+        {
+          "year": 2023,
+          "days": 270,
+          "net": -0.28639447638210624,
+          "gross": -0.26659377600991685
+        }
+      ],
+      "costSensitivity5bps": {
+        "netCumulative": 3.0107432591004475,
+        "sharpe": 0.8638632429757931
+      }
+    },
+    {
+      "asset": "ETH",
+      "primary": {
+        "start": "2016-08-22",
+        "end": "2023-09-27",
+        "days": 2593,
+        "years": 7.104,
+        "directionChanges": 102,
+        "daysWithTurnover": 2589,
+        "totalTurnover": 76.69606815162145,
+        "annualTurnover": 10.796014221111387,
+        "grossCumulative": 3.0367086790012694,
+        "netCumulative": 2.738568530933085,
+        "cagr": 0.20397110191213397,
+        "annVol": 0.21909821821137473,
+        "sharpe": 0.9565443681752664,
+        "maxDrawdown": -0.3701785005439918,
+        "positiveDaysPct": 0.5098341689163132,
+        "costsPaid": 0.24807704292743674,
+        "finalEquity": 3.738568530933085
+      },
+      "bootstrap": {
+        "p": 0.0058,
+        "tStat": 2.334375034520707
+      },
+      "calendarYears": [
+        {
+          "year": 2016,
+          "days": 132,
+          "net": 0.01884095500444416,
+          "gross": 0.030194915034717162
+        },
+        {
+          "year": 2017,
+          "days": 365,
+          "net": 1.1694465197344481,
+          "gross": 1.1858426623143008
+        },
+        {
+          "year": 2018,
+          "days": 365,
+          "net": 0.3760543874526441,
+          "gross": 0.3827479818945212
+        },
+        {
+          "year": 2019,
+          "days": 365,
+          "net": 0.2677027390455031,
+          "gross": 0.27503068612189807
+        },
+        {
+          "year": 2020,
+          "days": 366,
+          "net": 0.036817760195389626,
+          "gross": 0.05177213699038474
+        },
+        {
+          "year": 2021,
+          "days": 365,
+          "net": 0.23389862953420004,
+          "gross": 0.24009975842200348
+        },
+        {
+          "year": 2022,
+          "days": 365,
+          "net": -0.07143619655272904,
+          "gross": -0.06497190425778099
+        },
+        {
+          "year": 2023,
+          "days": 270,
+          "net": -0.18378736177920119,
+          "gross": -0.16627563639916154
+        }
+      ],
+      "costSensitivity5bps": {
+        "netCumulative": 2.884799324900628,
+        "sharpe": 0.9812886163068482
+      }
+    },
+    {
+      "asset": "XRP",
+      "primary": {
+        "start": "2019-05-28",
+        "end": "2021-01-17",
+        "days": 601,
+        "years": 1.647,
+        "directionChanges": 26,
+        "daysWithTurnover": 601,
+        "totalTurnover": 19.86000606108319,
+        "annualTurnover": 12.061401351572986,
+        "grossCumulative": -0.3629984539650075,
+        "netCumulative": -0.37558150278436175,
+        "cagr": -0.24874373460840848,
+        "annVol": 0.23341431973214205,
+        "sharpe": -1.109014485298125,
+        "maxDrawdown": -0.44239323729794733,
+        "positiveDaysPct": 0.46589018302828616,
+        "costsPaid": 0.015003516765997376,
+        "finalEquity": 0.6244184972156382
+      },
+      "bootstrap": {
+        "p": 0.8782608695652174,
+        "tStat": -1.2794974400026895
+      },
+      "calendarYears": [
+        {
+          "year": 2019,
+          "days": 218,
+          "net": -0.08594947398935537,
+          "gross": -0.07990081575459274
+        },
+        {
+          "year": 2020,
+          "days": 366,
+          "net": -0.28192039754827647,
+          "gross": -0.2726325203945241
+        },
+        {
+          "year": 2021,
+          "days": 17,
+          "net": -0.04866611400904086,
+          "gross": -0.04818627982440282
+        }
+      ],
+      "costSensitivity5bps": {
+        "netCumulative": -0.3693205503582363,
+        "sharpe": -1.0836407040526028
+      }
+    },
+    {
+      "asset": "SOL",
+      "primary": {
+        "start": "2021-09-16",
+        "end": "2023-09-27",
+        "days": 742,
+        "years": 2.033,
+        "directionChanges": 38,
+        "daysWithTurnover": 742,
+        "totalTurnover": 23.07527084134529,
+        "annualTurnover": 11.351042934084948,
+        "grossCumulative": -0.2556854077477384,
+        "netCumulative": -0.2726913390263862,
+        "cagr": -0.1449774735920677,
+        "annVol": 0.21391474549866235,
+        "sharpe": -0.6247045569910379,
+        "maxDrawdown": -0.4661776320787896,
+        "positiveDaysPct": 0.48787061994609165,
+        "costsPaid": 0.022908218894091135,
+        "finalEquity": 0.7273086609736138
+      },
+      "bootstrap": {
+        "p": 0.7651515151515151,
+        "tStat": -0.748713803161587
+      },
+      "calendarYears": [
+        {
+          "year": 2021,
+          "days": 107,
+          "net": 0.019370977438297077,
+          "gross": 0.022185081714668264
+        },
+        {
+          "year": 2022,
+          "days": 365,
+          "net": 0.28478014060983825,
+          "gross": 0.293646335186488
+        },
+        {
+          "year": 2023,
+          "days": 270,
+          "net": -0.4446616318603177,
+          "gross": -0.43712568360773885
+        }
+      ],
+      "costSensitivity5bps": {
+        "netCumulative": -0.26423654969686916,
+        "sharpe": -0.5982654471766977
+      }
+    },
+    {
+      "asset": "ADA",
+      "primary": {
+        "start": "2021-06-17",
+        "end": "2023-09-27",
+        "days": 833,
+        "years": 2.282,
+        "directionChanges": 41,
+        "daysWithTurnover": 833,
+        "totalTurnover": 31.038408468249283,
+        "annualTurnover": 13.600263014298905,
+        "grossCumulative": -0.16882394830708192,
+        "netCumulative": -0.19425754720666077,
+        "cagr": -0.09030142403470343,
+        "annVol": 0.218415186684833,
+        "sharpe": -0.3231158720650968,
+        "maxDrawdown": -0.36889779436050174,
+        "positiveDaysPct": 0.49339735894357745,
+        "costsPaid": 0.029687338314093623,
+        "finalEquity": 0.8057424527933392
+      },
+      "bootstrap": {
+        "p": 0.7163120567375887,
+        "tStat": -0.4984657776420458
+      },
+      "calendarYears": [
+        {
+          "year": 2021,
+          "days": 198,
+          "net": -0.02330880180363515,
+          "gross": -0.016559036090183166
+        },
+        {
+          "year": 2022,
+          "days": 365,
+          "net": 0.1169055531814851,
+          "gross": 0.12797642804734433
+        },
+        {
+          "year": 2023,
+          "days": 270,
+          "net": -0.2613775186063352,
+          "gross": -0.2507190289666468
+        }
+      ],
+      "costSensitivity5bps": {
+        "netCumulative": -0.18163789203059466,
+        "sharpe": -0.29202539191198706
+      }
+    },
+    {
+      "asset": "DOGE",
+      "primary": {
+        "start": "2021-09-02",
+        "end": "2023-09-27",
+        "days": 756,
+        "years": 2.071,
+        "directionChanges": 52,
+        "daysWithTurnover": 756,
+        "totalTurnover": 33.37091475219027,
+        "annualTurnover": 16.111618894906677,
+        "grossCumulative": -0.16123515178792946,
+        "netCumulative": -0.18884296728688477,
+        "cagr": -0.09611021319572688,
+        "annVol": 0.21450394963795003,
+        "sharpe": -0.36446643514604815,
+        "maxDrawdown": -0.33339279507932174,
+        "positiveDaysPct": 0.48412698412698413,
+        "costsPaid": 0.03065558392996189,
+        "finalEquity": 0.8111570327131152
+      },
+      "bootstrap": {
+        "p": 0.6352201257861635,
+        "tStat": -0.5319519425649784
+      },
+      "calendarYears": [
+        {
+          "year": 2021,
+          "days": 121,
+          "net": 0.08350446878386242,
+          "gross": 0.08677478700758323
+        },
+        {
+          "year": 2022,
+          "days": 365,
+          "net": -0.1790543697050634,
+          "gross": -0.17062363897889588
+        },
+        {
+          "year": 2023,
+          "days": 270,
+          "net": -0.08807350159788507,
+          "gross": -0.06943007150448477
+        }
+      ],
+      "costSensitivity5bps": {
+        "netCumulative": -0.17515277926041728,
+        "sharpe": -0.3270679573837644
+      }
+    },
+    {
+      "asset": "AVAX",
+      "primary": {
+        "start": "2021-12-30",
+        "end": "2023-09-27",
+        "days": 637,
+        "years": 1.745,
+        "directionChanges": 27,
+        "daysWithTurnover": 637,
+        "totalTurnover": 15.883136751126804,
+        "annualTurnover": 9.101012424115044,
+        "grossCumulative": -0.10586413209631163,
+        "netCumulative": -0.11997943196988736,
+        "cagr": -0.07061753432664297,
+        "annVol": 0.21442748776235657,
+        "sharpe": -0.23421832051874855,
+        "maxDrawdown": -0.345321375506473,
+        "positiveDaysPct": 0.49921507064364207,
+        "costsPaid": 0.013136206630067485,
+        "finalEquity": 0.8800205680301126
+      },
+      "bootstrap": {
+        "p": 0.6870748299319728,
+        "tStat": -0.2823767709618696
+      },
+      "calendarYears": [
+        {
+          "year": 2021,
+          "days": 2,
+          "net": 0.019807326600608022,
+          "gross": 0.01994818160680878
+        },
+        {
+          "year": 2022,
+          "days": 365,
+          "net": -0.14287126955705898,
+          "gross": -0.133979794360656
+        },
+        {
+          "year": 2023,
+          "days": 270,
+          "net": 0.006766236369166068,
+          "gross": 0.012272372106092222
+        }
+      ],
+      "costSensitivity5bps": {
+        "netCumulative": -0.11294928820648598,
+        "sharpe": -0.21303153998856464
+      }
+    },
+    {
+      "asset": "LINK",
+      "primary": {
+        "start": "2019-09-26",
+        "end": "2023-09-27",
+        "days": 1463,
+        "years": 4.008,
+        "directionChanges": 107,
+        "daysWithTurnover": 1463,
+        "totalTurnover": 59.27453937810227,
+        "annualTurnover": 14.788248033497831,
+        "grossCumulative": -0.4718423914623241,
+        "netCumulative": -0.5023086893620707,
+        "cagr": -0.15977545039315688,
+        "annVol": 0.21157201454973745,
+        "sharpe": -0.716860071516438,
+        "maxDrawdown": -0.5590248039344968,
+        "positiveDaysPct": 0.47710184552289814,
+        "costsPaid": 0.040027929400679466,
+        "finalEquity": 0.4976913106379292
+      },
+      "bootstrap": {
+        "p": 0.9528301886792453,
+        "tStat": -1.3225703949810415
+      },
+      "calendarYears": [
+        {
+          "year": 2019,
+          "days": 97,
+          "net": -0.25488019803805173,
+          "gross": -0.25161393780768737
+        },
+        {
+          "year": 2020,
+          "days": 366,
+          "net": 0.04016519970304322,
+          "gross": 0.05472576604755042
+        },
+        {
+          "year": 2021,
+          "days": 365,
+          "net": -0.031053651845697194,
+          "gross": -0.02496986531803591
+        },
+        {
+          "year": 2022,
+          "days": 365,
+          "net": -0.1734663726346649,
+          "gross": -0.16154141020357016
+        },
+        {
+          "year": 2023,
+          "days": 270,
+          "net": -0.19819017102907344,
+          "gross": -0.1815377794982883
+        }
+      ],
+      "costSensitivity5bps": {
+        "netCumulative": -0.4873000115087823,
+        "sharpe": -0.6821278848266574
+      }
+    }
+  ],
+  "portfolio": {
+    "primary": {
+      "start": "2015-10-19",
+      "end": "2023-09-27",
+      "days": 2901,
+      "years": 7.948,
+      "directionChanges": 0,
+      "daysWithTurnover": 2881,
+      "totalTurnover": 102.99069178713623,
+      "annualTurnover": 12.958153223821,
+      "grossCumulative": 2.9644027217575823,
+      "netCumulative": 2.576915253608636,
+      "cagr": 0.17392872507016932,
+      "annVol": 0.18186623339960073,
+      "sharpe": 0.9723476427142834,
+      "maxDrawdown": -0.3425335653776539,
+      "positiveDaysPct": 0.5187866253016201,
+      "costsPaid": 0.31714867368664584,
+      "finalEquity": 3.576915253608636
+    },
+    "bootstrap": {
+      "p": 0.0062,
+      "tStat": 2.4381558037801345
+    },
+    "calendarYears": [
+      {
+        "year": 2015,
+        "days": 74,
+        "net": 0.10202485146043938,
+        "gross": 0.10506020215128964
+      },
+      {
+        "year": 2016,
+        "days": 366,
+        "net": 0.21130119081386822,
+        "gross": 0.23994117921174807
+      },
+      {
+        "year": 2017,
+        "days": 365,
+        "net": 1.1788213245835064,
+        "gross": 1.1907932269891224
+      },
+      {
+        "year": 2018,
+        "days": 365,
+        "net": 0.22032516340148245,
+        "gross": 0.23701607120046786
+      },
+      {
+        "year": 2019,
+        "days": 365,
+        "net": 0.2477030786224348,
+        "gross": 0.2606383292043353
+      },
+      {
+        "year": 2020,
+        "days": 366,
+        "net": -0.03862369678886146,
+        "gross": -0.026267655705332627
+      },
+      {
+        "year": 2021,
+        "days": 365,
+        "net": 0.09101630268601202,
+        "gross": 0.09856841282393902
+      },
+      {
+        "year": 2022,
+        "days": 365,
+        "net": -0.025649826330501946,
+        "gross": -0.015687451085887538
+      },
+      {
+        "year": 2023,
+        "days": 270,
+        "net": -0.20965453133013812,
+        "gross": -0.1956894246039943
+      }
+    ],
+    "activeSleevesByYear": [
+      {
+        "year": 2015,
+        "minActive": 1,
+        "maxActive": 1
+      },
+      {
+        "year": 2016,
+        "minActive": 1,
+        "maxActive": 2
+      },
+      {
+        "year": 2017,
+        "minActive": 2,
+        "maxActive": 2
+      },
+      {
+        "year": 2018,
+        "minActive": 2,
+        "maxActive": 2
+      },
+      {
+        "year": 2019,
+        "minActive": 2,
+        "maxActive": 4
+      },
+      {
+        "year": 2020,
+        "minActive": 4,
+        "maxActive": 4
+      },
+      {
+        "year": 2021,
+        "minActive": 3,
+        "maxActive": 7
+      },
+      {
+        "year": 2022,
+        "minActive": 7,
+        "maxActive": 7
+      },
+      {
+        "year": 2023,
+        "minActive": 7,
+        "maxActive": 7
+      }
+    ],
+    "costSensitivity5bps": {
+      "netCumulative": 2.765695231465068,
+      "sharpe": 1.007800969526891
+    }
+  },
+  "classification": "REPLICATION INCONCLUSIVE",
+  "classificationInputs": {
+    "sharpe": 0.9723476427142834,
+    "cagr": 0.17392872507016932,
+    "p": 0.0062,
+    "bothHalvesPositive": false,
+    "splitAt": "2019-10-08",
+    "firstHalfNet": 3.5419335880652207,
+    "secondHalfNet": -0.2124686140264902,
+    "firstHalfSharpe": 1.9278305461841978,
+    "secondHalfSharpe": -0.32794455907940845
+  },
+  "authorizedToTrade": false
+}

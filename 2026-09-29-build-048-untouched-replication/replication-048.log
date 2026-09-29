@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "build": "048",
+  "classification": "REPLICATION INCONCLUSIVE",
+  "eligibleUniverse": [
+    "BTC",
+    "ETH",
+    "XRP",
+    "SOL",
+    "ADA",
+    "DOGE",
+    "AVAX",
+    "LINK"
+  ],
+  "portfolio": {
+    "sharpe": 0.9723476427142834,
+    "cagr": 0.17392872507016932,
+    "p": 0.0062
+  },
+  "authorizedToTrade": false
+}
