@@ -1,0 +1,14 @@
+{
+  "id": "2026-09-29-build-049-phase0-kalshi-probe",
+  "commit": "c92a5e4cd16da662662bd45f78e51ae3645dd082",
+  "finishedAt": "2026-09-29T20:42:30.325Z",
+  "ok": true,
+  "results": [
+    {
+      "job": "kalshi-cpi-probe",
+      "ok": true,
+      "exitCode": 0,
+      "minutes": 0
+    }
+  ]
+}

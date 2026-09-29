@@ -1,0 +1,88 @@
+{
+  "build": "049-phase0",
+  "probe": "kalshi-public-rest",
+  "at": "2026-09-29T20:42:29.667Z",
+  "bases": [
+    {
+      "base": "https://external-api.kalshi.com/trade-api/v2",
+      "seriesStatus": 200,
+      "seriesMs": 231,
+      "fee": {
+        "fee_type": "quadratic_with_maker_fees",
+        "fee_multiplier": 1
+      },
+      "marketsStatus": 200,
+      "marketsMs": 104,
+      "rateHeaders": {},
+      "openMarkets": 63,
+      "events": [
+        "KXCPIYOY-26DEC",
+        "KXCPIYOY-26NOV",
+        "KXCPIYOY-26SEP"
+      ],
+      "strikeTypes": [
+        "greater"
+      ],
+      "sampleMarket": {
+        "ticker": "KXCPIYOY-26DEC-T5.0",
+        "event_ticker": "KXCPIYOY-26DEC",
+        "strike_type": "greater",
+        "floor_strike": 5,
+        "yes_bid": "0.0100",
+        "yes_ask": "0.0200",
+        "no_bid": "0.9800",
+        "no_ask": "0.9900",
+        "close_time": "2027-01-13T13:29:00Z",
+        "expiration_time": "2027-04-14T15:00:00Z",
+        "rules_primary": "If the Consumer Price Index (CPI) increases by more than 5.0% in the twelve months ending December 2026 (as represented by the one-decimal place value reported by the Bureau of Labor Statistics), then the market resolves to Yes."
+      },
+      "orderbookStatus": 200,
+      "orderbookMs": 23,
+      "orderbookKeys": [
+        "orderbook_fp"
+      ],
+      "orderbookSample": "{\"orderbook_fp\":{\"no_dollars\":[[\"0.0100\",\"8660.00\"],[\"0.0200\",\"6630.00\"],[\"0.0300\",\"6400.00\"],[\"0.0400\",\"295.00\"],[\"0.0500\",\"47.00\"],[\"0.1600\",\"83.00\"],[\"0.4600\",\"32.00\"],[\"0.5100\",\"4.00\"],[\"0.9000\",\"24.00\"],[\"0.9100\",\"32.00\"],[\"0.9200\",\"32.00\"],[\"0.9300\",\"1032.00\"],[\"0.9400\",\"31.00\"],[\"0.9500\",\"31.00\"],[\"0.9600\",\"31.00\"],[\"0.9800\",\"4208.01\"]],\"yes_dollars\":[[\"0.0100\",\"1600.00\"]]}}"
+    },
+    {
+      "base": "https://api.elections.kalshi.com/trade-api/v2",
+      "seriesStatus": 200,
+      "seriesMs": 157,
+      "fee": {
+        "fee_type": "quadratic_with_maker_fees",
+        "fee_multiplier": 1
+      },
+      "marketsStatus": 200,
+      "marketsMs": 97,
+      "rateHeaders": {},
+      "openMarkets": 63,
+      "events": [
+        "KXCPIYOY-26DEC",
+        "KXCPIYOY-26NOV",
+        "KXCPIYOY-26SEP"
+      ],
+      "strikeTypes": [
+        "greater"
+      ],
+      "sampleMarket": {
+        "ticker": "KXCPIYOY-26DEC-T5.0",
+        "event_ticker": "KXCPIYOY-26DEC",
+        "strike_type": "greater",
+        "floor_strike": 5,
+        "yes_bid": "0.0100",
+        "yes_ask": "0.0200",
+        "no_bid": "0.9800",
+        "no_ask": "0.9900",
+        "close_time": "2027-01-13T13:29:00Z",
+        "expiration_time": "2027-04-14T15:00:00Z",
+        "rules_primary": "If the Consumer Price Index (CPI) increases by more than 5.0% in the twelve months ending December 2026 (as represented by the one-decimal place value reported by the Bureau of Labor Statistics), then the market resolves to Yes."
+      },
+      "orderbookStatus": 200,
+      "orderbookMs": 31,
+      "orderbookKeys": [
+        "orderbook_fp"
+      ],
+      "orderbookSample": "{\"orderbook_fp\":{\"no_dollars\":[[\"0.0100\",\"8660.00\"],[\"0.0200\",\"6630.00\"],[\"0.0300\",\"6400.00\"],[\"0.0400\",\"295.00\"],[\"0.0500\",\"47.00\"],[\"0.1600\",\"83.00\"],[\"0.4600\",\"32.00\"],[\"0.5100\",\"4.00\"],[\"0.9000\",\"24.00\"],[\"0.9100\",\"32.00\"],[\"0.9200\",\"32.00\"],[\"0.9300\",\"1032.00\"],[\"0.9400\",\"31.00\"],[\"0.9500\",\"31.00\"],[\"0.9600\",\"31.00\"],[\"0.9800\",\"4208.01\"]],\"yes_dollars\":[[\"0.0100\",\"1600.00\"]]}}"
+    }
+  ],
+  "authorizedToTrade": false
+}
