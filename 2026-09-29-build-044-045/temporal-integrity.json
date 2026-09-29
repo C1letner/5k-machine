@@ -1,0 +1,168 @@
+{
+  "ok": true,
+  "build": "044-integrity",
+  "timestampConvention": "HIST-028 observed_at is candle START; close becomes knowable one hour later",
+  "assets": [
+    {
+      "asset": "BTC",
+      "rows": 26270,
+      "duplicates": 0,
+      "gapCount": 2,
+      "gaps": [
+        {
+          "after": "2025-10-25T15:00:00.000Z",
+          "before": "2025-10-25T21:00:00.000Z",
+          "deltaHours": 6
+        },
+        {
+          "after": "2026-05-08T01:00:00.000Z",
+          "before": "2026-05-08T07:00:00.000Z",
+          "deltaHours": 6
+        }
+      ],
+      "first": "2023-09-30T04:00:00+00:00",
+      "last": "2026-09-29T03:00:00+00:00"
+    },
+    {
+      "asset": "ETH",
+      "rows": 26270,
+      "duplicates": 0,
+      "gapCount": 2,
+      "gaps": [
+        {
+          "after": "2025-10-25T15:00:00.000Z",
+          "before": "2025-10-25T21:00:00.000Z",
+          "deltaHours": 6
+        },
+        {
+          "after": "2026-05-08T01:00:00.000Z",
+          "before": "2026-05-08T07:00:00.000Z",
+          "deltaHours": 6
+        }
+      ],
+      "first": "2023-09-30T04:00:00+00:00",
+      "last": "2026-09-29T03:00:00+00:00"
+    },
+    {
+      "asset": "XRP",
+      "rows": 26270,
+      "duplicates": 0,
+      "gapCount": 2,
+      "gaps": [
+        {
+          "after": "2025-10-25T15:00:00.000Z",
+          "before": "2025-10-25T21:00:00.000Z",
+          "deltaHours": 6
+        },
+        {
+          "after": "2026-05-08T01:00:00.000Z",
+          "before": "2026-05-08T07:00:00.000Z",
+          "deltaHours": 6
+        }
+      ],
+      "first": "2023-09-30T04:00:00+00:00",
+      "last": "2026-09-29T03:00:00+00:00"
+    },
+    {
+      "asset": "SOL",
+      "rows": 26270,
+      "duplicates": 0,
+      "gapCount": 2,
+      "gaps": [
+        {
+          "after": "2025-10-25T15:00:00.000Z",
+          "before": "2025-10-25T21:00:00.000Z",
+          "deltaHours": 6
+        },
+        {
+          "after": "2026-05-08T01:00:00.000Z",
+          "before": "2026-05-08T07:00:00.000Z",
+          "deltaHours": 6
+        }
+      ],
+      "first": "2023-09-30T04:00:00+00:00",
+      "last": "2026-09-29T03:00:00+00:00"
+    },
+    {
+      "asset": "ADA",
+      "rows": 26270,
+      "duplicates": 0,
+      "gapCount": 2,
+      "gaps": [
+        {
+          "after": "2025-10-25T15:00:00.000Z",
+          "before": "2025-10-25T21:00:00.000Z",
+          "deltaHours": 6
+        },
+        {
+          "after": "2026-05-08T01:00:00.000Z",
+          "before": "2026-05-08T07:00:00.000Z",
+          "deltaHours": 6
+        }
+      ],
+      "first": "2023-09-30T04:00:00+00:00",
+      "last": "2026-09-29T03:00:00+00:00"
+    },
+    {
+      "asset": "DOGE",
+      "rows": 26270,
+      "duplicates": 0,
+      "gapCount": 2,
+      "gaps": [
+        {
+          "after": "2025-10-25T15:00:00.000Z",
+          "before": "2025-10-25T21:00:00.000Z",
+          "deltaHours": 6
+        },
+        {
+          "after": "2026-05-08T01:00:00.000Z",
+          "before": "2026-05-08T07:00:00.000Z",
+          "deltaHours": 6
+        }
+      ],
+      "first": "2023-09-30T04:00:00+00:00",
+      "last": "2026-09-29T03:00:00+00:00"
+    },
+    {
+      "asset": "AVAX",
+      "rows": 26270,
+      "duplicates": 0,
+      "gapCount": 2,
+      "gaps": [
+        {
+          "after": "2025-10-25T15:00:00.000Z",
+          "before": "2025-10-25T21:00:00.000Z",
+          "deltaHours": 6
+        },
+        {
+          "after": "2026-05-08T01:00:00.000Z",
+          "before": "2026-05-08T07:00:00.000Z",
+          "deltaHours": 6
+        }
+      ],
+      "first": "2023-09-30T04:00:00+00:00",
+      "last": "2026-09-29T03:00:00+00:00"
+    },
+    {
+      "asset": "LINK",
+      "rows": 26270,
+      "duplicates": 0,
+      "gapCount": 2,
+      "gaps": [
+        {
+          "after": "2025-10-25T15:00:00.000Z",
+          "before": "2025-10-25T21:00:00.000Z",
+          "deltaHours": 6
+        },
+        {
+          "after": "2026-05-08T01:00:00.000Z",
+          "before": "2026-05-08T07:00:00.000Z",
+          "deltaHours": 6
+        }
+      ],
+      "first": "2023-09-30T04:00:00+00:00",
+      "last": "2026-09-29T03:00:00+00:00"
+    }
+  ],
+  "authorizedToTrade": false
+}

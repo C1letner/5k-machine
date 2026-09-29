@@ -1,0 +1,80 @@
+{
+  "ok": true,
+  "build": "045",
+  "program": "SLOW_VOL_SCALED_TREND",
+  "assumptions": {
+    "lookbackDays": 90,
+    "volDays": 30,
+    "targetDailyVol": 0.01,
+    "maxLeverage": 1,
+    "roundTripCostBps": 10
+  },
+  "results": [
+    {
+      "asset": "BTC",
+      "days": 1096,
+      "events": 1004,
+      "grossMean": 0.00030775725677607553,
+      "netMean": -0.0006922427432239245,
+      "p": 0.9528301886792453
+    },
+    {
+      "asset": "ETH",
+      "days": 1096,
+      "events": 1004,
+      "grossMean": 0.0003647297163953615,
+      "netMean": -0.0006352702836046385,
+      "p": 0.9181818181818182
+    },
+    {
+      "asset": "XRP",
+      "days": 1096,
+      "events": 1004,
+      "grossMean": -0.00023078782800352687,
+      "netMean": -0.001230787828003527,
+      "p": 1
+    },
+    {
+      "asset": "SOL",
+      "days": 1096,
+      "events": 1004,
+      "grossMean": 0.00009126833420647359,
+      "netMean": -0.0009087316657935264,
+      "p": 1
+    },
+    {
+      "asset": "ADA",
+      "days": 1096,
+      "events": 1004,
+      "grossMean": 0.00033844468687551705,
+      "netMean": -0.000661555313124483,
+      "p": 0.9181818181818182
+    },
+    {
+      "asset": "DOGE",
+      "days": 1096,
+      "events": 1004,
+      "grossMean": 0.0001236156252671397,
+      "netMean": -0.0008763843747328603,
+      "p": 0.9711538461538461
+    },
+    {
+      "asset": "AVAX",
+      "days": 1096,
+      "events": 1004,
+      "grossMean": 0.00008162588700386086,
+      "netMean": -0.0009183741129961392,
+      "p": 0.9901960784313726
+    },
+    {
+      "asset": "LINK",
+      "days": 1096,
+      "events": 1004,
+      "grossMean": -0.0000017216097077371627,
+      "netMean": -0.0010017216097077371,
+      "p": 1
+    }
+  ],
+  "note": "Exploratory mechanism research only; no trading authority.",
+  "authorizedToTrade": false
+}
