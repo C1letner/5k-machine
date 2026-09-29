@@ -1,0 +1,8 @@
+{
+  "note": "Build 046: free public historical funding carry baseline on BTC/ETH/SOL. Research only; no credentials or trading.",
+  "jobs": [
+    {
+      "job": "funding-carry"
+    }
+  ]
+}
