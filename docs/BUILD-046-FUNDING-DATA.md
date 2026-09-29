@@ -1,5 +1,17 @@
 # Build 046 (data) — Historical Funding Acquisition
 
+## Outcome (2026-09-29): success condition NOT met; stopped as instructed
+
+- **Stored:** one year of settled hourly funding from Kraken Futures for BTC, ETH and SOL
+  (2025-09-24 08:00 to 2026-09-29 16:00 UTC; 8,881 / 8,881 / 8,882 rows), with provenance, in
+  `derivatives_observations` (`FUND046-KRAKEN`). Research can read it without contacting any exchange.
+- **Not met:** the 2-year minimum. Kraken's settled endpoint returns a rolling ~1 year; its analytics feed
+  holds only ~230 days of hourly funding. No lawful, free, runner-accessible source of 2+ years was found.
+- **Carry baseline not run:** the completeness gate (730 days) blocked it, as designed. The gate was not lowered.
+- **Accumulation started:** a weekly workflow (`funding-accumulate.yml`) saves new hourly rates, so stored history
+  grows past two years in late September 2027 without relying on any provider keeping old data.
+- Decisions for the Owner are listed at the end.
+
 Status: research only. No purchases, accounts, secrets, trades, or changes to trading authority.
 
 ## Problem
@@ -117,3 +129,21 @@ instruments, which would allow basis modeling from the same venue.
 
 If the runner cannot reach Kraken, or Kraken returns less than two years, the completeness gate fails
 and the carry job does not run.
+
+## Analytics validation finding
+
+On the overlap (about 5,500 hours per instrument), the analytics candle **close** at time t equals the
+settled rate for the period starting at t in 100% of hours for all three instruments. The feed is therefore
+a faithful copy of settled rates, but its hourly history starts 2026-02-12, so it adds nothing older.
+(The first analytics run stored nothing because the API returns millisecond timestamps although the docs say
+seconds; the validation gate caught the misalignment. Fixed.)
+
+## Decisions for the Owner
+
+1. **Wait and accumulate** (default, running): two years of Kraken history in about a year.
+2. **Run the baseline on one year now**, explicitly labeled as insufficient for conclusions:
+   request `funding-carry` after `funding-completeness` with `MIN_FUNDING_DAYS=365` set by the Owner.
+3. **Sources that are reachable but belong to platforms that exclude US persons** (for example Binance's
+   public data archive or Coinbase International). Using them may be lawful for market data, but it conflicts
+   with this build's no-circumvention rule, so it needs an explicit Owner (and ideally legal) decision.
+4. **Paid data** (for example CoinGlass) is excluded by this build's rules.

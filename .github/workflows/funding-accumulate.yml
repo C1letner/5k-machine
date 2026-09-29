@@ -1,0 +1,29 @@
+name: Funding History Accumulation
+# Build 046 data. Kraken's settled-funding endpoint returns only a rolling ~1 year, so older rows would be
+# lost if not saved. This weekly job stores any new hourly rates (idempotent; existing rows never change).
+# Public data, no credentials beyond the database secrets; writes market data only; no trading.
+on:
+  schedule:
+    - cron: "17 9 * * 1"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  accumulate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm install
+      - run: npm run -s ingest:funding
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      - name: Coverage so far (informational; fails until two years exist)
+        run: npm run -s check:funding || true
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
