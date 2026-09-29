@@ -1,0 +1,4 @@
+{
+  "note": "Build 047B: EXPLORATORY one-year Kraken funding analysis from stored FUND046-KRAKEN rows (no Kraken calls, no database writes, cannot promote). Permanent 730-day gate unchanged. Preregistered in docs/BUILD-047-PREREGISTRATION.md.",
+  "jobs": [ { "job": "funding-exploratory" } ]
+}

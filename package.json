@@ -56,7 +56,11 @@
     "ingest:funding": "tsx src/funding/ingestKraken.ts",
     "check:funding": "tsx src/funding/completenessJob.ts",
     "test:funding-data": "tsx tests/fundingData.test.ts",
-    "ingest:funding-analytics": "tsx src/funding/ingestKrakenAnalytics.ts"
+    "ingest:funding-analytics": "tsx src/funding/ingestKrakenAnalytics.ts",
+    "research:trend-economics": "tsx src/trendEconomicsLab.ts",
+    "research:funding-exploratory": "tsx src/fundingExploratory.ts",
+    "test:trend-economics": "tsx tests/trendEconomics.test.ts",
+    "test:funding-exploratory": "tsx tests/fundingExploratory.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",

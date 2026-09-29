@@ -1,0 +1,4 @@
+{
+  "note": "Build 047A: corrected economics of the unchanged Build 045 slow trend (turnover-based costs, Build 044 next-bar timing). Preregistered in docs/BUILD-047-PREREGISTRATION.md. Research only.",
+  "jobs": [ { "job": "trend-economics" } ]
+}

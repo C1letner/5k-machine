@@ -1,3 +1,6 @@
+// SUPERSEDED by Build 047A (src/trendEconomicsLab.ts). This Build 045 lab charges its 10 bps cost on EVERY daily
+// return (via the bootstrap costBps) instead of on actual turnover, and trades at the same close that forms the signal.
+// Kept unchanged as the historical record of the Build 045 result; do not use for new conclusions.
 import{db}from "./db.js";import{volScaledTrend}from "./mechanisms/slowTrend.js";import{blockBootstrapPValue,seedFrom}from "./science/bootstrap.js";
 const A=["BTC","ETH","XRP","SOL","ADA","DOGE","AVAX","LINK"],PAGE=1000,DAY=86400_000;
 async function hourly(asset:string){const rows:any[]=[];for(let f=0;;f+=PAGE){const{data,error}=await db.from("crypto_universe_snapshots").select("observed_at,price_usd").eq("asset",asset).eq("sensor_version","HIST-028").order("observed_at",{ascending:true}).range(f,f+PAGE-1);if(error)throw error;rows.push(...(data??[]));if((data??[]).length<PAGE)break}return rows}
