@@ -1,0 +1,12 @@
+{
+  "note": "Build 044/045 overnight research: verify temporal integrity, then run research-only slow mechanism program. No trading, credentials, risk or capital changes.",
+  "jobs": [
+    {
+      "job": "temporal-audit"
+    },
+    {
+      "job": "mechanisms"
+    }
+  ]
+}
+
