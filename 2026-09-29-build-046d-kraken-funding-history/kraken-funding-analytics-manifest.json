@@ -1,0 +1,605 @@
+{
+  "fetchedAt": "2026-09-29T16:56:15.073Z",
+  "sensorVersion": "FUND046-KRAKEN-AN",
+  "files": [
+    {
+      "instrument": "PF_XBTUSD",
+      "fetchedAt": "2026-09-29T16:56:15.073Z",
+      "pages": [
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1647820800&to=1653004800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1653004800&to=1658188800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1658188800&to=1663372800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1663372800&to=1668556800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1668556800&to=1673740800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1673740800&to=1678924800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1678924800&to=1684108800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1684108800&to=1689292800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1689292800&to=1694476800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1694476800&to=1699660800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1699660800&to=1704844800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1704844800&to=1710028800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1710028800&to=1715212800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1715212800&to=1720396800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1720396800&to=1725580800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1725580800&to=1730764800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1730764800&to=1735948800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1735948800&to=1741132800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1741132800&to=1746316800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1746316800&to=1751500800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1751500800&to=1756684800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1756684800&to=1761868800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1761868800&to=1767052800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1767052800&to=1772236800&interval=3600",
+          "sha256": "7c2988097b15645f4c61609a79539d0b2144641c0f31dcee8225ea479a076ef5",
+          "bytes": 72264,
+          "candles": 372,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1772236800&to=1777420800&interval=3600",
+          "sha256": "51ab6bf07ac83d2ab9cbf741ac561145e662b2e66310d090d6b4c1e916bbc43c",
+          "bytes": 281276,
+          "candles": 1441,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1777420800&to=1782604800&interval=3600",
+          "sha256": "673b2353f19b1576f14d5c9044774f26a06819d52afbc0852bd34dfea81c9a7b",
+          "bytes": 273540,
+          "candles": 1441,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1782604800&to=1787788800&interval=3600",
+          "sha256": "71c827083852c05162e7925fe0e9e27f5747115c76258a1c02d799ac1c9d77f8",
+          "bytes": 265086,
+          "candles": 1441,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_XBTUSD/funding?since=1787788800&to=1790700975&interval=3600",
+          "sha256": "030919b8145d179ee1fbcd6cd4dc185a221c4543c2d7bebca3ddd69781f5de86",
+          "bytes": 147236,
+          "candles": 809,
+          "more": false
+        }
+      ]
+    },
+    {
+      "instrument": "PF_ETHUSD",
+      "fetchedAt": "2026-09-29T16:56:15.073Z",
+      "pages": [
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1647820800&to=1653004800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1653004800&to=1658188800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1658188800&to=1663372800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1663372800&to=1668556800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1668556800&to=1673740800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1673740800&to=1678924800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1678924800&to=1684108800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1684108800&to=1689292800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1689292800&to=1694476800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1694476800&to=1699660800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1699660800&to=1704844800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1704844800&to=1710028800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1710028800&to=1715212800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1715212800&to=1720396800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1720396800&to=1725580800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1725580800&to=1730764800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1730764800&to=1735948800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1735948800&to=1741132800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1741132800&to=1746316800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1746316800&to=1751500800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1751500800&to=1756684800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1756684800&to=1761868800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1761868800&to=1767052800&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1767052800&to=1772236800&interval=3600",
+          "sha256": "2c826268a1423aa52840cb2b50cecaddf331664088c8932adef1f71fa4af479d",
+          "bytes": 74242,
+          "candles": 372,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1772236800&to=1777420800&interval=3600",
+          "sha256": "4f963ebc33f343d277034fa9a5332a034a07e534806cdfedf0729ac9fcb043e5",
+          "bytes": 287378,
+          "candles": 1441,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1777420800&to=1782604800&interval=3600",
+          "sha256": "3b3a47183674450ec3f31a6f6c58a4d894ca1091868ac5083088b9c095f6d0a4",
+          "bytes": 277780,
+          "candles": 1441,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1782604800&to=1787788800&interval=3600",
+          "sha256": "ee3d7eb88bad41b59798092f28375539111bab5759dc7a89c8cfc07cb13f279c",
+          "bytes": 270542,
+          "candles": 1441,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_ETHUSD/funding?since=1787788800&to=1790700988&interval=3600",
+          "sha256": "bd884d2b1eda42ecccd4607fbd14263792ff32bc59696f58d8b4caae741d9afb",
+          "bytes": 150148,
+          "candles": 809,
+          "more": false
+        }
+      ]
+    },
+    {
+      "instrument": "PF_SOLUSD",
+      "fetchedAt": "2026-09-29T16:56:15.073Z",
+      "pages": [
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1654992000&to=1660176000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1660176000&to=1665360000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1665360000&to=1670544000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1670544000&to=1675728000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1675728000&to=1680912000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1680912000&to=1686096000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1686096000&to=1691280000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1691280000&to=1696464000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1696464000&to=1701648000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1701648000&to=1706832000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1706832000&to=1712016000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1712016000&to=1717200000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1717200000&to=1722384000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1722384000&to=1727568000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1727568000&to=1732752000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1732752000&to=1737936000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1737936000&to=1743120000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1743120000&to=1748304000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1748304000&to=1753488000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1753488000&to=1758672000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1758672000&to=1763856000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1763856000&to=1769040000&interval=3600",
+          "sha256": "5b83239da90473ffbccebca3c85be133404d553b87d1d2190e3d8bad33eef915",
+          "bytes": 89,
+          "candles": 0,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1769040000&to=1774224000&interval=3600",
+          "sha256": "d69f04e57a710901de7e30a7bbc6a5fef7217f81d9a6a9517e66ecadeeac7eeb",
+          "bytes": 188258,
+          "candles": 924,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1774224000&to=1779408000&interval=3600",
+          "sha256": "9b3bc0027be6fd3a3130d203bda11857bb80e1cd15bdeff1f6f86559d51cb435",
+          "bytes": 289608,
+          "candles": 1441,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1779408000&to=1784592000&interval=3600",
+          "sha256": "0cea4719c252486f8cbee0e8295a2084a746db8b40cbad9eea32bc9d14afb7ab",
+          "bytes": 279934,
+          "candles": 1441,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1784592000&to=1789776000&interval=3600",
+          "sha256": "6bd658ffb27de8b98bfe30d09bb70664978b68a7946fa25001519dbc42a2418f",
+          "bytes": 274352,
+          "candles": 1441,
+          "more": false
+        },
+        {
+          "url": "https://futures.kraken.com/api/charts/v1/analytics/PF_SOLUSD/funding?since=1789776000&to=1790700999&interval=3600",
+          "sha256": "ff0e0b0eb87c9d7cd6cc98a1658dae14326d925353bf70616da6254b8122c923",
+          "bytes": 48748,
+          "candles": 257,
+          "more": false
+        }
+      ]
+    }
+  ]
+}

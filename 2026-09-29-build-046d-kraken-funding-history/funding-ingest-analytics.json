@@ -1,0 +1,132 @@
+{
+  "ok": false,
+  "build": "046-data",
+  "series": "FUND046-KRAKEN-AN",
+  "fetchedAt": "2026-09-29T16:56:15.073Z",
+  "results": [
+    {
+      "asset": "BTC",
+      "instrument": "PF_XBTUSD",
+      "analyticsCandles": 5500,
+      "analyticsFirst": "+058087-08-16T16:00:00.000Z",
+      "analyticsLast": "+058714-12-13T16:00:00.000Z",
+      "analyticsCoverageDays": 229125,
+      "settledRowsForValidation": 8881,
+      "validationTop3": [
+        {
+          "field": "open",
+          "offsetHours": -2,
+          "overlap": 0,
+          "matches": 0,
+          "matchRate": 0,
+          "medianAbsDiff": null
+        },
+        {
+          "field": "open",
+          "offsetHours": -1,
+          "overlap": 0,
+          "matches": 0,
+          "matchRate": 0,
+          "medianAbsDiff": null
+        },
+        {
+          "field": "open",
+          "offsetHours": 0,
+          "overlap": 0,
+          "matches": 0,
+          "matchRate": 0,
+          "medianAbsDiff": null
+        }
+      ],
+      "gate": {
+        "minOverlapHours": 4320,
+        "minMatchRate": 0.99
+      },
+      "accepted": false,
+      "reason": "overlap 0h < 4320h"
+    },
+    {
+      "asset": "ETH",
+      "instrument": "PF_ETHUSD",
+      "analyticsCandles": 5500,
+      "analyticsFirst": "+058087-08-16T16:00:00.000Z",
+      "analyticsLast": "+058714-12-13T16:00:00.000Z",
+      "analyticsCoverageDays": 229125,
+      "settledRowsForValidation": 8881,
+      "validationTop3": [
+        {
+          "field": "open",
+          "offsetHours": -2,
+          "overlap": 0,
+          "matches": 0,
+          "matchRate": 0,
+          "medianAbsDiff": null
+        },
+        {
+          "field": "open",
+          "offsetHours": -1,
+          "overlap": 0,
+          "matches": 0,
+          "matchRate": 0,
+          "medianAbsDiff": null
+        },
+        {
+          "field": "open",
+          "offsetHours": 0,
+          "overlap": 0,
+          "matches": 0,
+          "matchRate": 0,
+          "medianAbsDiff": null
+        }
+      ],
+      "gate": {
+        "minOverlapHours": 4320,
+        "minMatchRate": 0.99
+      },
+      "accepted": false,
+      "reason": "overlap 0h < 4320h"
+    },
+    {
+      "asset": "SOL",
+      "instrument": "PF_SOLUSD",
+      "analyticsCandles": 5500,
+      "analyticsFirst": "+058087-08-16T16:00:00.000Z",
+      "analyticsLast": "+058714-12-13T16:00:00.000Z",
+      "analyticsCoverageDays": 229125,
+      "settledRowsForValidation": 8882,
+      "validationTop3": [
+        {
+          "field": "open",
+          "offsetHours": -2,
+          "overlap": 0,
+          "matches": 0,
+          "matchRate": 0,
+          "medianAbsDiff": null
+        },
+        {
+          "field": "open",
+          "offsetHours": -1,
+          "overlap": 0,
+          "matches": 0,
+          "matchRate": 0,
+          "medianAbsDiff": null
+        },
+        {
+          "field": "open",
+          "offsetHours": 0,
+          "overlap": 0,
+          "matches": 0,
+          "matchRate": 0,
+          "medianAbsDiff": null
+        }
+      ],
+      "gate": {
+        "minOverlapHours": 4320,
+        "minMatchRate": 0.99
+      },
+      "accepted": false,
+      "reason": "overlap 0h < 4320h"
+    }
+  ],
+  "authorizedToTrade": false
+}

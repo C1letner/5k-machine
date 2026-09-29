@@ -1,0 +1,14 @@
+{
+  "id": "2026-09-29-build-046d-kraken-funding-history",
+  "commit": "86d5fd98d03934f893f1f6b17f9bab13413f117b",
+  "finishedAt": "2026-09-29T16:56:51.034Z",
+  "ok": false,
+  "results": [
+    {
+      "job": "funding-ingest-analytics",
+      "ok": false,
+      "exitCode": 1,
+      "minutes": 0.6
+    }
+  ]
+}
